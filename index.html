@@ -17,41 +17,48 @@
     <!-- header start -->
     <header id="home-header">
         <!-- navbar -->
-        <nav class="navbar navbar-expand-lg navbar-light">
+        <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
                 <!-- logo here -->
-                <a class="navbar-brand" href="#"> <img src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24" class="d-inline-block align-text-top">Logo</a>
+                <a class="navbar-brand austhir-nav-link" href="#"> <img src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24" class="d-inline-block align-text-top">Logo</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                    <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6 19.5C6.82843 19.5 7.5 18.8284 7.5 18C7.5 17.1716 6.82843 16.5 6 16.5C5.17157 16.5 4.5 17.1716 4.5 18C4.5 18.8284 5.17157 19.5 6 19.5Z" fill="#FF4604"/>
+                        <path d="M30.09 16.5H11.91C11.1313 16.5 10.5 17.1313 10.5 17.91V18.09C10.5 18.8687 11.1313 19.5 11.91 19.5H30.09C30.8687 19.5 31.5 18.8687 31.5 18.09V17.91C31.5 17.1313 30.8687 16.5 30.09 16.5Z" fill="#FF4604"/>
+                        <path d="M30.09 24H5.91C5.13128 24 4.5 24.6313 4.5 25.41V25.59C4.5 26.3687 5.13128 27 5.91 27H30.09C30.8687 27 31.5 26.3687 31.5 25.59V25.41C31.5 24.6313 30.8687 24 30.09 24Z" fill="#FF4604"/>
+                        <path d="M30.09 9H5.91C5.13128 9 4.5 9.63128 4.5 10.41V10.59C4.5 11.3687 5.13128 12 5.91 12H30.09C30.8687 12 31.5 11.3687 31.5 10.59V10.41C31.5 9.63128 30.8687 9 30.09 9Z" fill="#FF4604"/>
+                    </svg>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Our Services</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Featured Cars</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Hot Sells</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">About Us</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Contact Us</a>
-                        </li>
-                    </ul>
+                    <div class="d-flex flex-column align-items-center flex-lg-row justify-content-between w-100">
+                        <ul class="navbar-nav mb-2 mb-lg-0">
+                            <li class="nav-item austhir-nav-item">
+                                <a class="nav-link austhir-nav-link"  aria-current="page" href="#">Our Services</a>
+                            </li>
+                            <li class="nav-item austhir-nav-item">
+                                <a class="nav-link austhir-nav-link active" href="#">Featured Cars</a>
+                            </li>
+                            <li class="nav-item austhir-nav-item">
+                                <a class="nav-link austhir-nav-link" href="#">Hot Sells</a>
+                            </li>
+                            <li class="nav-item austhir-nav-item">
+                                <a class="nav-link austhir-nav-link" href="#">About Us</a>
+                            </li>
+                            <li class="nav-item austhir-nav-item">
+                                <a class="nav-link austhir-nav-link" href="#">Contact Us</a>
+                            </li>
+                        </ul>
 
-                    <ul class="navbar-nav me-4 mb-2 mb-lg-0">
-                        <li class="nav-item d-flex align-items-center">
-                            <i class="far fa-user me-2"></i>
-                            <a class="nav-link" href="#">Log In</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Sign Up</a>
-                        </li>
-                    </ul>
+                        <ul class="navbar-nav me-4 mb-2 mb-lg-0">
+                            <li class="nav-item log-sign-nav-item d-flex align-items-center">
+                                <i class="far fa-user me-2"></i>
+                                <a class="nav-link austhir-nav-link" href="#">Log In</a>
+                            </li>
+                            <li class="nav-item log-sign-nav-item">
+                                <a class="nav-link austhir-nav-link" href="#">Sign Up</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -65,23 +72,23 @@
                 </div>
 
                 <!-- car search  -->
-                <div class="row">
+                <div class="row d-flex justify-content-center">
                     <div class="search-car-container">
                         <!-- all brands dropdown -->
                         <div class="dropdown search-car-dropdown d-inline-block">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <button class="btn btn-secondary austhir-dropdown-btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                 All Brands
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                 <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                <li><a class="dropdown-item" href="#">mercedes-benz</a></li>
+                                <li><a class="dropdown-item" href="#">koenigsegg</a></li>
                             </ul>
                         </div>
 
                         <!-- all models dropdown -->
                         <div class="dropdown search-car-dropdown d-inline-block">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <button class="btn btn-secondary austhir-dropdown-btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                 All Models
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -93,7 +100,7 @@
 
                         <!-- max price dropdown -->
                         <div class="dropdown search-car-dropdown d-inline-block">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <button class="btn btn-secondary austhir-dropdown-btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                 Max Price
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -104,15 +111,15 @@
                         </div>
 
                         <!-- search button  -->
-                        <div class="search-button-container d-inline-block">
-                            <a href=""><i class="fas fa-search"></i></a>
+                        <div class="d-inline-block">
+                            <a class="search-button" href="#"><i class="fas fa-search"></i></a>
                         </div>
                     </div>
                 </div>
 
                 <!-- car type filters -->
                 <div class="row">
-                    <div class="car-type-filter-container d-flex">
+                    <div class="car-type-filter-container d-flex justify-content-center">
                         <!-- sedan -->
                         <div class="car-type-button">
                             <a href="#">

@@ -6,6 +6,12 @@
 ------------------------------*/
 :root{
     --austhir-orange: #FF4604;
+    --austhir-border-color: #E7EDF3;
+    --austhir-devider-color: #50514F;
+}
+
+nav{
+    height: 100px;
 }
 
 body{
@@ -24,9 +30,40 @@ a{
     background-color: rgba(0, 0, 0, 0.75);
     background-image: url('../images/cover.png');
     background-repeat: no-repeat;
-    background-size: auto;
+    background-size: cover;
     background-blend-mode: multiply;
-    padding-bottom: 350px;
+}
+
+.austhir-nav-item  + .austhir-nav-item {
+    margin-left: 20px;
+} 
+
+.log-sign-nav-item,
+.log-sign-nav-item a{
+    padding: 0;
+}
+
+.log-sign-nav-item:first-child {
+    padding-right: 10px;
+    border-right: 2px solid var(--austhir-devider-color);
+}
+
+.log-sign-nav-item:last-child {
+    padding-left: 10px;
+}
+
+
+.log-sign-nav-item .fa-user.me-2{
+    color: var(--austhir-orange);
+}
+
+.austhir-nav-link{
+    color: white;
+}
+
+.austhir-nav-link:hover,
+.austhir-nav-link:focus{
+    color: var(--austhir-orange);
 }
 
 .hero-title{
@@ -41,6 +78,43 @@ a{
     color: var(--austhir-orange);
 }
 
+.search-car-container{
+    background-color: white;
+    width: fit-content;
+    padding: 10px 20px;
+    margin-top: 50px;
+    border-radius: 20px;
+    border-bottom: 10px solid rgba(231, 237, 243, 0.5);
+    background-clip: padding-box;
+}
+
+.search-car-dropdown,
+.search-button-container{
+    margin: 5px;
+}
+
+.austhir-dropdown-btn{
+    background-color: white;
+    color: black;
+    font-weight: 500;
+    width: 214px;
+    height: 60px;
+    border-radius: 15px;
+    border-color: var(--austhir-border-color);
+}
+
+.search-button{
+    padding: 15px 20px;
+    background-color: var(--austhir-orange);
+    border-radius: 15px; 
+    color: white;
+    font-size: 20px;
+}
+
+.car-type-filter-container{
+    margin: 103px 0;
+}
+
 .car-type-button{
     height: 80px;
     width: 80px;
@@ -49,14 +123,21 @@ a{
 
 .car-type-button svg{
     padding: 10px;
-    fill: orange;
-    border: 2px solid orangered;
+    fill: white;
+    border: 2px solid white;
     border-radius: 50%;
+    margin-bottom: 15px;
+    transition: border-color 0.2s ease-in-out;
 }
 
 .car-type-button a{
     text-align: center;
+    color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.car-type-button:hover svg{
+    border-color: var(--austhir-orange);
 }
