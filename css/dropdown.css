@@ -1,0 +1,78 @@
+span.choose {
+  color: #555;
+  padding: 5px 0 10px;
+  display: inherit;
+}
+
+/*Styling Selectbox*/
+.austhir-dropdown {
+  position: relative;
+  width: 100%;
+  height: 60px;
+  background-color: #fff;
+  font-weight: 500;
+  border-radius: 15px;
+  transition: all 0.5s ease;
+  border: 1px solid;
+  border-color: #e7edf3;
+  position: relative;
+  font-size: 16px;
+  text-align: left;
+}
+.austhir-dropdown .select {
+  cursor: pointer;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+}
+.austhir-dropdown .select > i {
+  font-size: 16px;
+  color: #1b2029;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  float: right;
+  line-height: 20px;
+}
+
+.austhir-dropdown.active {
+  background-color: #f8f8f8;
+  border-color: #ff4604;
+}
+/* .austhir-dropdown.active:hover,
+.austhir-dropdown.active {
+  box-shadow: 0 0 4px rgb(204, 204, 204);
+  border-radius: 2px 2px 0 0;
+  background-color: #f8f8f8;
+} */
+.austhir-dropdown.active .select > i {
+  transform: rotate(-90deg);
+}
+.austhir-dropdown .dropdown-menu {
+  position: absolute;
+  background-color: #fff;
+  width: 100%;
+  left: 0;
+  top: 90%;
+  overflow: hidden;
+  display: none;
+  max-height: 144px;
+  overflow-y: auto;
+  z-index: 100;
+}
+.austhir-dropdown .dropdown-menu li {
+  padding: 10px;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+.austhir-dropdown .dropdown-menu {
+  padding: 0;
+  list-style: none;
+}
+.austhir-dropdown .dropdown-menu li:hover {
+  color: #ff4604;
+}
+.austhir-dropdown .dropdown-menu li:active {
+  color: #ff4604;
+}

@@ -8,6 +8,7 @@
   --austhir-orange: #ff4604;
   --austhir-border-color: #e7edf3;
   --austhir-devider-color: #50514f;
+  --austhir-nav-text-color: #1b2029;
 }
 
 nav {
@@ -27,6 +28,14 @@ a {
   margin: 0;
 }
 
+.nav-bg {
+  background-color: white;
+}
+
+.nav-bg #nav-items-container a {
+  color: var(--austhir-nav-text-color);
+}
+
 /*-----------------------------
         Header Design
 ------------------------------*/
@@ -34,6 +43,7 @@ a {
   background-color: rgba(0, 0, 0, 0.75);
   background-image: url("../images/cover.png");
   background-repeat: no-repeat;
+  background-position: center;
   background-size: cover;
   background-blend-mode: multiply;
 }
@@ -108,9 +118,9 @@ a {
   margin: 5px;
 }
 
-.austhir-dropdown-btn {
+.austhir-dropdown-button {
   background-color: white;
-  color: black;
+  color: var(--austhir-nav-text-color);
   font-weight: 500;
   width: 100%;
   height: 60px;
@@ -118,14 +128,43 @@ a {
   border-color: var(--austhir-border-color);
 }
 
+.austhir-dropdown-button:hover {
+  background-color: white;
+  color: var(--austhir-nav-text-color);
+  border-color: var(--austhir-orange);
+}
+
+.search-button-container {
+  height: 60px;
+}
+
 .search-button {
+  position: relative;
   padding: 15px 0;
+  height: 100%;
   margin-left: 5px;
   text-align: center;
   background-color: var(--austhir-orange);
   border-radius: 15px;
-  color: white;
+  color: white !important;
   font-size: 20px;
+}
+
+.search-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.15);
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: 0.2s ease-in-out;
+}
+
+.search-button:hover::before {
+  transform: scaleX(1);
 }
 
 .search-button-text {
@@ -176,6 +215,22 @@ a {
   }
 
   .log-sign-nav-item {
+    padding: 0;
+  }
+
+  .log-sign-nav-item,
+  .log-sign-nav-item a {
+    padding: 8px 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  .log-sign-nav-item:first-child {
+    border: 0;
+    padding: 0;
+  }
+
+  .log-sign-nav-item:last-child {
     padding: 0;
   }
 
