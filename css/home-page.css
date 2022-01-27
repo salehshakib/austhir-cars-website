@@ -213,7 +213,76 @@
 /*----------------------------------------
         Featured Cars Section Design
 -----------------------------------------*/
+.austhir-card {
+  border: 0;
+  background-color: var(--austhir-card-body-color);
+  color: white;
+  border-radius: 15px;
+  overflow: hidden;
+  cursor: pointer;
+}
 
+.austhir-card-image {
+  overflow: hidden;
+}
+
+.austhir-card img {
+  transition: 0.5s ease-in-out;
+}
+
+.austhir-card:hover img,
+.austhir-card:focus img {
+  transform: scale(1.1);
+}
+
+.austhir-hot-card .austhir-card-image {
+  height: 80%;
+}
+
+.austhir-card-image img {
+  height: 100%;
+  object-fit: cover;
+}
+
+.austhir-hot-card .austhir-card-title {
+  font-weight: 300;
+  font-size: 1.75em;
+}
+.austhir-hot-card .austhir-card-price {
+  font-weight: 700;
+  font-size: 2em;
+}
+
+.austhir-card-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 300;
+}
+
+.austhir-card-footer {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border-color: var(--austhir-devider-color);
+}
+
+.year-badge {
+  background-color: var(--austhir-orange);
+  color: white !important;
+  padding: 8px 15px;
+  border-radius: 10px;
+}
+
+.austhir-footer-info {
+  margin-bottom: 0;
+  color: var(--austhir-card-footer-text-color);
+  font-weight: 300;
+}
+
+.austhir-footer-info + .austhir-footer-info {
+  margin-left: 15px;
+}
 /*-----------------------------
         Tablet Design
 ------------------------------*/
@@ -279,5 +348,26 @@
 
   .section-title {
     font-size: 3em;
+  }
+}
+
+/*-----------------------------
+        XS Design
+------------------------------*/
+@media (max-width: 300px) {
+  .hero-title {
+    font-size: 2em;
+  }
+
+  .car-type-button {
+    margin: 5px;
+  }
+
+  .section-title {
+    font-size: 2em;
+  }
+
+  .service-title {
+    font-size: 1.25em;
   }
 }
