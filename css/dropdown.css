@@ -1,3 +1,6 @@
+/* utilities import */
+@import url("universal-stylesheet.css");
+
 span.choose {
   color: #555;
   padding: 5px 0 10px;
@@ -37,8 +40,8 @@ span.choose {
 }
 
 .austhir-dropdown.active {
-  background-color: #f8f8f8;
-  border-color: #ff4604;
+  background-color: var(--austhir-dropdown-active-color);
+  border-color: var(--austhir-orange);
 }
 /* .austhir-dropdown.active:hover,
 .austhir-dropdown.active {
