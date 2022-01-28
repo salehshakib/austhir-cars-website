@@ -283,6 +283,41 @@
 .austhir-footer-info + .austhir-footer-info {
   margin-left: 15px;
 }
+
+/*----------------------------------------
+        Top Sells Section Design
+-----------------------------------------*/
+.owl-prev,
+.owl-next {
+  margin-top: 30px;
+}
+
+.owl-prev:hover .fa-chevron-left,
+.owl-prev:focus .fa-chevron-left,
+.owl-next:hover .fa-chevron-right,
+.owl-next:focus .fa-chevron-right {
+  color: var(--austhir-orange);
+}
+.owl-next {
+  margin-left: 20px;
+}
+
+.fa-chevron-right,
+.fa-chevron-left {
+  height: 50px;
+  width: 50px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  background-color: white;
+  color: var(--austhir-title-color);
+  padding: 20px;
+  border-radius: 50%;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  transition: 0.3s ease;
+}
+
 /*-----------------------------
         Tablet Design
 ------------------------------*/
