@@ -334,6 +334,47 @@
   transition: 0.3s ease;
 }
 
+/*----------------------------------------
+        Why Us Section Design
+-----------------------------------------*/
+.us-card {
+  background-color: white;
+  padding: 20px;
+  border-radius: 15px;
+  transition: 0.3s ease;
+}
+
+.us-card:hover {
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px,
+    rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
+}
+
+.us-card-icon {
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+  margin-bottom: 20px;
+}
+
+.us-card-icon svg {
+  fill: var(--austhir-orange);
+  background-color: var(--austhir-light-orange);
+  padding: 20px;
+  border-radius: 50%;
+}
+
+.us-title {
+  font-size: 2em;
+  font-weight: 500;
+  color: var(--austhir-title-color);
+  margin-bottom: 15px;
+}
+
+.us-text {
+  width: 85%;
+}
+
 /*-----------------------------
         Tablet Design
 ------------------------------*/
