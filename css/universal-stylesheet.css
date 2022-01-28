@@ -58,3 +58,13 @@ a {
 .austhir-btn:hover::before {
   transform: scaleX(1);
 }
+
+input {
+  display: block;
+}
+
+.submit-btn {
+  border: 0;
+  margin-top: 20px;
+  font-size: 18px;
+}

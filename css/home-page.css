@@ -375,6 +375,49 @@
   width: 85%;
 }
 
+/*----------------------------------------
+        contact Us Section Design
+-----------------------------------------*/
+.contact-us-card {
+  background-color: var(--austhir-light-orange);
+  padding: 30px;
+  border-radius: 20px;
+}
+
+.contact-icon {
+  width: 80px;
+  height: 80px;
+  margin-right: 20px;
+}
+
+.contact-icon svg {
+  fill: var(--austhir-orange);
+  background-color: white;
+  padding: 15px;
+  border-radius: 50%;
+}
+
+.contact-title {
+  font-weight: 600;
+  color: var(--austhir-title-color);
+}
+
+.contact-text {
+  color: var(--austhir-title-color);
+  width: 80%;
+}
+
+.contact-us-msg input,
+.contact-us-msg textarea {
+  width: 90%;
+  border: 2px solid var(--austhir-orange);
+  margin-bottom: 10px;
+  border-radius: 10px;
+  padding: 10px 15px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
 /*-----------------------------
         Tablet Design
 ------------------------------*/
@@ -416,6 +459,10 @@
   .search-button-text {
     display: block;
   }
+
+  .contact-info {
+    margin-bottom: 20px;
+  }
 }
 
 /*-----------------------------
@@ -441,6 +488,16 @@
   .section-title {
     font-size: 3em;
   }
+
+  .contact-us-card {
+    padding: 15px;
+  }
+
+  .contact-us-msg input,
+  .contact-us-msg textarea {
+    width: 100%;
+    font-size: 14px;
+  }
 }
 
 /*-----------------------------
@@ -461,5 +518,30 @@
 
   .service-title {
     font-size: 1.25em;
+  }
+
+  .contact-us-card {
+    padding: 10px;
+  }
+
+  .contact-info {
+    margin-top: 20px;
+  }
+
+  .contact-title {
+    font-size: 1.25em;
+  }
+
+  .contact-text {
+    width: 100%;
+    word-wrap: break-word;
+    margin-left: 0;
+    font-size: 14px;
+  }
+
+  .contact-us-msg input,
+  .contact-us-msg textarea {
+    width: 100%;
+    font-size: 14px;
   }
 }
