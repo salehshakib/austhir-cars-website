@@ -4,6 +4,7 @@
 :root {
   --austhir-orange: #ff4604;
   --austhir-light-orange: #ffece6;
+  --austhir-dark-grey: #222732;
   --austhir-border-color: #e7edf3;
   --austhir-devider-color: #50514f;
   --austhir-nav-text-color: #1b2029;
@@ -67,4 +68,56 @@ input {
   border: 0;
   margin-top: 20px;
   font-size: 18px;
+}
+
+footer {
+  background-color: var(--austhir-dark-grey);
+  height: 200px;
+}
+
+.copyright-text p {
+  color: white;
+  margin: 0;
+}
+
+.social-link {
+  height: 60px;
+  width: 60px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+  background-color: #3b4250;
+  color: white;
+  border-radius: 50%;
+  transition: 0.3s ease-in-out;
+}
+
+.social-link:hover,
+.social-link:focus {
+  background-color: #0f141e;
+  color: white;
+}
+
+.social-link + .social-link {
+  margin-left: 20px;
+}
+
+/*-----------------------------
+        Mobile Design
+------------------------------*/
+@media (max-width: 576px) {
+  .social-links {
+    margin-top: 20px;
+  }
+}
+
+/*-----------------------------
+        XS Design
+------------------------------*/
+@media (max-width: 300px) {
+  .social-link {
+    height: 45px;
+    width: 45px;
+  }
 }
