@@ -73,6 +73,7 @@ input {
 footer {
   background-color: var(--austhir-dark-grey);
   height: 200px;
+  padding: 0 30px;
 }
 
 .copyright-text p {
