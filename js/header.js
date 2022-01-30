@@ -10,7 +10,7 @@ hamBurger.onclick = function () {
     navBar.classList.toggle('nav-bg');
     for (var i = 0; i < navItems.length; i++) {
 
-        navItems.item(i).classList.add('fixed');
+        navItems.item(i).classList.toggle('fixed');
     }
 }
 

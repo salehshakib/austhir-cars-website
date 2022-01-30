@@ -18,7 +18,6 @@ span.choose {
   transition: all 0.5s ease;
   border: 1px solid;
   border-color: #e7edf3;
-  position: relative;
   font-size: 16px;
   text-align: left;
 }

@@ -1,0 +1,112 @@
+/* utilities import */
+@import url("universal-stylesheet.css");
+
+/*-----------------------------
+        Utilities
+------------------------------*/
+body {
+  background-color: white;
+}
+
+/*----------------------------------------
+        After Sales Form Design
+----------------------------------------*/
+.after-sales-title {
+  font-size: 4em;
+  font-weight: 700;
+  margin-bottom: 0;
+}
+
+.after-sales-text {
+  margin-bottom: 30px;
+  font-size: 18px;
+}
+
+.after-sales-form {
+  background-color: var(--austhir-light-orange);
+  padding: 30px;
+  border-radius: 30px;
+  display: flex;
+  margin-bottom: 300px;
+}
+
+.austhir-dropdown {
+  border: 2px solid var(--austhir-orange);
+  border-radius: 15px;
+}
+
+.form-field-container {
+  width: 25%;
+}
+
+input {
+  padding: 20px 20px;
+  border-radius: 15px;
+  border: 2px solid var(--austhir-orange);
+  height: 60px;
+  width: 100%;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+textarea {
+  width: 100%;
+  margin-top: 30px;
+  padding: 20px 20px;
+  border-radius: 15px;
+  border: 2px solid var(--austhir-orange);
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.austhir-submit-btn {
+  border: 0;
+  margin-top: 30px;
+  font-size: 20px;
+  padding: 15px 30px;
+}
+
+.austhir-modal-btn {
+  border: 0;
+}
+
+.modal-body p {
+  font-size: 17px;
+}
+
+.modal-body span {
+  color: var(--austhir-orange);
+  font-size: 25px;
+  font-weight: 700;
+}
+
+/*-----------------------------
+        Tablet Design
+------------------------------*/
+@media (max-width: 768px) {
+  .form-field-container {
+    width: 100%;
+  }
+
+  .form-field-container + .form-field-container {
+    margin-top: 15px;
+  }
+}
+
+/*-----------------------------
+        Mobile Design
+------------------------------*/
+@media (max-width: 576px) {
+  .after-sales-title {
+    font-size: 2em;
+  }
+
+  .after-sales-text {
+    margin-bottom: 30px;
+    font-size: 14px;
+  }
+
+  .after-sales-form {
+    padding: 30px 15px;
+  }
+}
