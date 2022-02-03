@@ -39,7 +39,7 @@ span.choose {
 }
 
 .austhir-dropdown.active {
-  background-color: var(--austhir-dropdown-active-color);
+  background-color: var(--austhir-body-bg-colorr);
   border-color: var(--austhir-orange);
 }
 /* .austhir-dropdown.active:hover,
