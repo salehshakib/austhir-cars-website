@@ -133,7 +133,7 @@
     <main>
       <!-- filter section -->
       <section class="container">
-        <form class="filter-form" action="">
+        <form id="filter-form" class="d-none d-lg-block" action="">
           <div class="filter-container d-block d-lg-flex">
             <!-- all brands dropdown -->
             <div class="search-car-dropdown form-field-container">
@@ -176,9 +176,12 @@
                 </div>
                 <input type="hidden" name="models" />
                 <ul class="dropdown-menu">
-                  <li id="none">Select Model</li>
-                  <li id="mercedes-benz">Mercedes-Benz</li>
-                  <li id="koenigsegg">Koenigsegg</li>
+                  <li id="none">Select Type</li>
+                  <li id="sedan">Sedan</li>
+                  <li id="coupe">Coupe</li>
+                  <li id="suv">SUV</li>
+                  <li id="hatchback">Hatchback</li>
+                  <li id="wagon">Wagon</li>
                 </ul>
               </div>
             </div>
@@ -288,12 +291,23 @@
             </button>
           </div>
         </form>
+        <div class="filter-button-container d-block d-lg-none">
+          <button id="filter-btn" class="austhir-btn submit-btn w-100">
+            <i class="fas fa-sort-amount-down-alt me-2"></i>Filters
+          </button>
+        </div>
       </section>
 
       <!-- gallery section -->
       <section id="gallery-section" class="bg-white">
         <div class="container">
-          <h3 class="search-result">100 Results</h3>
+          <div
+            class="title-container text-center text-lg-start d-block d-lg-flex justify-content-between"
+          >
+            <h3 class="search-result">All Cars</h3>
+            <h3 class="search-result">100 Results</h3>
+          </div>
+
           <!-- cards container -->
           <div class="gallery-card-container">
             <div
@@ -551,5 +565,6 @@
     <!-- custom js -->
     <script src="js/header.js"></script>
     <script src="js/dropdown.js"></script>
+    <script src="js/filter.js"></script>
   </body>
 </html>
