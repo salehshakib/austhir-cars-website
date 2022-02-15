@@ -41,7 +41,7 @@
                 padding-left: 2rem;
         }
 }
-@media (max-width: 767px){
+@media (max-width: 991px){
         .login-register{
                 text-align: center;
         }
@@ -50,10 +50,15 @@
         }
         .form-check{
                 position: absolute;
-                transform: translateX(5em);
+                transform: translateX(7em);
         }
         .btn{
                 margin-top: 3em;
+        }
+}
+@media (max-width: 700px){
+        .form-check{
+                transform: translateX(5em);
         }
 }
 @media (max-width: 520px){
