@@ -1,0 +1,118 @@
+/* utilities import */
+@import url("universal-stylesheet.css");
+
+/*-----------------------------
+        Utilities
+------------------------------*/
+@media (min-width: 1700px){
+        .content#left{
+                padding-left: 20rem;
+        }
+        .content#right{
+                padding-left: 10rem;
+        }
+}
+@media (max-width: 1700px){
+        .content#left{
+                padding-left: 16rem;
+        }
+        .content#right{
+                padding-left: 8rem;
+        }
+}
+@media (max-width: 1500px){
+        .content#left{
+                padding-left: 10rem;
+        }
+        .content#right{
+                padding-left: 5rem;
+        }
+}
+@media (max-width: 1300px){
+        .content#left{
+                padding-left: 2rem;
+        }
+        .content#right{
+                padding-left: 4rem;
+        }
+}
+@media (max-width: 1200px){
+        .content#right{
+                padding-left: 2rem;
+        }
+}
+@media (max-width: 767px){
+        .login-register{
+                text-align: center;
+        }
+        .inputbox{
+                margin: 0 auto;
+        }
+        .form-check{
+                position: absolute;
+                transform: translateX(5em);
+        }
+        .btn{
+                margin-top: 3em;
+        }
+}
+@media (max-width: 520px){
+        .form-check{
+                transform: translateX(3.5em);
+        }
+}
+@media (max-width: 350px){
+        .form-check#remember{
+                transform: translateX(2.25em);
+        }
+        .form-check{
+                transform: translateX(0em);
+        }
+}
+.content{
+        padding-top: 5rem;
+        padding-bottom: 5em;
+}
+.content#left{
+        background-color: #f2f5fb;
+}
+.content#right{
+        background-color: white;
+}
+.form{
+        padding-top: 3em;
+}
+.inputbox{
+        width: 75%;
+        height: 3.25em;       
+}
+.inputbox::placeholder{
+        color: black;
+}
+.inputbox:focus{
+        box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+        border-color: rgba(255, 255, 255, 0.15);
+}
+.check{
+        box-shadow: none;
+        cursor: pointer;
+}
+.check:focus{
+        box-shadow: none;
+        border-color: #c3c3c3;
+}
+.check:checked{
+        background-color: var(--austhir-orange);
+        box-shadow: none;
+        border-color: rgba(255, 255, 255, 0.15);
+}
+#privacy-text{
+        text-decoration: underline;
+        color: var(--austhir-orange);
+}
+.checktext{
+        cursor: pointer;
+} 
+.btn:focus{
+        box-shadow: none;
+}

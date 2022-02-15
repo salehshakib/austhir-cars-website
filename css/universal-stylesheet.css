@@ -16,6 +16,10 @@
   --austhir-title-color: #222732;
   --austhir-card-body-color: #222732;
   --austhir-card-footer-text-color: #99a1b2;
+  --austhir-login-bg-color: #f2f5fb;
+}
+html{
+  scroll-behavior: smooth;
 }
 
 body {
