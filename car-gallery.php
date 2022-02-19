@@ -356,7 +356,7 @@ include 'config.php';
                   </div>
                   <div class="card-body">
                     <h4 class="card-title austhir-card-title">
-                    <?php echo $row["carBrand"]; ?>
+                    <?php echo $row["carBrand"].' '. $row["carModel"]; ?>
                     </h4>
                     <h4 class="card-text austhir-card-price">
                       ৳ <?php echo $row["carPrice"]; ?>
