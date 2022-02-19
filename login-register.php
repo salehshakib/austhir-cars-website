@@ -8,11 +8,11 @@ session_start();
 error_reporting(0);
 
 
-
+/*
 if(isset($_SESSION['name'])){
     header("Location: index.php");
 } 
-
+*/
 if(isset($_POST['login'])){
     //if()
     $user_input = mysqli_real_escape_string($conn, $_POST['login_user_input']);
