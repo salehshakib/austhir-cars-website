@@ -5,13 +5,13 @@ include 'config.php';
 
 session_start();
 
-//error_reporting(0);
+error_reporting(0);
 
 
-/*
+
 if(isset($_SESSION['name'])){
     header("Location: index.php");
-} */
+} 
 
 if(isset($_POST['login'])){
     //if()

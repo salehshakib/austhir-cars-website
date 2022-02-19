@@ -162,11 +162,24 @@ include 'config.php';
                     <span>All Brands</span>
                     <i class="fa fa-chevron-left"></i>
                   </div>
+                  
                   <input type="hidden" name="brands" />
                   <ul class="dropdown-menu">
                     <li id="none">All Brands</li>
-                    <li id="mercedes-benz">Mercedes-Benz</li>
-                    <li id="koenigsegg">Koenigsegg</li>
+                    <?php
+                      $query = "SELECT DISTINCT carBrand FROM cars";
+                      $result = mysqli_query($conn, $query);
+                      if (mysqli_num_rows($result) > 0) {
+                        while ($row = mysqli_fetch_array($result)) {
+                    ?>
+                    <li id="none"><?php echo $row['carBrand']; ?></li>
+                    
+                    <?php
+                        }
+                      }
+                    ?>
+
+                    
                   </ul>
                 </div>
               </div>
@@ -197,8 +210,18 @@ include 'config.php';
                   <input type="hidden" name="price" />
                   <ul class="dropdown-menu">
                     <li id="none">Max Price</li>
-                    <li id="mercedes-benz">Mercedes-Benz</li>
-                    <li id="koenigsegg">Koenigsegg</li>
+                    <?php
+                      $query = "SELECT DISTINCT carPrice FROM cars Order by cast(carPrice as int)";
+                      $result = mysqli_query($conn, $query);
+                      if (mysqli_num_rows($result) > 0) {
+                        while ($row = mysqli_fetch_array($result)) {
+                    ?>
+                    <li id="none"><?php echo $row['carPrice']; ?></li>
+                    
+                    <?php
+                        }
+                      }
+                    ?>
                   </ul>
                 </div>
               </div>
@@ -224,7 +247,7 @@ include 'config.php';
               <div class="first-row d-flex justify-content-center">
                 <!-- sedan -->
                 <div class="car-type-button">
-                  <a href="car-gallery.html?type=sedan">
+                  <a href="car-gallery.php?type=Sedan">
                     <svg
                       version="1.1"
                       xmlns="http://www.w3.org/2000/svg"
@@ -256,7 +279,7 @@ include 'config.php';
                 </div>
                 <!-- coupe -->
                 <div class="car-type-button">
-                  <a href="car-gallery.html?type=coupe">
+                  <a href="car-gallery.php?type=Coupe">
                     <svg
                       version="1.1"
                       xmlns="http://www.w3.org/2000/svg"
@@ -294,7 +317,7 @@ include 'config.php';
                 </div>
                 <!-- suv -->
                 <div class="car-type-button">
-                  <a href="car-gallery.html?type=suv">
+                  <a href="car-gallery.php?type=SUV">
                     <svg
                       version="1.1"
                       xmlns="http://www.w3.org/2000/svg"
@@ -334,7 +357,7 @@ include 'config.php';
               <div class="second-row d-flex justify-content-center">
                 <!-- hatchback -->
                 <div class="car-type-button">
-                  <a href="car-gallery.html?type=hatchback">
+                  <a href="car-gallery.php?type=Hatchback">
                     <svg
                       version="1.1"
                       xmlns="http://www.w3.org/2000/svg"
@@ -366,7 +389,7 @@ include 'config.php';
                 </div>
                 <!-- station wagon -->
                 <div class="car-type-button">
-                  <a href="car-gallery.html?type=wagon">
+                  <a href="car-gallery.php?type=Wagon">
                     <svg
                       version="1.1"
                       xmlns="http://www.w3.org/2000/svg"

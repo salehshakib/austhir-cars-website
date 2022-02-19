@@ -318,40 +318,47 @@ include 'config.php';
               class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4"
             >
             <?php
-				    $query = "select * from cars order by carId";
+            if(isset($_GET['type'])){
+              $car_type = $_GET['type'];
+              $query = "select * from cars WHERE carGenre = '$car_type'";
+            
+            }else{
+              $query = "SELECT * FROM cars";
+            }
 			      $result = mysqli_query($conn, $query);
 			      if (mysqli_num_rows($result) > 0) {
-				        while ($row = mysqli_fetch_array($result)) {
+				      while ($row = mysqli_fetch_array($result)) {
 			      ?>
-              <div class="col">
-                <a class="p-0" href="#">
-                  <div class="card h-100 austhir-card">
-                    <div class="austhir-card-image">
-                      <img
-                        src="images/carImage/<?php echo $row["carImage"]; ?>"
-                        class="card-img-top"
-                        alt="image of an aventador"
-                      />
-                    </div>
-                    <div class="card-body">
-                      <h4 class="card-title austhir-card-title">
-                      <?php echo $row["carBrand"]; ?>
-                      </h4>
-                      <h4 class="card-text austhir-card-price">
-                        ৳ <?php echo $row["carPrice"]; ?>
-                      </h4>
-                    </div>
-                    <div class="card-footer austhir-card-footer">
-                      <p class="year-badge austhir-footer-info"><?php echo $row["carReleaseDate"]; ?></p>
-                      <p class="austhir-footer-info">Automatic</p>
-                      <p class="austhir-footer-info">Petrol</p>
-                    </div>
+            <div class="col">
+              <a class="p-0" href="#">
+                <div class="card h-100 austhir-card">
+                  <div class="austhir-card-image">
+                    <img
+                      src="images/carImage/<?php echo $row["carImage"]; ?>"
+                      class="card-img-top"
+                      alt="image of an aventador"
+                    />
                   </div>
-                </a>
-              </div>
-              <?php
-				          }
-			      }
+                  <div class="card-body">
+                    <h4 class="card-title austhir-card-title">
+                    <?php echo $row["carBrand"]; ?>
+                    </h4>
+                    <h4 class="card-text austhir-card-price">
+                      ৳ <?php echo $row["carPrice"]; ?>
+                    </h4>
+                  </div>
+                  <div class="card-footer austhir-card-footer">
+                    <p class="year-badge austhir-footer-info"><?php echo $row["carReleaseDate"]; ?></p>
+                    <p class="austhir-footer-info">Automatic</p>
+                    <p class="austhir-footer-info">Petrol</p>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <?php
+			        }
+            }
+			      
 		        ?>
             </div>
             
