@@ -129,10 +129,10 @@ include 'config.php';
                   class="nav-item log-sign-nav-item d-flex align-items-center"
                 >
                   <i class="d-none d-lg-block far fa-user me-2"></i>
-                  <a class="nav-link austhir-nav-link" href="#">Log In</a>
+                  <a class="nav-link austhir-nav-link" href="login-register.php">Log In</a>
                 </li>
                 <li class="nav-item log-sign-nav-item">
-                  <a class="nav-link austhir-nav-link" href="#">Sign Up</a>
+                  <a class="nav-link austhir-nav-link" href="login-register.php">Sign Up</a>
                 </li>
               </ul>
             </div>
