@@ -114,7 +114,7 @@ if(isset($_POST['signup'])){
         <!-- navbar -->
         <nav id="austhir-nav" class="navbar navbar-expand-lg py-0">
             <div id="nav-bar" class="container-fluid">
-                <a class="navbar-brand austhir-nav-link" href="index.html">
+                <a class="navbar-brand austhir-nav-link" href="index.php">
                     <img src="images/logo.png" alt="" width="90" height="90"
                         class="d-inline-block align-text-top" /></a>
                 <button id="nav-hamburger-button" class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -141,20 +141,20 @@ if(isset($_POST['signup'])){
                         <ul class="navbar-nav mb-2 mb-lg-0">
                             <li class="nav-item austhir-nav-item">
                                 <a class="nav-link austhir-nav-link" aria-current="page"
-                                    href="index.html#our-services">Our Services</a>
+                                    href="index.php#our-services">Our Services</a>
                             </li>
                             <li class="nav-item austhir-nav-item">
-                                <a class="nav-link austhir-nav-link active" href="index.html#featured-car">Featured
+                                <a class="nav-link austhir-nav-link active" href="index.php#featured-car">Featured
                                     Cars</a>
                             </li>
                             <li class="nav-item austhir-nav-item">
-                                <a class="nav-link austhir-nav-link" href="index.html#hot-sells">Hot Sells</a>
+                                <a class="nav-link austhir-nav-link" href="index.php#hot-sells">Hot Sells</a>
                             </li>
                             <li class="nav-item austhir-nav-item">
-                                <a class="nav-link austhir-nav-link" href="index.html#why_us">Why Us?</a>
+                                <a class="nav-link austhir-nav-link" href="index.php#why_us">Why Us?</a>
                             </li>
                             <li class="nav-item austhir-nav-item">
-                                <a class="nav-link austhir-nav-link" href="index.html#contact_us">Contact Us</a>
+                                <a class="nav-link austhir-nav-link" href="index.php#contact_us">Contact Us</a>
                             </li>
                         </ul>
 

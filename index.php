@@ -43,7 +43,7 @@ include 'config.php';
       <!-- navbar -->
       <nav class="navbar navbar-expand-lg py-0">
         <div id="nav-bar" class="container-fluid">
-          <a class="navbar-brand austhir-nav-link" href="#">
+          <a class="navbar-brand austhir-nav-link" href="index.php">
             <img
               src="images/logo.png"
               alt=""
