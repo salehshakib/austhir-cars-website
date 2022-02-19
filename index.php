@@ -1,6 +1,7 @@
 <?php
 
 include 'config.php';
+//echo "<script>alert('User Registration Successful.')</script>";
 
 ?>
 

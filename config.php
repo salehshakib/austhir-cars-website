@@ -1,14 +1,13 @@
-<?php 
+<?php
+$server = "localhost"; //serverName\instanceName
+$user = 'root';
+$pass = '';
+$database = 'austhircars';
+$conn = mysqli_connect($server,$user,$pass,$database);
 
-$server = "DESKTOP-5903S8A\SQLEXPRESS";
-//$user = "sa";
-//$pass = "p@ssword";
-//$database = "AusthirCARS";
-$connectionInfo = array("Database" =>"AusthirCARS", "user" => "sa", "pass" => "p@ssword"); 
-$conn = sqlsrv_connect($server, $connectionInfo);
-
-if ($conn) {
-    $echo 'Connected';
+if($conn) {
+     echo "Connection established.<br />";
+}else{
+     die("<script>alert('Connection Failed.')</script>");
 }
-
 ?>
