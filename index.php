@@ -1,6 +1,8 @@
 <?php
 
 include 'config.php';
+session_start();
+//error_reporting(0);
 //echo "<script>alert('User Registration Successful.')</script>";
 
 ?>
@@ -230,7 +232,7 @@ include 'config.php';
               <div class="d-block search-button-container">
                 <a
                   class="d-block search-button d-flex align-items-center justify-content-center"
-                  href="#"
+                  href="car-gallery.php"
                 >
                   <i class="fas fa-search"></i>
                   <p class="search-button-text">Search</p>

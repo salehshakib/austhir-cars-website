@@ -4,8 +4,8 @@ include 'config.php';
 
 
 session_start();
-
 error_reporting(0);
+
 
 
 /*
@@ -13,37 +13,50 @@ if(isset($_SESSION['name'])){
     header("Location: index.php");
 } 
 */
+
 if(isset($_POST['login'])){
-    //if()
+
     $user_input = mysqli_real_escape_string($conn, $_POST['login_user_input']);
     $user_password = mysqli_real_escape_string($conn, md5($_POST['login_user_password']));
 
-    /*
-    
-    $check_user_email = mysqli_num_rows(mysqli_query($conn, "SELECT userEmail FROM userinfo WHERE userEmail = '$user_input'"));
-    $check_user_name = mysqli_num_rows(mysqli_query($conn, "SELECT userName FROM userinfo WHERE userName = '$user_name'"));
 
-    if($check_user_email > 0){
-        $user_email = $user_input;
-    }else if($check_user_name > 0){
-        $user_name = $user_input;
-    }
+    $check_user_email_query = "SELECT * FROM userinfo WHERE userEmail = '$user_input'";
+    $check_user_name_query = "SELECT * FROM userinfo WHERE userName = '$user_input'";
 
-    */
+    if(mysqli_num_rows(mysqli_query($conn, $check_user_email_query)) > 0){
 
-    $check_user = mysqli_query($conn, "SELECT * FROM userinfo WHERE userEmail = '$user_input' OR userName = '$user_input' AND userPassword = '$user_password' ");
-    if(mysqli_num_rows($check_user) > 0){
+        $check_password_query = "SELECT * FROM userinfo WHERE userPassword = '$user_password'";
+        if(mysqli_num_rows(mysqli_query($conn, $check_password_query)) > 0){
 
-        $row = mysqli_fetch_assoc($check_user);
-        $_SESSION['name'] = $row['userName'];
-        $_SESSION['email'] = $row['userEmail'];
+            $row = mysqli_fetch_assoc($check_password_query);
+            $_SESSION['name'] = $row['userName'];
+            $_SESSION['email'] = $row['userEmail'];
         
-        header("Location: index.php");
+            header("Location: index.php");
+        }
+        else{
 
-    } else{
+            echo "<script>alert('Log in details incorrect.')</script>";
+        }
+    }elseif(mysqli_num_rows(mysqli_query($conn, $check_user_name_query)) > 0){
+
+        $check_password_query = "SELECT * FROM userinfo WHERE userPassword = '$user_password'";
+        if(mysqli_num_rows(mysqli_query($conn, $check_password_query)) > 0){
+
+            $row = mysqli_fetch_assoc($check_password_query);
+            $_SESSION['name'] = $row['userName'];
+            $_SESSION['email'] = $row['userEmail'];
+        
+            header("Location: index.php");
+        }
+        else{
+
+            echo "<script>alert('Log in details incorrect.')</script>";
+        }
+
+    }else{
+
         echo "<script>alert('Log in details incorrect.')</script>";
-        //header("Location: login-register.php");
-    
     }
 
 }

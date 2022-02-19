@@ -1,5 +1,11 @@
 <?php
 include 'config.php';
+
+
+
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -174,12 +180,21 @@ include 'config.php';
             <div class="search-car-dropdown form-field-container">
               <div class="austhir-dropdown">
                 <div class="select">
-                  <span>Select Type</span>
+                  <span>
+                    <?php
+                      if(isset($_GET['type'])){
+                        $car_type = $_GET['type'];
+                      }else{
+                        $car_type = 'Select Type';
+                      } 
+                      echo $car_type;
+
+                    ?></span>
                   <i class="fa fa-chevron-left"></i>
                 </div>
                 <input type="hidden" name="models" />
                 <ul class="dropdown-menu">
-                  <li id="none">Select Type</li>
+                <li id="none">Select Type</li>
                   <li id="sedan">Sedan</li>
                   <li id="coupe">Coupe</li>
                   <li id="suv">SUV</li>
