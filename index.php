@@ -423,7 +423,7 @@ include 'config.php';
               />
               <div class="service-card-info">
                 <h4 class="service-title">Car Gallery</h4>
-                <a class="austhir-btn service-view-btn" href="car-gallery.html"
+                <a class="austhir-btn service-view-btn" href="car-gallery.php"
                   >View</a
                 >
               </div>
