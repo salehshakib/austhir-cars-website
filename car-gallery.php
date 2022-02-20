@@ -1,6 +1,14 @@
 <?php
 include 'config.php';
 
+if(isset($_GET['type'])){
+  $car_type = $_GET['type'];
+  $query = "select * from cars WHERE carGenre = '$car_type'";
+
+}else{
+  $query = "SELECT * FROM cars";
+}
+$count = mysqli_num_rows(mysqli_query($conn, $query));
 
 
 
@@ -323,7 +331,7 @@ include 'config.php';
             class="title-container text-center text-lg-start d-block d-lg-flex justify-content-between"
           >
             <h3 class="search-result">All Cars</h3>
-            <h3 class="search-result">100 Results</h3>
+            <h3 class="search-result"><?php echo $count; ?> Cars Found</h3>
           </div>
 
           <!-- cards container -->
