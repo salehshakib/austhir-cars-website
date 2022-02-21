@@ -4,6 +4,12 @@
 /*-----------------------------
         Utilities
 ------------------------------*/
+
+@media (max-width: 575px){
+        .text{
+                text-align: center;
+        }
+}
 body{
         background-color: white;
 }
