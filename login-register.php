@@ -1,18 +1,17 @@
 <?php
 
+
 include 'config.php';
-
-
 session_start();
 error_reporting(0);
 
 
-
-/*
 if(isset($_SESSION['name'])){
     header("Location: index.php");
 } 
-*/
+
+
+
 
 if(isset($_POST['login'])){
 
@@ -27,11 +26,10 @@ if(isset($_POST['login'])){
 
         $check_password_query = "SELECT * FROM userinfo WHERE userPassword = '$user_password'";
         if(mysqli_num_rows(mysqli_query($conn, $check_password_query)) > 0){
-
+            //session_start();
             $row = mysqli_fetch_assoc($check_password_query);
-            $_SESSION['name'] = $row['userName'];
-            $_SESSION['email'] = $row['userEmail'];
-        
+            $_SESSION['name'] = $_POST['login_user_input'];  //$row['userName'];
+            $_SESSION['email'] = $_POST['login_user_password'];           //$row['userEmail'];
             header("Location: index.php");
         }
         else{
@@ -42,10 +40,10 @@ if(isset($_POST['login'])){
 
         $check_password_query = "SELECT * FROM userinfo WHERE userPassword = '$user_password'";
         if(mysqli_num_rows(mysqli_query($conn, $check_password_query)) > 0){
-
+            //session_start();
             $row = mysqli_fetch_assoc($check_password_query);
-            $_SESSION['name'] = $row['userName'];
-            $_SESSION['email'] = $row['userEmail'];
+            $_SESSION['name'] = $_POST['login_user_input'];  // $row['userName'];
+            $_SESSION['email'] = $_POST['login_user_input'];  //$row['userEmail'];
         
             header("Location: index.php");
         }
