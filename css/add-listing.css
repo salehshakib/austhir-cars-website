@@ -4,3 +4,64 @@
 /*-----------------------------
         Utilities
 ------------------------------*/
+
+@media (max-width: 575px){
+        .text{
+                text-align: center;
+        }
+}
+body{
+        background-color: white;
+}
+.content{
+        padding-top: 5em;
+        padding-bottom: 7em;
+}
+.partition{
+        padding-bottom: 5em;
+}
+.text{
+        padding-bottom: 1em;
+}
+.list{
+        background-color: #f2f5fb;
+        padding-top: 3em;
+        padding-bottom: 2em;
+        border-radius: 1em;
+}
+.input-title{
+        font-size: large;
+}
+.inputbox{
+        height: 3.60em;
+        border-radius: 1em;
+}
+.inputbox:focus{
+        box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+        border-color: rgba(255, 255, 255, 0.15);
+}
+.input-group-text{
+        background-color: white;
+        border-radius: 1em;
+}
+.desbox:focus{
+        box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+        border-color: rgba(255, 255, 255, 0.15);
+}
+.fa-video-camera{
+        color: var(--austhir-orange);
+}
+.dropzone{
+        background-color: #f2f5fb;
+        padding-top: 3em;
+        padding-bottom: 3em;
+        border-radius: 1em;
+        border: none;
+        font-size: large;
+}
+.add-submit{
+        float: right;
+}
+.add-submit:focus{
+        box-shadow: none;
+}
