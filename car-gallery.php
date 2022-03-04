@@ -10,10 +10,6 @@ if(isset($_GET['type'])){
 }
 $count = mysqli_num_rows(mysqli_query($conn, $query));
 
-
-
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -331,7 +327,7 @@ $count = mysqli_num_rows(mysqli_query($conn, $query));
             class="title-container text-center text-lg-start d-block d-lg-flex justify-content-between"
           >
             <h3 class="search-result">All Cars</h3>
-            <h3 class="search-result"><?php echo $count; ?> Cars Found</h3>
+            <h3 class="search-result"><?php echo $count; ?> Results</h3>
           </div>
 
           <!-- cards container -->
