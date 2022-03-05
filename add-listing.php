@@ -1,3 +1,29 @@
+<?php
+include 'config.php';
+
+if(isset($_POST['addLisiting_btn'])){
+    $carTitle =  mysqli_real_escape_string($conn, $_POST['carTitle']);
+    $carType =  mysqli_real_escape_string($conn, $_POST['carType']);
+    $carMaker =  mysqli_real_escape_string($conn, $_POST['carMaker']);
+    $carModel =  mysqli_real_escape_string($conn, $_POST['carModel']);
+    $carPrice =  mysqli_real_escape_string($conn, $_POST['carPrice']);
+    $carYear =  mysqli_real_escape_string($conn, $_POST['carYear']);
+    $carDriveType =  mysqli_real_escape_string($conn, $_POST['carDriveType']);
+    $carTransmission =  mysqli_real_escape_string($conn, $_POST['carTransmission']);
+    $carFuelType =  mysqli_real_escape_string($conn, $_POST['carFuelType']);
+    $carMilage=  mysqli_real_escape_string($conn, $_POST['carMileage']);
+    $carCylinders =  mysqli_real_escape_string($conn, $_POST['carCylinder']);
+    $carDescription =  mysqli_real_escape_string($conn, $_POST['carDescription']);
+    $carVideo =  mysqli_real_escape_string($conn, $_POST['carVideo']);
+
+}
+
+
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -90,7 +116,7 @@
     <main>
         <div class="content">
             <div class="container">
-                <form action="">
+                <form action="/add-listing.php" method="post">
                     <!--Add Listing-->
                     <div class="partition">
                         <div class="row">
@@ -111,7 +137,7 @@
                                             <div class="mb-4">
                                                 <label for="exampleInputName1" class="form-label input-title">Listing
                                                     Title</label>
-                                                <input type="text" class="form-control inputbox" id="exampleInputTitle"
+                                                <input type="text" name="carTitle" class="form-control inputbox" id="exampleInputTitle"
                                                     placeholder="Enter title here" required>
                                             </div>
                                         </div>
@@ -129,7 +155,7 @@
                                                             <span>Select</span>
                                                             <i class="fa fa-chevron-left"></i>
                                                         </div>
-                                                        <input type="hidden" name="models" />
+                                                        <input type="hidden" name="carType" />
                                                         <ul class="dropdown-menu">
                                                             <li id="none">Select</li>
                                                             <li id="sedan">Sedan</li>
@@ -148,20 +174,24 @@
                                             <div class="mb-4">
                                                 <label for="exampleInputName1"
                                                     class="form-label input-title">Make</label>
-                                                <div class="search-car-dropdown form-field-container">
+                                                    <input type="text" class="form-control inputbox" id="exampleInputTitle"
+                                                    placeholder="Enter brand" name= "carMaker"required>
+                                                <!--<div class="search-car-dropdown form-field-container">
                                                     <div class="austhir-dropdown">
                                                         <div class="select">
                                                             <span>Select</span>
                                                             <i class="fa fa-chevron-left"></i>
                                                         </div>
+
+                                                        
                                                         <input type="hidden" name="brands" />
                                                         <ul class="dropdown-menu">
                                                             <li id="none">Select</li>
                                                             <li id="mercedes-benz">Mercedes-Benz</li>
                                                             <li id="koenigsegg">Koenigsegg</li>
-                                                        </ul>
+                                                        </ul> 
                                                     </div>
-                                                </div>
+                                                </div> -->
                                             </div>
                                         </div>
                                         <!--Make end-->
@@ -172,7 +202,9 @@
                                             <div class="mb-4">
                                                 <label for="exampleInputName1"
                                                     class="form-label input-title">Model</label>
-                                                <div class="search-car-dropdown form-field-container">
+                                                    <input type="text" class="form-control inputbox" id="exampleInputTitle"
+                                                    placeholder="Enter model" name= "carModel" required>
+                                             <!--  <div class="search-car-dropdown form-field-container">
                                                     <div class="austhir-dropdown">
                                                         <div class="select">
                                                             <span>Select</span>
@@ -185,8 +217,8 @@
                                                             <li id="koenigsegg">Koenigsegg</li>
                                                         </ul>
                                                     </div>
-                                                </div>
-                                            </div>
+                                                </div> -->
+                                            </div> 
                                         </div>
                                         <!--Model end-->
                                         <!--Price-->
@@ -195,7 +227,7 @@
                                                 <label for="exampleInputName1" class="form-label input-title">Price
                                                     (BDT)</label>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control inputbox"
+                                                    <input type="text" class="form-control inputbox" name="carPrice"
                                                         id="exampleInputPrice" required>
                                                     <span class="input-group-text">৳</span>
                                                 </div>
@@ -209,7 +241,7 @@
                                             <div class="mb-4">
                                                 <label for="exampleInputName1"
                                                     class="form-label input-title">Year</label>
-                                                <input type="text" class="form-control inputbox" id="exampleInputYear"
+                                                <input type="text" name="carYear"class="form-control inputbox" id="exampleInputYear"
                                                     required>
                                             </div>
                                         </div>
@@ -225,7 +257,7 @@
                                                             <span>Select</span>
                                                             <i class="fa fa-chevron-left"></i>
                                                         </div>
-                                                        <input type="hidden" name="brands" />
+                                                        <input type="hidden" name="carDriveType" />
                                                         <ul class="dropdown-menu">
                                                             <li id="4WD">AWD/4WD</li>
                                                             <li id="front-wheel-drive">Front Wheel Drive</li>
@@ -249,7 +281,7 @@
                                                             <span>Select</span>
                                                             <i class="fa fa-chevron-left"></i>
                                                         </div>
-                                                        <input type="hidden" name="models" />
+                                                        <input type="hidden" name="carTransmission" />
                                                         <ul class="dropdown-menu">
                                                             <li id="none">Select</li>
                                                             <li id="automatic">Automatic</li>
@@ -272,7 +304,7 @@
                                                             <span>Select</span>
                                                             <i class="fa fa-chevron-left"></i>
                                                         </div>
-                                                        <input type="hidden" name="models" />
+                                                        <input type="hidden" name="carFuelType" />
                                                         <ul class="dropdown-menu">
                                                             <li id="none">Select</li>
                                                             <li id="deisel">Deisel</li>
@@ -293,7 +325,7 @@
                                                 <label for="exampleInputName1"
                                                     class="form-label input-title">Mileage</label>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control inputbox"
+                                                    <input type="text" class="form-control inputbox" name="carMileage"
                                                         id="exampleInputMiles" required>
                                                     <span class="input-group-text">miles</span>
                                                 </div>
@@ -311,7 +343,7 @@
                                                             <span>Select</span>
                                                             <i class="fa fa-chevron-left"></i>
                                                         </div>
-                                                        <input type="hidden" name="models" />
+                                                        <input type="hidden" name="carCylinder" />
                                                         <ul class="dropdown-menu">
                                                             <li id="none">Select</li>
                                                             <li id="4">4</li>
@@ -330,7 +362,7 @@
                                             <div class="mb-4">
                                                 <label for="exampleInputName1"
                                                     class="form-label input-title">Description</label>
-                                                <textarea class="form-control desbox" id="exampleFormControlTextarea1"
+                                                <textarea class="form-control desbox" id="exampleFormControlTextarea1" name="carDescription"
                                                     rows="12"></textarea>
                                             </div>
                                         </div>
@@ -346,7 +378,7 @@
                                                 <div class="input-group">
                                                     <span class="input-group-text"><i
                                                             class="fa fa-video-camera"></i></span>
-                                                    <input type="text" class="form-control inputbox"
+                                                    <input type="text" class="form-control inputbox" name="carVideo"
                                                         id="exampleInputTitle" placeholder="Video Link" required>
                                                 </div>
                                             </div>
@@ -357,6 +389,7 @@
                             </div>
                         </div>
                     </div>
+                    <button type="submit" name="addLisiting_btn" class="btn austhir-btn add-submit">Add Listing</button>
                 </form>
                 <!--Gallery-->
                 <div class="partition">
@@ -370,12 +403,13 @@
                         </div>
                     </div>
                     <div class="row">
-                        <form action="/file-upload" class="dropzone" id="my-awesome-dropzone"></form>
+                        <form action="/file-upload" class="dropzone" id="my-awesome-dropzone"> </form>
                     </div>
                 </div>
                 <!--Gallery end-->
                 
-                <button type="submit" class="btn austhir-btn add-submit">Add Listing</button>
+                
+                
             </div>
         </div>
     </main>
