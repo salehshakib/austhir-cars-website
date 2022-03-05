@@ -3,6 +3,17 @@
 error_reporting();
 include 'config.php';
 
+// $sql= "SELECT * FROM cars WHERE carBrand='Audi' order by carId DESC LIMIT 1";
+// $sqlresult =  mysqli_query ($conn, $sql) or die( mysqli_error ($conn));
+
+// if(mysqli_num_rows($sqlresult)>0)
+// {
+//     while($data = mysqli_fetch_assoc($sqlresult))
+//     {
+//         print_r($data['carId']);
+//     }
+// }
+
 if(isset($_POST['addLisiting_btn'])){
 
     $carMaker = mysqli_real_escape_string($conn, $_POST['brands']);
@@ -23,7 +34,7 @@ if(isset($_POST['addLisiting_btn'])){
     else{
         $carId = $carId.$newstr;
     }
-    print_r($carId);
+    //print_r($carId);
 
     $carTitle =  mysqli_real_escape_string($conn, $_POST['carTitle']);
 
@@ -36,7 +47,6 @@ if(isset($_POST['addLisiting_btn'])){
     $carPrice =  mysqli_real_escape_string($conn, $_POST['carPrice']);
 
     $carReleaseDate =  mysqli_real_escape_string($conn, $_POST['carYear']);
-    
 
     $carTransmission =  mysqli_real_escape_string($conn, $_POST['carTransmission']);
     $carFuelType =  mysqli_real_escape_string($conn, $_POST['carFuelType']);
@@ -45,10 +55,26 @@ if(isset($_POST['addLisiting_btn'])){
     $carDescription =  mysqli_real_escape_string($conn, $_POST['carDescription']);
     $carVideo =  mysqli_real_escape_string($conn, $_POST['carVideo']);
     $carDriveType =  mysqli_real_escape_string($conn, $_POST['carDriveType']);
-    $carMaker = mysqli_real_escape_string($conn, $_POST['brands']);
+    $carSeat = mysqli_real_escape_string($conn, $_POST['seats']);
+    $carEngineSize = mysqli_real_escape_string($conn, $_POST['engineSize']);
+    $carDoor = mysqli_real_escape_string($conn, $_POST['carDoor']);
+    $carColor = mysqli_real_escape_string($conn, $_POST['carColor']);
 
+    $insertCarsSql = "INSERT INTO cars (carId, carTittle, carBrand, carModel, carPrice, carGenre, carReleaseDate, carSeats) VALUES ('$carId','$carTitle','$carBrand', '$carModel', '$carPrice', '$carGenre', '$carReleaseDate', '$carSeat')";
+    $insertCarsResult = mysqli_query($conn, $insertCarsSql);
+    // if($insertCarsResult){
+    //     echo "<script>alert('Inserted Successfully.')</script>";
+    // }
+
+    $insertCarDetailsSql = "INSERT INTO cardetails (carId, maker, transmission, engineSize, doors, cylinder, color, fuelType,
+                            driveType, milage, descriptions, videoLink) VALUES ('$carId', '$carBrand', '$carTransmission', '$carEngineSize',
+                            '$carDoor', '$carCylinders', '$carColor', '$carFuelType', '$carDriveType', '$carMilage', '$carDescription',
+                            '$carVideo')";
+    $insertCarDetailssResult = mysqli_query($conn, $insertCarDetailsSql); 
     
-
+    if($insertCarDetailssResult && $insertCarsResult){
+        echo "<script>alert('Inserted Successfully.')</script>";
+    }                     
 }
 
 ?>
@@ -81,7 +107,7 @@ if(isset($_POST['addLisiting_btn'])){
     <header>
         <!-- navbar -->
         
-        <!-- <nav id="austhir-nav" class="navbar navbar-expand-lg py-0">
+        <nav id="austhir-nav" class="navbar navbar-expand-lg py-0">
             <div id="nav-bar" class="container-fluid">
                 <a class="navbar-brand austhir-nav-link" href="index.html">
                     <img src="images/logo.png" alt="" width="90" height="90"
@@ -139,14 +165,14 @@ if(isset($_POST['addLisiting_btn'])){
                     </div>
                 </div>
             </div>
-        </nav> -->
+        </nav>
     </header>
     <!-- header end -->
 
     <main>
         <div class="content">
             <div class="container">
-                <form action="" method="POST" id = "add-listing-data">
+                <form action="" method="post">
                     <!--Add Listing-->
                     <div class="partition">
                         <div class="row">
@@ -188,11 +214,11 @@ if(isset($_POST['addLisiting_btn'])){
                                                         <input type="hidden" name="carType" />
                                                         <ul class="dropdown-menu">
                                                             <li id="none">Select</li>
-                                                            <li id="sedan">Sedan</li>
-                                                            <li id="coupe">Coupe</li>
-                                                            <li id="suv">SUV</li>
-                                                            <li id="hatchback">Hatchback</li>
-                                                            <li id="wagon">Wagon</li>
+                                                            <li id="Sedan">Sedan</li>
+                                                            <li id="Coupe">Coupe</li>
+                                                            <li id="SUV">SUV</li>
+                                                            <li id="Hatchback">Hatchback</li>
+                                                            <li id="Wagon">Wagon</li>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -216,19 +242,17 @@ if(isset($_POST['addLisiting_btn'])){
                                                         <input type="hidden" name="brands"/>
                                                         <ul class="dropdown-menu">
                                                             <li id="none">Select</li>
-                                                            <li id="audi">Audi</li>
-                                                            <li id="bentley">Bentley</li>
-                                                            <li id="bmw">BMW</li>
-                                                            <li id="cadillac">Cadillac</li>
-                                                            <li id="ferrari">Ferrari</li>
-                                                            <li id="ford">Ford</li>
-                                                            <li id="mercedes-benz">Mercedes-Benz</li>
-                                                            <li id="porsche">Porsche</li>
-                                                        
-                                                            
+                                                            <li id="Audi">Audi</li>
+                                                            <li id="Bentley">Bentley</li>
+                                                            <li id="BMW">BMW</li>
+                                                            <li id="Cadillac">Cadillac</li>
+                                                            <li id="Ferrari">Ferrari</li>
+                                                            <li id="Ford">Ford</li>
+                                                            <li id="Mercedes-Benz">Mercedes-Benz</li>
+                                                            <li id="Porsche">Porsche</li>
                                                         </ul> 
                                                     </div>
-                                                </div> 
+                                                </div>
                                             </div>
                                         </div>
                                         <!--Make end-->
@@ -259,6 +283,58 @@ if(isset($_POST['addLisiting_btn'])){
                                         <!--Price end-->
                                     </div>
                                     <div class="row">
+                                        <!-- Color -->
+                                        <div class="col-sm-6">
+                                            <div class="mb-4">
+                                                <label for="exampleInputName2"
+                                                    class="form-label input-title">Color</label>
+                                                <div class="search-car-dropdown form-field-container">
+                                                    <div class="austhir-dropdown">
+                                                        <div class="select">
+                                                            <span>Select</span>
+                                                            <i class="fa fa-chevron-left"></i>
+                                                        </div>
+                                                        <input type="hidden" name="carColor" />
+                                                        <ul class="dropdown-menu">
+                                                            <li id="none">Select</li>
+                                                            <li id="Red">Red</li>
+                                                            <li id="Black">Black</li>
+                                                            <li id="White">White</li>
+                                                            <li id="Blue">Blue</li>
+                                                            <li id="Yellow">Yellow</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--Color end-->
+                                        <!--Door-->
+                                        <div class="col-sm-6">
+                                            <div class="mb-4">
+                                                <label for="exampleInputName1"
+                                                    class="form-label input-title">Door</label>
+                                                    
+                                                <div class="search-car-dropdown form-field-container">
+                                                    <div class="austhir-dropdown">
+                                                        <div class="select">
+                                                            <span>Select</span>
+                                                            <i class="fa fa-chevron-left"></i>
+                                                        </div>
+
+                                                        <input type="hidden" name="carDoor"/>
+                                                        <ul class="dropdown-menu">
+                                                            <li id="none">Select</li>
+                                                            <li id="2-door">2 </li>
+                                                            <li id="4-door">4</li>
+                                                            <li id="5-door">5</li>
+                                                        </ul> 
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--Door end-->
+                                    </div>
+                                    <div class="row">
                                         <!--Year-->
                                         <div class="col-sm-6">
                                             <div class="mb-4">
@@ -269,6 +345,9 @@ if(isset($_POST['addLisiting_btn'])){
                                             </div>
                                         </div>
                                         <!--Year end-->
+                                        
+                                        
+                                    <!-- </div> -->
                                         <!--Drive Type-->
                                         <div class="col-sm-6">
                                             <div class="mb-4">
@@ -283,8 +362,8 @@ if(isset($_POST['addLisiting_btn'])){
                                                         <input type="hidden" name="carDriveType" />
                                                         <ul class="dropdown-menu">
                                                             <li id="4WD">AWD/4WD</li>
-                                                            <li id="front-wheel-drive">Front Wheel Drive</li>
-                                                            <li id="rear-wheel-drive">Rear Wheel Drive</li>
+                                                            <li id="Front-Wheel-Drive">Front Wheel Drive</li>
+                                                            <li id="Rear-Wheel-Drive">Rear Wheel Drive</li>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -307,9 +386,9 @@ if(isset($_POST['addLisiting_btn'])){
                                                         <input type="hidden" name="carTransmission" />
                                                         <ul class="dropdown-menu">
                                                             <li id="none">Select</li>
-                                                            <li id="automatic">Automatic</li>
-                                                            <li id="manual">Manual</li>
-                                                            <li id="semi-automatic">Semi-Automatic</li>
+                                                            <li id="Automatic">Automatic</li>
+                                                            <li id="Manual">Manual</li>
+                                                            <li id="Semi-Automatic">Semi-Automatic</li>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -330,10 +409,10 @@ if(isset($_POST['addLisiting_btn'])){
                                                         <input type="hidden" name="carFuelType" />
                                                         <ul class="dropdown-menu">
                                                             <li id="none">Select</li>
-                                                            <li id="deisel">Deisel</li>
-                                                            <li id="electric">Electric</li>
-                                                            <li id="hybrid">Hybrid</li>
-                                                            <li id="petrol">Petrol</li>
+                                                            <li id="Deisel">Deisel</li>
+                                                            <li id="Electric">Electric</li>
+                                                            <li id="Hybrid">Hybrid</li>
+                                                            <li id="Petrol">Petrol</li>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -452,12 +531,10 @@ if(isset($_POST['addLisiting_btn'])){
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="mb-4">
-                                            <input type="file" name="file">
+                                            <input type="file" name="file" accept = ".jpeg, .png">
                                             </div>
                                         </div>
                                     </div>
-
-
                                 </div>
                             </div>
                         </div>
