@@ -51,11 +51,7 @@ if(isset($_POST['addLisiting_btn'])){
 
 }
 
-
-
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
