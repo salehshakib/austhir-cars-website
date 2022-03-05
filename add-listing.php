@@ -1,10 +1,22 @@
 <?php
 include 'config.php';
 
+// $sql= "SELECT * FROM cars WHERE carBrand='Audi' order by carId DESC LIMIT 1";
+// $sqlresult =  mysqli_query ($conn, $sql) or die( mysqli_error ($conn));
+
+// if(mysqli_num_rows($sqlresult)>0)
+// {
+//     while($data = mysqli_fetch_assoc($sqlresult))
+//     {
+//         print_r($data['carId']);
+//     }
+// }
+
 if(isset($_POST['addLisiting_btn'])){
+
     $carTitle =  mysqli_real_escape_string($conn, $_POST['carTitle']);
     $carType =  mysqli_real_escape_string($conn, $_POST['carType']);
-    $carMaker =  mysqli_real_escape_string($conn, $_POST['carMaker']);
+    $carMaker =  mysqli_real_escape_string($conn, $_POST['brands']);
     $carModel =  mysqli_real_escape_string($conn, $_POST['carModel']);
     $carPrice =  mysqli_real_escape_string($conn, $_POST['carPrice']);
     $carYear =  mysqli_real_escape_string($conn, $_POST['carYear']);
@@ -15,6 +27,8 @@ if(isset($_POST['addLisiting_btn'])){
     $carCylinders =  mysqli_real_escape_string($conn, $_POST['carCylinder']);
     $carDescription =  mysqli_real_escape_string($conn, $_POST['carDescription']);
     $carVideo =  mysqli_real_escape_string($conn, $_POST['carVideo']);
+
+
 
 }
 
@@ -51,7 +65,7 @@ if(isset($_POST['addLisiting_btn'])){
     <!-- header start -->
     <header>
         <!-- navbar -->
-        <nav id="austhir-nav" class="navbar navbar-expand-lg py-0">
+        <!-- <nav id="austhir-nav" class="navbar navbar-expand-lg py-0">
             <div id="nav-bar" class="container-fluid">
                 <a class="navbar-brand austhir-nav-link" href="index.html">
                     <img src="images/logo.png" alt="" width="90" height="90"
@@ -109,14 +123,14 @@ if(isset($_POST['addLisiting_btn'])){
                     </div>
                 </div>
             </div>
-        </nav>
+        </nav> -->
     </header>
     <!-- header end -->
 
     <main>
         <div class="content">
             <div class="container">
-                <form action="/add-listing.php" method="post">
+                <form action="" method="post">
                     <!--Add Listing-->
                     <div class="partition">
                         <div class="row">
@@ -174,24 +188,29 @@ if(isset($_POST['addLisiting_btn'])){
                                             <div class="mb-4">
                                                 <label for="exampleInputName1"
                                                     class="form-label input-title">Make</label>
-                                                    <input type="text" class="form-control inputbox" id="exampleInputTitle"
-                                                    placeholder="Enter brand" name= "carMaker"required>
-                                                <!--<div class="search-car-dropdown form-field-container">
+                                                    <!-- <input type="text" class="form-control inputbox" id="exampleInputTitle"
+                                                    placeholder="Enter brand" name= "carMaker"required> -->
+                                                    <div class="search-car-dropdown form-field-container">
                                                     <div class="austhir-dropdown">
                                                         <div class="select">
                                                             <span>Select</span>
                                                             <i class="fa fa-chevron-left"></i>
                                                         </div>
 
-                                                        
                                                         <input type="hidden" name="brands" />
                                                         <ul class="dropdown-menu">
                                                             <li id="none">Select</li>
+                                                            <li id="audi">Audi</li>
+                                                            <li id="bentley">Bentley</li>
+                                                            <li id="bmw">BMW</li>
+                                                            <li id="cadillac">Cadillac</li>
+                                                            <li id="ferrari">Ferrari</li>
+                                                            <li id="ford">Ford</li>
                                                             <li id="mercedes-benz">Mercedes-Benz</li>
-                                                            <li id="koenigsegg">Koenigsegg</li>
+                                                            <li id="porsche">Porsche</li>
                                                         </ul> 
                                                     </div>
-                                                </div> -->
+                                                </div>
                                             </div>
                                         </div>
                                         <!--Make end-->
@@ -385,14 +404,22 @@ if(isset($_POST['addLisiting_btn'])){
                                         </div>
                                     </div>
                                     <!--YT Link end-->
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="mb-4">
+                                            <input type="file" name="file">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <button type="submit" name="addLisiting_btn" class="btn austhir-btn add-submit">Add Listing</button>
+                    <!--  -->
                 </form>
                 <!--Gallery-->
-                <div class="partition">
+                <!-- <div class="partition">
                     <div class="row">
                         <div class="text">
                             <h2>
@@ -405,7 +432,7 @@ if(isset($_POST['addLisiting_btn'])){
                     <div class="row">
                         <form action="/file-upload" class="dropzone" id="my-awesome-dropzone"> </form>
                     </div>
-                </div>
+                </div> -->
                 <!--Gallery end-->
                 
                 
