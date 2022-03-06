@@ -2,17 +2,6 @@
 error_reporting();
 include 'config.php';
 
-// $sql= "SELECT * FROM cars WHERE carBrand='Audi' order by carId DESC LIMIT 1";
-// $sqlresult =  mysqli_query ($conn, $sql) or die( mysqli_error ($conn));
-
-// if(mysqli_num_rows($sqlresult)>0)
-// {
-//     while($data = mysqli_fetch_assoc($sqlresult))
-//     {
-//         print_r($data['carId']);
-//     }
-// }
-
 if(isset($_POST['addLisiting_btn'])){
 
     $carMaker = mysqli_real_escape_string($conn, $_POST['brands']);
@@ -50,25 +39,14 @@ if(isset($_POST['addLisiting_btn'])){
     $carEngineSize = mysqli_real_escape_string($conn, $_POST['engineSize']);
     $carDoor = mysqli_real_escape_string($conn, $_POST['carDoor']);
     $carColor = mysqli_real_escape_string($conn, $_POST['carColor']);
-    $file_name = '';
 
-    //image
-    //if(isset($_FILES['carImage'])){
-        $file_name = time()."-".rand(1000, 9999).".".pathinfo("assets/".basename($_FILES['carImage']['name']), PATHINFO_EXTENSION);
-        echo $file_name;
-        $temp_name = $_FILES["carImage"]["tmp_name"];
-        $folder = "assets/".$file_name;
-        move_uploaded_file($temp_name, $folder);
-    //}
-    //else{g
-        //echo 'upload failed';
-    //}
+    $file_name = time()."-".rand(1000, 9999).".".pathinfo("images/carImage/".basename($_FILES['carImage']['name']), PATHINFO_EXTENSION);
+    $temp_name = $_FILES["carImage"]["tmp_name"];
+    $folder = "images/carImage/".$file_name;
+    move_uploaded_file($temp_name, $folder);
 
     $insertCarsSql = "INSERT INTO cars (carId, carTittle, carBrand, carModel, carPrice, carGenre, carReleaseDate, carSeats, carImage) VALUES ('$carId','$carTitle','$carBrand', '$carModel', '$carPrice', '$carGenre', '$carReleaseDate', '$carSeat', '$file_name')";
     $insertCarsResult = mysqli_query($conn, $insertCarsSql);
-    // if($insertCarsResult){
-    //     echo "<script>alert('Inserted Successfully.')</script>";
-    // }
 
     $insertCarDetailsSql = "INSERT INTO cardetails (carId, maker, transmission, engineSize, doors, cylinder, color, fuelType,
                             driveType, milage, descriptions, videoLink) VALUES ('$carId', '$carBrand', '$carTransmission', '$carEngineSize',
@@ -111,7 +89,7 @@ if(isset($_POST['addLisiting_btn'])){
     <header>
         <!-- navbar -->
         
-        <!-- <nav id="austhir-nav" class="navbar navbar-expand-lg py-0">
+        <nav id="austhir-nav" class="navbar navbar-expand-lg py-0">
             <div id="nav-bar" class="container-fluid">
                 <a class="navbar-brand austhir-nav-link" href="index.html">
                     <img src="images/logo.png" alt="" width="90" height="90"
@@ -169,14 +147,14 @@ if(isset($_POST['addLisiting_btn'])){
                     </div>
                 </div>
             </div>
-        </nav> -->
+        </nav>
     </header>
     <!-- header end -->
 
     <main>
         <div class="content">
             <div class="container">
-                <form action="" method="post">
+                <form action="" method="post" enctype="multipart/form-data">
                     <!--Add Listing-->
                     <div class="partition">
                         <div class="row">
@@ -552,22 +530,6 @@ if(isset($_POST['addLisiting_btn'])){
                     <!--  -->
                 </form>
 
-                <!--Gallery-->
-                <!-- <div class="partition">
-                    <div class="row">
-                        <div class="text">
-                            <h2>
-                                <b>
-                                    Gallery
-                                </b>
-                            </h2>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <form action="/file-upload" class="dropzone" id="my-awesome-dropzone"> </form>
-                    </div>
-                </div> -->
-                <!--Gallery end-->
  
             </div>
         </div>
@@ -606,12 +568,6 @@ if(isset($_POST['addLisiting_btn'])){
     <script src="js/header.js"></script>
     <script src="js/dropdown.js"></script>
     <script src="js/filter.js"></script>
-    <!-- <script>
-        submitForms = function(){
-            document.getElementById("add-listing-data").submit();
-            document.getElementById("my-awesome-dropzone").submit();
-        }
-    </script> -->
 
 </body>
 
