@@ -99,7 +99,7 @@ body {
   font-weight: 600;
 }
 
-.input-container input + .input-container input,
+.input-container input + input,
 button + button {
   margin-left: 10px;
 }
