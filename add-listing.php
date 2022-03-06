@@ -1,5 +1,4 @@
 <?php
-
 error_reporting();
 include 'config.php';
 
@@ -34,20 +33,12 @@ if(isset($_POST['addLisiting_btn'])){
     else{
         $carId = $carId.$newstr;
     }
-    //print_r($carId);
-
     $carTitle =  mysqli_real_escape_string($conn, $_POST['carTitle']);
-
     $carGenre =  mysqli_real_escape_string($conn, $_POST['carType']);
-
     $carBrand =  mysqli_real_escape_string($conn, $_POST['brands']);
-
     $carModel =  mysqli_real_escape_string($conn, $_POST['carModel']);
-
     $carPrice =  mysqli_real_escape_string($conn, $_POST['carPrice']);
-
     $carReleaseDate =  mysqli_real_escape_string($conn, $_POST['carYear']);
-
     $carTransmission =  mysqli_real_escape_string($conn, $_POST['carTransmission']);
     $carFuelType =  mysqli_real_escape_string($conn, $_POST['carFuelType']);
     $carMilage=  mysqli_real_escape_string($conn, $_POST['carMileage']);
@@ -59,8 +50,22 @@ if(isset($_POST['addLisiting_btn'])){
     $carEngineSize = mysqli_real_escape_string($conn, $_POST['engineSize']);
     $carDoor = mysqli_real_escape_string($conn, $_POST['carDoor']);
     $carColor = mysqli_real_escape_string($conn, $_POST['carColor']);
+    $file_name = '';
+    echo ($_FILES['carImage']);
+    //image
+    if(isset($_FILES['carImage'])){
+        $file_name = time()."-".rand(1000, 9999).".".pathinfo("assets/".basename($_FILES['carImage']['name']), PATHINFO_EXTENSION);
+        //$_FILES["image"]["name"];
+        echo $file_name;
+        $temp_name = $_FILES["carImage"]["name"];
+        $folder = "assets/".$file_name;
+        move_uploaded_file($temp_name, $folder);
+    }
+    else{
+        echo 'upload failed';
+    }
 
-    $insertCarsSql = "INSERT INTO cars (carId, carTittle, carBrand, carModel, carPrice, carGenre, carReleaseDate, carSeats) VALUES ('$carId','$carTitle','$carBrand', '$carModel', '$carPrice', '$carGenre', '$carReleaseDate', '$carSeat')";
+    $insertCarsSql = "INSERT INTO cars (carId, carTittle, carBrand, carModel, carPrice, carGenre, carReleaseDate, carSeats, carImage) VALUES ('$carId','$carTitle','$carBrand', '$carModel', '$carPrice', '$carGenre', '$carReleaseDate', '$carSeat', '$file_name')";
     $insertCarsResult = mysqli_query($conn, $insertCarsSql);
     // if($insertCarsResult){
     //     echo "<script>alert('Inserted Successfully.')</script>";
@@ -107,7 +112,7 @@ if(isset($_POST['addLisiting_btn'])){
     <header>
         <!-- navbar -->
         
-        <nav id="austhir-nav" class="navbar navbar-expand-lg py-0">
+        <!-- <nav id="austhir-nav" class="navbar navbar-expand-lg py-0">
             <div id="nav-bar" class="container-fluid">
                 <a class="navbar-brand austhir-nav-link" href="index.html">
                     <img src="images/logo.png" alt="" width="90" height="90"
@@ -165,7 +170,7 @@ if(isset($_POST['addLisiting_btn'])){
                     </div>
                 </div>
             </div>
-        </nav>
+        </nav> -->
     </header>
     <!-- header end -->
 
@@ -302,6 +307,7 @@ if(isset($_POST['addLisiting_btn'])){
                                                             <li id="White">White</li>
                                                             <li id="Blue">Blue</li>
                                                             <li id="Yellow">Yellow</li>
+                                                            <li id="Silver">Silver</li>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -531,7 +537,7 @@ if(isset($_POST['addLisiting_btn'])){
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="mb-4">
-                                            <input type="file" name="file" accept = ".jpeg, .png">
+                                            <input type="file" class="image-upload" accept="image/*" name="carImage">
                                             </div>
                                         </div>
                                     </div>
