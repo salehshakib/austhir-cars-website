@@ -368,8 +368,20 @@ $count = mysqli_num_rows(mysqli_query($conn, $query));
                   </div>
                   <div class="card-footer austhir-card-footer">
                     <p class="year-badge austhir-footer-info"><?php echo $row["carReleaseDate"]; ?></p>
-                    <p class="austhir-footer-info">Automatic</p>
-                    <p class="austhir-footer-info">Petrol</p>
+                    <?php   
+
+                    $car = $row['carId'];                    
+                    $newQuery = "SELECT * FROM carDetails where carId = '$car' ";
+                    $result1 = mysqli_query($conn, $newQuery);
+                    if (mysqli_num_rows($result1) > 0) {
+                      while ($row1 = mysqli_fetch_array($result1)) {
+                    ?>
+                    <p class="austhir-footer-info"><?php echo $row1['transmission'] ?></p>
+                    <p class="austhir-footer-info"><?php echo $row1['fuelType'] ?> </p>
+                    <?php
+                      }
+                    } 
+                    ?>
                   </div>
                 </div>
               </a>
