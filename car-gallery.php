@@ -340,6 +340,7 @@ $count = mysqli_num_rows(mysqli_query($conn, $query));
             if(isset($_GET['type'])){
               $car_type = $_GET['type'];
               $query = "select * from cars WHERE carGenre = '$car_type'";
+              // $query1 = "select * from cars WHERE carGenre = '$car_type'";
             
             }else{
               $query = "SELECT * FROM cars";
@@ -368,7 +369,7 @@ $count = mysqli_num_rows(mysqli_query($conn, $query));
                   </div>
                   <div class="card-footer austhir-card-footer">
                     <p class="year-badge austhir-footer-info"><?php echo $row["carReleaseDate"]; ?></p>
-                    <p class="austhir-footer-info">Automatic</p>
+                    <p class="austhir-footer-info"><?php echo $row["carPrice"]; ?></p>
                     <p class="austhir-footer-info">Petrol</p>
                   </div>
                 </div>

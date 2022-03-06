@@ -580,13 +580,7 @@ if(isset($_POST['addLisiting_btn'])){
     <script src="js/header.js"></script>
     <script src="js/dropdown.js"></script>
     <script src="js/filter.js"></script>
-    <!-- <script>
-        submitForms = function(){
-            document.getElementById("add-listing-data").submit();
-            document.getElementById("my-awesome-dropzone").submit();
-        }
-    </script> -->
-
+   
 </body>
 
 </html>
