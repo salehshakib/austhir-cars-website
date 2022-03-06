@@ -1,0 +1,200 @@
+/* utilities import */
+@import url("universal-stylesheet.css");
+
+/*---------------------
+        Utilities
+----------------------*/
+body {
+  background-color: white;
+}
+
+/* bootstraps thead and tfoot border remover */
+.austhir-user-table > :not(:first-child) {
+  border-top: 0;
+}
+
+/*----------------------------------------
+        Basic Info Section Design
+-----------------------------------------*/
+.user-section {
+  padding-top: 30px;
+}
+
+.user-info {
+  background-color: var(--austhir-light-orange);
+  padding: 30px;
+  border-radius: 20px;
+}
+
+.user-edit-btn {
+  background-color: transparent;
+  border: 0;
+  margin-bottom: 16px;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--austhir-orange);
+}
+
+.user-edit-btn:hover {
+  opacity: 0.4;
+}
+
+#user-info-table {
+  position: relative;
+  min-height: 170px;
+}
+
+.no-data-msg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 3.2rem;
+  font-weight: 800;
+  color: var(--austhir-orange);
+  text-align: center;
+  opacity: 0.2;
+}
+
+.austhir-user-table.log-table {
+  margin: 0;
+  min-width: 1236px;
+}
+
+.austhir-user-table td,
+.austhir-user-table th {
+  border-bottom: 1px solid var(--austhir-orange);
+}
+
+.austhir-user-table.log-table td,
+.austhir-user-table.log-table th {
+  text-align: center;
+}
+
+.austhir-user-table.log-table thead th {
+  border-bottom: 2px solid var(--austhir-orange);
+}
+
+.austhir-user-table.log-table thead tr th:first-child,
+.austhir-user-table.log-table tbody tr th {
+  width: 10%;
+}
+
+.austhir-user-table tbody tr th {
+  width: 30%;
+}
+
+.input-container {
+  display: flex;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.input-container input,
+.input-container textarea {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid var(--austhir-orange);
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.input-container input + .input-container input,
+button + button {
+  margin-left: 10px;
+}
+
+.submit-btn-container {
+  display: flex;
+  justify-content: end;
+}
+
+.austhir-alt-btn {
+  background-color: white;
+  border: 2px solid var(--austhir-orange);
+  font-weight: 600;
+  color: var(--austhir-orange) !important;
+}
+
+.table-btn {
+  border: 0;
+  background-color: transparent;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--austhir-orange);
+  transition: 0.3s ease-in-out;
+}
+
+.table-btn:hover {
+  opacity: 0.4;
+}
+
+/*-----------------------------
+        EMI Modal Design
+------------------------------*/
+.modal-close-btn {
+  background-color: transparent;
+  border: 0;
+  color: var(--austhir-orange);
+  opacity: 0.5;
+}
+
+.modal-close-btn:hover {
+  opacity: 0.2;
+}
+
+.modal-input-container {
+  width: 100%;
+}
+
+.modal-input-container + .modal-input-container {
+  margin-top: 20px;
+}
+
+.modal-input-container label {
+  margin-left: 5px;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.modal-input-container input {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 2px solid var(--austhir-orange);
+  font-weight: 600;
+  outline: none;
+}
+
+.modal-input-container input:read-only {
+  background-color: var(--austhir-light-orange);
+}
+
+.modal-input-container input:not(:read-only):focus {
+  border: 2px solid var(--austhir-light-orange);
+}
+
+/*-----------------------------
+        Mobile Design
+------------------------------*/
+@media (max-width: 576px) {
+  .user-info {
+    overflow-x: scroll;
+  }
+  .input-container {
+    display: block;
+  }
+
+  input + input {
+    margin-left: 0;
+    margin-top: 20px;
+  }
+
+  .submit-btn-container {
+    justify-content: center;
+  }
+
+  .no-data-msg {
+    font-size: 2rem;
+  }
+}
