@@ -1,3 +1,16 @@
+<?php
+include 'config.php';
+
+if(isset($_GET['type'])){
+  $car_type = $_GET['type'];
+  $query = "select * from cars WHERE carGenre = '$car_type'";
+
+}else{
+  $query = "SELECT * FROM cars";
+}
+$count = mysqli_num_rows(mysqli_query($conn, $query));
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -27,7 +40,7 @@
       <!-- navbar -->
       <nav id="austhir-nav" class="navbar navbar-expand-lg py-0">
         <div id="nav-bar" class="container-fluid">
-          <a class="navbar-brand austhir-nav-link" href="index.html">
+          <a class="navbar-brand austhir-nav-link" href="index.php">
             <img
               src="images/logo.png"
               alt=""
@@ -99,7 +112,7 @@
                   >
                 </li>
                 <li class="nav-item austhir-nav-item">
-                  <a class="nav-link austhir-nav-link" href="index.html#why_us"
+                  <a class="nav-link austhir-nav-link" href="index.php#why_us"
                     >Why Us?</a
                   >
                 </li>
@@ -117,10 +130,10 @@
                   class="nav-item log-sign-nav-item d-flex align-items-center"
                 >
                   <i class="d-none d-lg-block far fa-user me-2"></i>
-                  <a class="nav-link austhir-nav-link" href="#">Log In</a>
+                  <a class="nav-link austhir-nav-link" href="login-register.php">Log In</a>
                 </li>
                 <li class="nav-item log-sign-nav-item">
-                  <a class="nav-link austhir-nav-link" href="#">Sign Up</a>
+                  <a class="nav-link austhir-nav-link" href="login-register.php">Sign Up</a>
                 </li>
               </ul>
             </div>
@@ -171,12 +184,21 @@
             <div class="search-car-dropdown form-field-container">
               <div class="austhir-dropdown">
                 <div class="select">
-                  <span>Select Type</span>
+                  <span>
+                    <?php
+                      if(isset($_GET['type'])){
+                        $car_type = $_GET['type'];
+                      }else{
+                        $car_type = 'Select Type';
+                      } 
+                      echo $car_type;
+
+                    ?></span>
                   <i class="fa fa-chevron-left"></i>
                 </div>
                 <input type="hidden" name="models" />
                 <ul class="dropdown-menu">
-                  <li id="none">Select Type</li>
+                <li id="none">Select Type</li>
                   <li id="sedan">Sedan</li>
                   <li id="coupe">Coupe</li>
                   <li id="suv">SUV</li>
@@ -305,227 +327,72 @@
             class="title-container text-center text-lg-start d-block d-lg-flex justify-content-between"
           >
             <h3 class="search-result">All Cars</h3>
-            <h3 class="search-result">100 Results</h3>
+            <h3 class="search-result"><?php echo $count; ?> Results</h3>
           </div>
 
           <!-- cards container -->
           <div class="gallery-card-container">
+        
             <div
               class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4"
             >
-              <div class="col">
-                <a class="p-0" href="#">
-                  <div class="card h-100 austhir-card">
-                    <div class="austhir-card-image">
-                      <img
-                        src="images/lamborghini.jpg"
-                        class="card-img-top"
-                        alt="image of an aventador"
-                      />
-                    </div>
-                    <div class="card-body">
-                      <h4 class="card-title austhir-card-title">
-                        Lamborghini Aventador LP 700-4
-                      </h4>
-                      <h4 class="card-text austhir-card-price">
-                        ৳ 5,40,00,000
-                      </h4>
-                    </div>
-                    <div class="card-footer austhir-card-footer">
-                      <p class="year-badge austhir-footer-info">2017</p>
-                      <p class="austhir-footer-info">Automatic</p>
-                      <p class="austhir-footer-info">Petrol</p>
-                    </div>
+            <?php
+            if(isset($_GET['type'])){
+              $car_type = $_GET['type'];
+              $query = "select * from cars WHERE carGenre = '$car_type'";
+            
+            }else{
+              $query = "SELECT * FROM cars";
+            }
+			      $result = mysqli_query($conn, $query);
+			      if (mysqli_num_rows($result) > 0) {
+				      while ($row = mysqli_fetch_array($result)) {
+			      ?>
+            <div class="col">
+              <a class="p-0" href="#">
+                <div class="card h-100 austhir-card">
+                  <div class="austhir-card-image">
+                    <img
+                      src="images/carImage/<?php echo $row["carImage"]; ?>"
+                      class="card-img-top"
+                      alt="image of an aventador"
+                    />
                   </div>
-                </a>
-              </div>
-              <div class="col">
-                <a class="p-0" href="#">
-                  <div class="card h-100 austhir-card">
-                    <div class="austhir-card-image">
-                      <img
-                        src="images/lamborghini.jpg"
-                        class="card-img-top"
-                        alt="image of an aventador"
-                      />
-                    </div>
-                    <div class="card-body">
-                      <h4 class="card-title austhir-card-title">
-                        Lamborghini Aventador LP 700-4
-                      </h4>
-                      <h4 class="card-text austhir-card-price">
-                        ৳ 5,40,00,000
-                      </h4>
-                    </div>
-                    <div class="card-footer austhir-card-footer">
-                      <p class="year-badge austhir-footer-info">2017</p>
-                      <p class="austhir-footer-info">Automatic</p>
-                      <p class="austhir-footer-info">Petrol</p>
-                    </div>
+                  <div class="card-body">
+                    <h4 class="card-title austhir-card-title">
+                    <?php echo $row["carBrand"].' '. $row["carModel"]; ?>
+                    </h4>
+                    <h4 class="card-text austhir-card-price">
+                      ৳ <?php echo $row["carPrice"]; ?>
+                    </h4>
                   </div>
-                </a>
-              </div>
-              <div class="col">
-                <a class="p-0" href="#">
-                  <div class="card h-100 austhir-card">
-                    <div class="austhir-card-image">
-                      <img
-                        src="images/lamborghini.jpg"
-                        class="card-img-top"
-                        alt="image of an aventador"
-                      />
-                    </div>
-                    <div class="card-body">
-                      <h4 class="card-title austhir-card-title">
-                        Lamborghini Aventador LP 700-4
-                      </h4>
-                      <h4 class="card-text austhir-card-price">
-                        ৳ 5,40,00,000
-                      </h4>
-                    </div>
-                    <div class="card-footer austhir-card-footer">
-                      <p class="year-badge austhir-footer-info">2017</p>
-                      <p class="austhir-footer-info">Automatic</p>
-                      <p class="austhir-footer-info">Petrol</p>
-                    </div>
+                  <div class="card-footer austhir-card-footer">
+                    <p class="year-badge austhir-footer-info"><?php echo $row["carReleaseDate"]; ?></p>
+                    <?php   
+
+                    $car = $row['carId'];                    
+                    $newQuery = "SELECT * FROM carDetails where carId = '$car' ";
+                    $result1 = mysqli_query($conn, $newQuery);
+                    if (mysqli_num_rows($result1) > 0) {
+                      while ($row1 = mysqli_fetch_array($result1)) {
+                    ?>
+                    <p class="austhir-footer-info"><?php echo $row1['transmission'] ?></p>
+                    <p class="austhir-footer-info"><?php echo $row1['fuelType'] ?> </p>
+                    <?php
+                      }
+                    } 
+                    ?>
                   </div>
-                </a>
-              </div>
-              <div class="col">
-                <a class="p-0" href="#">
-                  <div class="card h-100 austhir-card">
-                    <div class="austhir-card-image">
-                      <img
-                        src="images/lamborghini.jpg"
-                        class="card-img-top"
-                        alt="image of an aventador"
-                      />
-                    </div>
-                    <div class="card-body">
-                      <h4 class="card-title austhir-card-title">
-                        Lamborghini Aventador LP 700-4
-                      </h4>
-                      <h4 class="card-text austhir-card-price">
-                        ৳ 5,40,00,000
-                      </h4>
-                    </div>
-                    <div class="card-footer austhir-card-footer">
-                      <p class="year-badge austhir-footer-info">2017</p>
-                      <p class="austhir-footer-info">Automatic</p>
-                      <p class="austhir-footer-info">Petrol</p>
-                    </div>
-                  </div>
-                </a>
-              </div>
+                </div>
+              </a>
             </div>
-            <div
-              class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4"
-            >
-              <div class="col">
-                <a class="p-0" href="#">
-                  <div class="card h-100 austhir-card">
-                    <div class="austhir-card-image">
-                      <img
-                        src="images/lamborghini.jpg"
-                        class="card-img-top"
-                        alt="image of an aventador"
-                      />
-                    </div>
-                    <div class="card-body">
-                      <h4 class="card-title austhir-card-title">
-                        Lamborghini Aventador LP 700-4
-                      </h4>
-                      <h4 class="card-text austhir-card-price">
-                        ৳ 5,40,00,000
-                      </h4>
-                    </div>
-                    <div class="card-footer austhir-card-footer">
-                      <p class="year-badge austhir-footer-info">2017</p>
-                      <p class="austhir-footer-info">Automatic</p>
-                      <p class="austhir-footer-info">Petrol</p>
-                    </div>
-                  </div>
-                </a>
-              </div>
-              <div class="col">
-                <a class="p-0" href="#">
-                  <div class="card h-100 austhir-card">
-                    <div class="austhir-card-image">
-                      <img
-                        src="images/lamborghini.jpg"
-                        class="card-img-top"
-                        alt="image of an aventador"
-                      />
-                    </div>
-                    <div class="card-body">
-                      <h4 class="card-title austhir-card-title">
-                        Lamborghini Aventador LP 700-4
-                      </h4>
-                      <h4 class="card-text austhir-card-price">
-                        ৳ 5,40,00,000
-                      </h4>
-                    </div>
-                    <div class="card-footer austhir-card-footer">
-                      <p class="year-badge austhir-footer-info">2017</p>
-                      <p class="austhir-footer-info">Automatic</p>
-                      <p class="austhir-footer-info">Petrol</p>
-                    </div>
-                  </div>
-                </a>
-              </div>
-              <div class="col">
-                <a class="p-0" href="#">
-                  <div class="card h-100 austhir-card">
-                    <div class="austhir-card-image">
-                      <img
-                        src="images/lamborghini.jpg"
-                        class="card-img-top"
-                        alt="image of an aventador"
-                      />
-                    </div>
-                    <div class="card-body">
-                      <h4 class="card-title austhir-card-title">
-                        Lamborghini Aventador LP 700-4
-                      </h4>
-                      <h4 class="card-text austhir-card-price">
-                        ৳ 5,40,00,000
-                      </h4>
-                    </div>
-                    <div class="card-footer austhir-card-footer">
-                      <p class="year-badge austhir-footer-info">2017</p>
-                      <p class="austhir-footer-info">Automatic</p>
-                      <p class="austhir-footer-info">Petrol</p>
-                    </div>
-                  </div>
-                </a>
-              </div>
-              <div class="col">
-                <a class="p-0" href="#">
-                  <div class="card h-100 austhir-card">
-                    <div class="austhir-card-image">
-                      <img
-                        src="images/lamborghini.jpg"
-                        class="card-img-top"
-                        alt="image of an aventador"
-                      />
-                    </div>
-                    <div class="card-body">
-                      <h4 class="card-title austhir-card-title">
-                        Lamborghini Aventador LP 700-4
-                      </h4>
-                      <h4 class="card-text austhir-card-price">
-                        ৳ 5,40,00,000
-                      </h4>
-                    </div>
-                    <div class="card-footer austhir-card-footer">
-                      <p class="year-badge austhir-footer-info">2017</p>
-                      <p class="austhir-footer-info">Automatic</p>
-                      <p class="austhir-footer-info">Petrol</p>
-                    </div>
-                  </div>
-                </a>
-              </div>
+            <?php
+			        }
+            }
+			      
+		        ?>
             </div>
+            
           </div>
         </div>
       </section>

@@ -1,3 +1,14 @@
+<?php
+
+include 'config.php';
+session_start();
+error_reporting(0);
+
+
+//echo "<script>alert('User Registration Successful.')</script>";
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -11,6 +22,7 @@
       rel="stylesheet"
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
+      
     />
     <!-- custom stylesheet -->
     <link rel="stylesheet" href="css/home-page.css" />
@@ -35,7 +47,7 @@
       <!-- navbar -->
       <nav class="navbar navbar-expand-lg py-0">
         <div id="nav-bar" class="container-fluid">
-          <a class="navbar-brand austhir-nav-link" href="#">
+          <a class="navbar-brand austhir-nav-link" href="index.php">
             <img
               src="images/logo.png"
               alt=""
@@ -121,10 +133,10 @@
                   class="nav-item log-sign-nav-item d-flex align-items-center"
                 >
                   <i class="d-none d-lg-block far fa-user me-2"></i>
-                  <a class="nav-link austhir-nav-link" href="#">Log In</a>
+                  <a class="nav-link austhir-nav-link" href="login-register.php">Log In</a>
                 </li>
                 <li class="nav-item log-sign-nav-item">
-                  <a class="nav-link austhir-nav-link" href="#">Sign Up</a>
+                  <a class="nav-link austhir-nav-link" href="login-register.php">Sign Up</a>
                 </li>
               </ul>
             </div>
@@ -154,11 +166,24 @@
                     <span>All Brands</span>
                     <i class="fa fa-chevron-left"></i>
                   </div>
+                  
                   <input type="hidden" name="brands" />
                   <ul class="dropdown-menu">
                     <li id="none">All Brands</li>
-                    <li id="mercedes-benz">Mercedes-Benz</li>
-                    <li id="koenigsegg">Koenigsegg</li>
+                    <?php
+                      $query = "SELECT DISTINCT carBrand FROM cars";
+                      $result = mysqli_query($conn, $query);
+                      if (mysqli_num_rows($result) > 0) {
+                        while ($row = mysqli_fetch_array($result)) {
+                    ?>
+                    <li id="none"><?php echo $row['carBrand']; ?></li>
+                    
+                    <?php
+                        }
+                      }
+                    ?>
+
+                    
                   </ul>
                 </div>
               </div>
@@ -189,8 +214,18 @@
                   <input type="hidden" name="price" />
                   <ul class="dropdown-menu">
                     <li id="none">Max Price</li>
-                    <li id="mercedes-benz">Mercedes-Benz</li>
-                    <li id="koenigsegg">Koenigsegg</li>
+                    <?php
+                      $query = "SELECT DISTINCT carPrice FROM cars Order by cast(carPrice as int)";
+                      $result = mysqli_query($conn, $query);
+                      if (mysqli_num_rows($result) > 0) {
+                        while ($row = mysqli_fetch_array($result)) {
+                    ?>
+                    <li id="none"><?php echo $row['carPrice']; ?></li>
+                    
+                    <?php
+                        }
+                      }
+                    ?>
                   </ul>
                 </div>
               </div>
@@ -199,7 +234,7 @@
               <div class="d-block search-button-container">
                 <a
                   class="d-block search-button d-flex align-items-center justify-content-center"
-                  href="#"
+                  href="car-gallery.php"
                 >
                   <i class="fas fa-search"></i>
                   <p class="search-button-text">Search</p>
@@ -216,7 +251,7 @@
               <div class="first-row d-flex justify-content-center">
                 <!-- sedan -->
                 <div class="car-type-button">
-                  <a href="car-gallery.html?type=sedan">
+                  <a href="car-gallery.php?type=Sedan">
                     <svg
                       version="1.1"
                       xmlns="http://www.w3.org/2000/svg"
@@ -248,7 +283,7 @@
                 </div>
                 <!-- coupe -->
                 <div class="car-type-button">
-                  <a href="car-gallery.html?type=coupe">
+                  <a href="car-gallery.php?type=Coupe">
                     <svg
                       version="1.1"
                       xmlns="http://www.w3.org/2000/svg"
@@ -286,7 +321,7 @@
                 </div>
                 <!-- suv -->
                 <div class="car-type-button">
-                  <a href="car-gallery.html?type=suv">
+                  <a href="car-gallery.php?type=SUV">
                     <svg
                       version="1.1"
                       xmlns="http://www.w3.org/2000/svg"
@@ -326,7 +361,7 @@
               <div class="second-row d-flex justify-content-center">
                 <!-- hatchback -->
                 <div class="car-type-button">
-                  <a href="car-gallery.html?type=hatchback">
+                  <a href="car-gallery.php?type=Hatchback">
                     <svg
                       version="1.1"
                       xmlns="http://www.w3.org/2000/svg"
@@ -358,7 +393,7 @@
                 </div>
                 <!-- station wagon -->
                 <div class="car-type-button">
-                  <a href="car-gallery.html?type=wagon">
+                  <a href="car-gallery.php?type=Wagon">
                     <svg
                       version="1.1"
                       xmlns="http://www.w3.org/2000/svg"
@@ -415,8 +450,7 @@
               />
               <div class="service-card-info">
                 <h4 class="service-title">Car Gallery</h4>
-                <a class="austhir-btn service-view-btn" href="car-gallery.html"
-                  >View</a
+                <a class="austhir-btn service-view-btn" href="car-gallery.php">View</a
                 >
               </div>
             </div>
