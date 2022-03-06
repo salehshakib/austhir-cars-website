@@ -2,15 +2,18 @@
 
 include 'config.php';
 
+session_start();
+
 if(isset($_GET['type'])){
   $car_type = $_GET['type'];
   $query = "select * from cars WHERE carGenre = '$car_type'";
 
 }else{
   $query = "SELECT * FROM cars";
+  $_SESSION['sqlQueryForFilter'] = $query;
 }
 
-$count = mysqli_num_rows(mysqli_query($conn, $query));
+
 
 
 if(isset($_POST['carSearch'])){
@@ -86,28 +89,13 @@ if(isset($_POST['carSearch'])){
     }
 
     $resultForFilter = mysqli_query($conn, $sqlQueryForFilter);
-    // echo $sqlQueryForFilter; 
-
-    // if(mysqli_num_rows($resultForFilter) > 0){
-    //   echo "<br>";
-    //   echo mysqli_num_rows($resultForFilter);
-    //   while ($rowForFilter = mysqli_fetch_array($resultForFilter)){
-
-        
-    //     echo "<pre>";
-    //     print_r($rowForFilter);
-    //     echo "</pre>";
-        
-    //   }
-    // }
-    
+    $_SESSION['sqlQueryForFilter'] = $sqlQueryForFilter;
 
   } 
-  
-  
 
-
+  
 }
+$count = mysqli_num_rows(mysqli_query($conn, $_SESSION['sqlQueryForFilter']));
 
 
 
@@ -141,7 +129,7 @@ if(isset($_POST['carSearch'])){
     <!-- header start -->
     <header>
       <!-- navbar -->
-      <!-- <nav id="austhir-nav" class="navbar navbar-expand-lg py-0">
+      <nav id="austhir-nav" class="navbar navbar-expand-lg py-0">
         <div id="nav-bar" class="container-fluid">
           <a class="navbar-brand austhir-nav-link" href="index.php">
             <img
@@ -242,7 +230,7 @@ if(isset($_POST['carSearch'])){
             </div>
           </div>
         </div>
-      </nav> -->
+      </nav>
     </header>
     <!-- header end -->
 
@@ -460,7 +448,7 @@ if(isset($_POST['carSearch'])){
               $query = "select * from cars WHERE carGenre = '$car_type'";
             
             }else{
-              $query = "SELECT * FROM cars";
+              $query = $_SESSION['sqlQueryForFilter'];//$sqlQueryForFilter;//"SELECT * FROM cars";
             }
 			      $result = mysqli_query($conn, $query);
 			      if (mysqli_num_rows($result) > 0) {
