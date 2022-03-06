@@ -7,6 +7,7 @@ session_start();
 if(isset($_GET['type'])){
   $car_type = $_GET['type'];
   $query = "select * from cars WHERE carGenre = '$car_type'";
+  $_SESSION['sqlQueryForFilter'] = $query;
 
 }else{
   $query = "SELECT * FROM cars";
@@ -25,7 +26,6 @@ if(isset($_POST['carSearch'])){
   $carType = mysqli_real_escape_string($conn, $_POST['genre']);
   $carMinPrice = mysqli_real_escape_string($conn, $_POST['minPrice']);
   $carMaxPrice = mysqli_real_escape_string($conn, $_POST['maxPrice']);
-  $carMileage = mysqli_real_escape_string($conn, $_POST['mileage']);
   $carDriveType = mysqli_real_escape_string($conn, $_POST['driveType']);
   $carFuelType = mysqli_real_escape_string($conn, $_POST['fuelType']);
   $carTransmission = mysqli_real_escape_string($conn, $_POST['transmission']);
@@ -37,7 +37,6 @@ if(isset($_POST['carSearch'])){
   if($carBrand === "" 
   && $carType === ""
   && $carMinPrice === "" && $carMaxPrice === "" 
-  && $carMileage === ""
   && $carDriveType === ""
   && $carFuelType === ""
   && $carTransmission === ""
@@ -160,28 +159,9 @@ $count = mysqli_num_rows(mysqli_query($conn, $_SESSION['sqlQueryForFilter']));
                     }
                   }
                   ?>
-                  
-                  <!-- <li id="mercedes-benz">Mercedes-Benz</li>
-                  <li id="koenigsegg">Koenigsegg</li> -->
                 </ul>
               </div>
             </div>
-
-            <!-- all models dropdown -->
-            <!-- <div class="search-car-dropdown form-field-container">
-              <div class="austhir-dropdown">
-                <div class="select">
-                  <span>Select Model</span>
-                  <i class="fa fa-chevron-left"></i>
-                </div>
-                <input type="hidden" name="models" />
-                <ul class="dropdown-menu">
-                  <!-- <li >Select Model</li> -->
-                  <li id="mercedes-benz">Mercedes-Benz</li>
-                  <li id="koenigsegg">Koenigsegg</li>
-                </ul>
-              </div>
-            </div> -->
 
             <!-- type dropdown -->
             <div class="search-car-dropdown form-field-container">
@@ -233,23 +213,7 @@ $count = mysqli_num_rows(mysqli_query($conn, $_SESSION['sqlQueryForFilter']));
                 </ul>
               </div>
             </div>
-
-
-            <!-- mileage dropdown -->
-            <!-- <div class="search-car-dropdown form-field-container">
-              <div class="austhir-dropdown">
-                <div class="select">
-                  <span>Mileage</span>
-                  <i class="fa fa-chevron-left"></i>
-                </div>
-                <input type="hidden" name="models" />
-                <ul class="dropdown-menu">
-                  <li id="none">Select Model</li>
-                  <li id="mercedes-benz">Mercedes-Benz</li>
-                  <li id="koenigsegg">Koenigsegg</li>
-                </ul>
-              </div>
-            </div> -->
+       
           </div>
           <div class="filter-container d-block d-lg-flex">
             <!-- fuel dropdown -->
