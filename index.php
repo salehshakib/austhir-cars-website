@@ -5,7 +5,6 @@ session_start();
 error_reporting(0);
 
 
-//echo "<script>alert('User Registration Successful.')</script>";
 
 ?>
 

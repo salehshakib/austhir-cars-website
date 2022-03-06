@@ -1,4 +1,5 @@
 <?php
+
 include 'config.php';
 
 if(isset($_GET['type'])){
@@ -8,7 +9,109 @@ if(isset($_GET['type'])){
 }else{
   $query = "SELECT * FROM cars";
 }
+
 $count = mysqli_num_rows(mysqli_query($conn, $query));
+
+
+if(isset($_POST['carSearch'])){
+
+  $sqlQueryForFilter = "SELECT * FROM cars JOIN carDetails ON cars.carId = carDetails.carId "; // where carBrand = brand OR ";
+
+  $carBrand = mysqli_real_escape_string($conn, $_POST['brands']);
+  //$carModel = mysqli_real_escape_string($conn, $_POST['models']);
+  $carType = mysqli_real_escape_string($conn, $_POST['genre']);
+  $carMinPrice = mysqli_real_escape_string($conn, $_POST['minPrice']);
+  $carMaxPrice = mysqli_real_escape_string($conn, $_POST['maxPrice']);
+  $carMileage = mysqli_real_escape_string($conn, $_POST['mileage']);
+  $carDriveType = mysqli_real_escape_string($conn, $_POST['driveType']);
+  $carFuelType = mysqli_real_escape_string($conn, $_POST['fuelType']);
+  $carTransmission = mysqli_real_escape_string($conn, $_POST['transmission']);
+  $carCylinder = mysqli_real_escape_string($conn, $_POST['cylinder']);
+  $carMinYear = mysqli_real_escape_string($conn, $_POST['minYear']);
+  $carMaxYear = mysqli_real_escape_string($conn, $_POST['maxYear']);
+  
+  
+  if($carBrand === "" 
+  && $carType === ""
+  && $carMinPrice === "" && $carMaxPrice === "" 
+  && $carMileage === ""
+  && $carDriveType === ""
+  && $carFuelType === ""
+  && $carTransmission === ""
+  && $carCylinder === ""
+  && $carMinYear === "" && $carMaxYear === ""){
+
+    
+  }else{
+
+    if(($carMinPrice !== "" && $carMaxPrice !== "") && ($carMinYear !== "" && $carMaxYear !== "")){
+      $sqlQueryForFilter = "SELECT * FROM cars JOIN carDetails ON cars.carId = carDetails.carId 
+      WHERE cars.carBrand = '$carBrand' 
+      OR cars.carGenre = '$carType' 
+      OR (cars.carPrice BETWEEN $carMinPrice AND $carMaxPrice)
+      OR carDetails.driveType = '$carDriveType' 
+      OR carDetails.fuelType = '$carFuelType' 
+      OR carDetails.transmission = '$carTransmission' 
+      OR (cars.carReleaseDate BETWEEN $carMinYear AND $carMaxYear) 
+      OR carDetails.cylinder = '$carCylinder'";
+    }
+    else if($carMinPrice !== "" && $carMaxPrice !== ""){
+      $sqlQueryForFilter = "SELECT * FROM cars JOIN carDetails ON cars.carId = carDetails.carId 
+      WHERE cars.carBrand = '$carBrand' 
+      OR cars.carGenre = '$carType' 
+      OR (cars.carPrice BETWEEN $carMinPrice AND $carMaxPrice)
+      OR carDetails.driveType = '$carDriveType' 
+      OR carDetails.fuelType = '$carFuelType' 
+      OR carDetails.transmission = '$carTransmission'
+      OR carDetails.cylinder = '$carCylinder'";
+    } 
+    else if($carMinYear !== "" && $carMaxYear !== ""){
+      $sqlQueryForFilter = "SELECT * FROM cars JOIN carDetails ON cars.carId = carDetails.carId 
+      WHERE cars.carBrand = '$carBrand' 
+      OR cars.carGenre = '$carType' 
+      OR carDetails.driveType = '$carDriveType' 
+      OR carDetails.fuelType = '$carFuelType' 
+      OR carDetails.transmission = '$carTransmission' 
+      OR (cars.carReleaseDate BETWEEN $carMinYear AND $carMaxYear) 
+      OR carDetails.cylinder = '$carCylinder'";
+    }
+    else{
+      $sqlQueryForFilter = "SELECT * FROM cars JOIN carDetails ON cars.carId = carDetails.carId 
+      WHERE cars.carBrand = '$carBrand' 
+      OR cars.carGenre = '$carType' 
+      OR carDetails.driveType = '$carDriveType' 
+      OR carDetails.fuelType = '$carFuelType' 
+      OR carDetails.transmission = '$carTransmission' 
+      OR carDetails.cylinder = '$carCylinder'";
+    }
+
+    $resultForFilter = mysqli_query($conn, $sqlQueryForFilter);
+    // echo $sqlQueryForFilter; 
+
+    // if(mysqli_num_rows($resultForFilter) > 0){
+    //   echo "<br>";
+    //   echo mysqli_num_rows($resultForFilter);
+    //   while ($rowForFilter = mysqli_fetch_array($resultForFilter)){
+
+        
+    //     echo "<pre>";
+    //     print_r($rowForFilter);
+    //     echo "</pre>";
+        
+    //   }
+    // }
+    
+
+  } 
+  
+  
+
+
+}
+
+
+
+
 
 ?>
 <!DOCTYPE html>
@@ -38,7 +141,7 @@ $count = mysqli_num_rows(mysqli_query($conn, $query));
     <!-- header start -->
     <header>
       <!-- navbar -->
-      <nav id="austhir-nav" class="navbar navbar-expand-lg py-0">
+      <!-- <nav id="austhir-nav" class="navbar navbar-expand-lg py-0">
         <div id="nav-bar" class="container-fluid">
           <a class="navbar-brand austhir-nav-link" href="index.php">
             <img
@@ -139,14 +242,14 @@ $count = mysqli_num_rows(mysqli_query($conn, $query));
             </div>
           </div>
         </div>
-      </nav>
+      </nav> -->
     </header>
     <!-- header end -->
 
     <main>
       <!-- filter section -->
       <section class="container">
-        <form id="filter-form" class="d-none d-lg-block" action="">
+        <form id="filter-form" class="d-none d-lg-block" action="" method="post">
           <div class="filter-container d-block d-lg-flex">
             <!-- all brands dropdown -->
             <div class="search-car-dropdown form-field-container">
@@ -157,9 +260,23 @@ $count = mysqli_num_rows(mysqli_query($conn, $query));
                 </div>
                 <input type="hidden" name="brands" />
                 <ul class="dropdown-menu">
-                  <li id="none">Select Brand</li>
-                  <li id="mercedes-benz">Mercedes-Benz</li>
-                  <li id="koenigsegg">Koenigsegg</li>
+                  <!-- <li >Select Brand</li> -->
+                  <li id="none">All Brands</li>
+                  <?php 
+                  $sqlQuery = "SELECT DISTINCT carBrand FROM cars";
+                  $result = mysqli_query($conn, $sqlQuery);
+                  if(mysqli_num_rows($result) > 0){
+                    while ($row = mysqli_fetch_array($result)){
+                  ?>
+
+                  <li id="<?php echo $row['carBrand']; ?>"><?php echo $row['carBrand']; ?></li>
+                  <?php
+                    }
+                  }
+                  ?>
+                  
+                  <!-- <li id="mercedes-benz">Mercedes-Benz</li>
+                  <li id="koenigsegg">Koenigsegg</li> -->
                 </ul>
               </div>
             </div>
@@ -173,7 +290,7 @@ $count = mysqli_num_rows(mysqli_query($conn, $query));
                 </div>
                 <input type="hidden" name="models" />
                 <ul class="dropdown-menu">
-                  <li id="none">Select Model</li>
+                  <!-- <li >Select Model</li> -->
                   <li id="mercedes-benz">Mercedes-Benz</li>
                   <li id="koenigsegg">Koenigsegg</li>
                 </ul>
@@ -196,22 +313,22 @@ $count = mysqli_num_rows(mysqli_query($conn, $query));
                     ?></span>
                   <i class="fa fa-chevron-left"></i>
                 </div>
-                <input type="hidden" name="models" />
+                <input type="hidden" name="genre" />
                 <ul class="dropdown-menu">
-                <li id="none">Select Type</li>
-                  <li id="sedan">Sedan</li>
-                  <li id="coupe">Coupe</li>
-                  <li id="suv">SUV</li>
-                  <li id="hatchback">Hatchback</li>
-                  <li id="wagon">Wagon</li>
+                <!-- <li >Select Type</li> -->
+                  <li id="Sedan">Sedan</li>
+                  <li id="Coupe">Coupe</li>
+                  <li id="SUV">SUV</li>
+                  <li id="Hatchback">Hatchback</li>
+                  <li id="Wagon">Wagon</li>
                 </ul>
               </div>
             </div>
 
             <!-- min max price filter -->
             <div class="filter-input d-flex">
-              <input type="text" placeholder="Min Price" />
-              <input type="text" placeholder="Max Price" />
+              <input type="text" placeholder="Min Price" name ="minPrice"/>
+              <input type="text" placeholder="Max Price" name ="maxPrice"/>
             </div>
 
             <!-- mileage dropdown -->
@@ -221,9 +338,9 @@ $count = mysqli_num_rows(mysqli_query($conn, $query));
                   <span>Mileage</span>
                   <i class="fa fa-chevron-left"></i>
                 </div>
-                <input type="hidden" name="models" />
+                <input type="hidden" name="mileage" />
                 <ul class="dropdown-menu">
-                  <li id="none">Select Model</li>
+                  <!-- <li >Select Model</li> -->
                   <li id="mercedes-benz">Mercedes-Benz</li>
                   <li id="koenigsegg">Koenigsegg</li>
                 </ul>
@@ -238,11 +355,12 @@ $count = mysqli_num_rows(mysqli_query($conn, $query));
                   <span>Drive Type</span>
                   <i class="fa fa-chevron-left"></i>
                 </div>
-                <input type="hidden" name="brands" />
+                <input type="hidden" name="driveType" />
                 <ul class="dropdown-menu">
-                  <li id="4WD">AWD/4WD</li>
-                  <li id="front-wheel-drive">Front Wheel Drive</li>
-                  <li id="rear-wheel-drive">Rear Wheel Drive</li>
+                  
+                  <li id="AWD/4WD">AWD/4WD</li>
+                  <li id="Front Wheel Drive">Front Wheel Drive</li>
+                  <li id="Rear Wheel Drive">Rear Wheel Drive</li>
                 </ul>
               </div>
             </div>
@@ -254,13 +372,13 @@ $count = mysqli_num_rows(mysqli_query($conn, $query));
                   <span>Fuel Type</span>
                   <i class="fa fa-chevron-left"></i>
                 </div>
-                <input type="hidden" name="models" />
+                <input type="hidden" name="fuelType" />
                 <ul class="dropdown-menu">
-                  <li id="none">Fuel Type</li>
-                  <li id="deisel">Deisel</li>
-                  <li id="electric">Electric</li>
-                  <li id="hybrid">Hybrid</li>
-                  <li id="petrol">Petrol</li>
+                  <!-- <li id="none">Fuel Type</li> -->
+                  <li id="Deisel">Deisel</li>
+                  <li id="Electric">Electric</li>
+                  <li id="Hybrid">Hybrid</li>
+                  <li id="Petrol">Petrol</li>
                 </ul>
               </div>
             </div>
@@ -272,12 +390,12 @@ $count = mysqli_num_rows(mysqli_query($conn, $query));
                   <span>Transmission</span>
                   <i class="fa fa-chevron-left"></i>
                 </div>
-                <input type="hidden" name="models" />
+                <input type="hidden" name="transmission" />
                 <ul class="dropdown-menu">
-                  <li id="none">Transmission</li>
-                  <li id="automatic">Automatic</li>
-                  <li id="manual">Manual</li>
-                  <li id="semi-automatic">Semi-Automatic</li>
+                  <!-- <li id="none">Transmission</li> -->
+                  <li id="Automatic">Automatic</li>
+                  <li id="Manual">Manual</li>
+                  <li id="Semi-Automatic">Semi-Automatic</li>
                 </ul>
               </div>
             </div>
@@ -289,9 +407,9 @@ $count = mysqli_num_rows(mysqli_query($conn, $query));
                   <span>Cylinders</span>
                   <i class="fa fa-chevron-left"></i>
                 </div>
-                <input type="hidden" name="models" />
+                <input type="hidden" name="cylinder" />
                 <ul class="dropdown-menu">
-                  <li id="none">Cylinders</li>
+                  <!-- <li id="none">Cylinders</li> -->
                   <li id="4">4</li>
                   <li id="6">6</li>
                   <li id="8">8</li>
@@ -301,14 +419,14 @@ $count = mysqli_num_rows(mysqli_query($conn, $query));
 
             <!-- min max year filter -->
             <div class="filter-input d-flex">
-              <input type="text" placeholder="Min Year" />
-              <input type="text" placeholder="Max Year" />
+              <input type="text" placeholder="Min Year" name ="minYear"/>
+              <input type="text" placeholder="Max Year" name ="maxYear"/>
             </div>
           </div>
           <div
             class="search-btn-container d-block d-lg-flex justify-content-end"
           >
-            <button class="austhir-btn search-btn" type="submit">
+            <button class="austhir-btn search-btn" type="submit" name = "carSearch" id = "search">
               <i class="fas fa-search"></i>Search
             </button>
           </div>
