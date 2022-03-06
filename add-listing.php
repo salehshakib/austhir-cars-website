@@ -51,19 +51,18 @@ if(isset($_POST['addLisiting_btn'])){
     $carDoor = mysqli_real_escape_string($conn, $_POST['carDoor']);
     $carColor = mysqli_real_escape_string($conn, $_POST['carColor']);
     $file_name = '';
-    echo ($_FILES['carImage']);
+
     //image
-    if(isset($_FILES['carImage'])){
+    //if(isset($_FILES['carImage'])){
         $file_name = time()."-".rand(1000, 9999).".".pathinfo("assets/".basename($_FILES['carImage']['name']), PATHINFO_EXTENSION);
-        //$_FILES["image"]["name"];
         echo $file_name;
-        $temp_name = $_FILES["carImage"]["name"];
+        $temp_name = $_FILES["carImage"]["tmp_name"];
         $folder = "assets/".$file_name;
         move_uploaded_file($temp_name, $folder);
-    }
-    else{
-        echo 'upload failed';
-    }
+    //}
+    //else{g
+        //echo 'upload failed';
+    //}
 
     $insertCarsSql = "INSERT INTO cars (carId, carTittle, carBrand, carModel, carPrice, carGenre, carReleaseDate, carSeats, carImage) VALUES ('$carId','$carTitle','$carBrand', '$carModel', '$carPrice', '$carGenre', '$carReleaseDate', '$carSeat', '$file_name')";
     $insertCarsResult = mysqli_query($conn, $insertCarsSql);
@@ -534,13 +533,17 @@ if(isset($_POST['addLisiting_btn'])){
                                         </div>
                                     </div>
                                     <!--YT Link end-->
+
+                                    <!--Picture add-->
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="mb-4">
-                                            <input type="file" class="image-upload" accept="image/*" name="carImage">
+                                            <input type="file" name="carImage" id="carImage" class = "image-upload" accept="image/*">
                                             </div>
                                         </div>
                                     </div>
+
+                                    <!--Picture add end-->
                                 </div>
                             </div>
                         </div>
