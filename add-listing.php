@@ -511,13 +511,17 @@ if(isset($_POST['addLisiting_btn'])){
                                         </div>
                                     </div>
                                     <!--YT Link end-->
+
+                                    <!--Picture add-->
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="mb-4">
-                                            <input type="file" class="image-upload" accept="image/*" name="carImage">
+                                            <input type="file" name="carImage" id="carImage" class = "image-upload" accept="image/*">
                                             </div>
                                         </div>
                                     </div>
+
+                                    <!--Picture add end-->
                                 </div>
                             </div>
                         </div>
@@ -526,22 +530,6 @@ if(isset($_POST['addLisiting_btn'])){
                     <!--  -->
                 </form>
 
-                <!--Gallery-->
-                <!-- <div class="partition">
-                    <div class="row">
-                        <div class="text">
-                            <h2>
-                                <b>
-                                    Gallery
-                                </b>
-                            </h2>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <form action="/file-upload" class="dropzone" id="my-awesome-dropzone"> </form>
-                    </div>
-                </div> -->
-                <!--Gallery end-->
  
             </div>
         </div>
