@@ -1,0 +1,127 @@
+/* utilities import */
+@import url("universal-stylesheet.css");
+
+/*-----------------------------
+        Car Genre Design
+------------------------------*/
+#car-genre-selection-section {
+  background-color: white;
+  border-radius: 30px;
+  margin-top: 100px;
+  padding: 30px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.genre-title {
+  text-align: center;
+  font-size: 2.75em;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: var(--austhir-title-color);
+}
+
+.car-type-filter-container {
+  padding: 0;
+}
+
+.car-type-button {
+  height: 80px;
+  width: 80px;
+  margin: 20px;
+  text-align: center;
+  color: var(--austhir-orange);
+  cursor: pointer;
+}
+
+.car-type-button svg {
+  padding: 10px;
+  fill: var(--austhir-orange);
+  border: 2px solid var(--austhir-orange);
+  border-radius: 50%;
+  margin-bottom: 15px;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.car-type-button:hover svg {
+  border-color: var(--austhir-light-orange);
+}
+
+.car-type-button.selected svg {
+  border-color: var(--austhir-light-orange) !important;
+}
+
+/*------------------------------------
+        Mods section Design
+-------------------------------------*/
+.mods-section-title {
+  font-size: 3em;
+  font-weight: 600;
+  margin-bottom: 30px;
+  color: var(--austhir-title-color);
+}
+
+.mods-container-5 {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 40px;
+}
+
+.color-card {
+  position: relative;
+  height: 220px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+.color-card:hover {
+  transform: scale(1.2);
+}
+
+.color-card-text {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  text-align: center;
+  transform: translate(-50%, -50%);
+  font-size: 22px;
+  font-weight: 700;
+}
+
+/*-----------------------------
+        Mobile Design
+------------------------------*/
+@media (max-width: 576px) {
+  #car-genre-selection-section {
+    width: 95%;
+  }
+  .search-car-container {
+    width: 98%;
+  }
+
+  .car-type-button {
+    margin: 10px;
+  }
+
+  .second-row {
+    margin-top: 40px;
+  }
+
+  .mods-section-title {
+    font-size: 2em;
+    text-align: center;
+  }
+
+  .mods-container-5 {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+/*-----------------------------
+        XS Design
+------------------------------*/
+@media (max-width: 300px) {
+  .car-type-button {
+    margin: 5px;
+  }
+}
