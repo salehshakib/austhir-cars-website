@@ -53,6 +53,13 @@
 /*------------------------------------
         Mods section Design
 -------------------------------------*/
+#Not-found-msg {
+  text-align: center;
+  font-size: 3em;
+  font-weight: 800;
+  color: gainsboro;
+}
+
 .mods-section-title {
   font-size: 3em;
   font-weight: 600;
@@ -66,7 +73,11 @@
   gap: 40px;
 }
 
-.color-card {
+.color-card,
+.rim-card,
+.light-card,
+.tint-card,
+.tyre-card {
   position: relative;
   height: 220px;
   border-radius: 20px;
@@ -74,11 +85,24 @@
   transition: 0.3s ease-in-out;
 }
 
-.color-card:hover {
+.color-card:hover,
+.tyre-card:hover,
+.rim-card:hover,
+.light-card:hover,
+.tint-card:hover,
+.color-card.selected,
+.rim-card.selected,
+.light-card.selected,
+.tint-card.selected,
+.tyre-card.selected {
   transform: scale(1.2);
 }
 
-.color-card-text {
+.color-card-text,
+.rim-card-text,
+.light-card-text,
+.tint-card-text,
+.tyre-card-text {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -86,6 +110,10 @@
   transform: translate(-50%, -50%);
   font-size: 22px;
   font-weight: 700;
+}
+
+footer {
+  margin-top: 400px;
 }
 
 /*-----------------------------
