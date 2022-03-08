@@ -382,7 +382,7 @@ error_reporting(0);
               />
               <div class="service-card-info">
                 <h4 class="service-title">Mod Gallery</h4>
-                <a class="austhir-btn service-view-btn" href="#">View</a>
+                <a class="austhir-btn service-view-btn" href="mod-gallery.php">View</a>
               </div>
             </div>
           </div>

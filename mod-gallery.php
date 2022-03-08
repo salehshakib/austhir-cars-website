@@ -29,6 +29,12 @@
     />
   </head>
   <body>
+    <!-- header start -->
+    <header>
+         <?php include'purchase-header.php'; ?>
+    </header>
+    <!-- header end -->
+
     <main>
       <!-- car genre selection section -->
       <section id="car-genre-selection-section" class="container">
@@ -613,6 +619,50 @@
           </div>
         </section>
       </section>
+
+      <section>
+        <!-- mod purchase modal -->
+        <div class="modal fade" id="purchaseModal" tabindex="-1" aria-labelledby="purchaseModal" aria-hidden="true">
+          <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Selected Mods</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <table class="table table-bordered modal-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Serial No</th>
+                      <th scope="col">Product ID</th>
+                      <th scope="col">Name</th>
+                      <th scope="col">Type</th>
+                      <th scope="col">Brand</th>
+                      <th scope="col">Size</th>
+                      <th scope="col">Unit Price</th>
+                      <th scope="col">Quantity</th>
+                      <th scope="col">Product Price</th>
+                    </tr>
+                  </thead>
+                  <tbody id="modal-table-body">
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <td></td>
+                      <td colspan="7" class="text-end">Total Price</td>
+                      <th scope="row">৳152000</th>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="austhir-btn austhir-alt-btn" data-bs-dismiss="modal"><i class="fas fa-ban"></i> Cancel</button>
+                <button type="button" class="austhir-btn submit-btn"><i class="fas fa-credit-card"></i> Purchase Now</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
     <!-- footer -->
@@ -646,5 +696,6 @@
     ></script>
     <!-- custom js  -->
     <script src="js/mod-gallery.js"></script>
+     <script src="js/header.js"></script>
   </body>
 </html>

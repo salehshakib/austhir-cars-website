@@ -85,6 +85,13 @@ input {
   font-size: 18px;
 }
 
+.austhir-alt-btn {
+  background-color: white;
+  border: 2px solid var(--austhir-orange);
+  font-weight: 600;
+  color: var(--austhir-orange) !important;
+}
+
 /*----------------------------------------
         Austhir Card Design
 -----------------------------------------*/
@@ -182,7 +189,7 @@ input {
 .nav-bg.fixed {
   position: fixed;
   top: 0;
-  z-index: 99999;
+  z-index: 999;
   height: 70px;
 }
 
@@ -294,6 +301,19 @@ input {
 .austhir-nav-link.session-link {
   color: var(--austhir-nav-text-color);
   transition: 0.3s ease-in-out;
+}
+
+#cart-btn {
+  position: relative;
+  background-color: transparent;
+  border: none;
+  color: var(--austhir-orange);
+  font-size: 25px;
+}
+
+#cart-badge {
+  font-size: 12px;
+  background-color: red;
 }
 
 /*-----------------------------
