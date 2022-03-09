@@ -29,6 +29,12 @@
     />
   </head>
   <body>
+    <!-- header start -->
+    <header>
+         <?php include'purchase-header.php'; ?>
+    </header>
+    <!-- header end -->
+
     <main>
       <!-- car genre selection section -->
       <section id="car-genre-selection-section" class="container">
@@ -613,6 +619,121 @@
           </div>
         </section>
       </section>
+
+      <section>
+        <!-- mod purchase modal -->
+        <div class="modal fade" id="purchaseModal" tabindex="-1" aria-labelledby="purchaseModal" aria-hidden="true">
+          <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Selected Mods</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <table class="table table-bordered modal-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Serial No</th>
+                      <th scope="col">Product ID</th>
+                      <th scope="col">Name</th>
+                      <th scope="col">Type</th>
+                      <th scope="col">Brand</th>
+                      <th scope="col">Size</th>
+                      <th scope="col">Unit Price</th>
+                      <th scope="col">Quantity</th>
+                      <th scope="col">Product Price</th>
+                    </tr>
+                  </thead>
+                  <tbody id="modal-table-body">
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <td></td>
+                      <td colspan="7" class="text-end">Total Price</td>
+                      <th id="total-price" scope="row">৳00</th>
+                    </tr>
+                  </tfoot>
+                </table>
+
+                <!-- modal payment table -->
+                <form action="">
+                    <!-- hidden table inputs -->
+                    <input type="hidden" id="row-1-prod-id">
+                    <input type="hidden" id="row-1-name">
+                    <input type="hidden" id="row-1-type">
+                    <input type="hidden" id="row-1-brand">
+                    <input type="hidden" id="row-1-size">
+                    <input type="hidden" id="row-1-unit-price">
+                    <input type="hidden" id="row-1-quantity">
+                    <input type="hidden" id="row-1-prod-price">
+
+                    <input type="hidden" id="row-2-prod-id">
+                    <input type="hidden" id="row-2-name">
+                    <input type="hidden" id="row-2-type">
+                    <input type="hidden" id="row-2-brand">
+                    <input type="hidden" id="row-2-size">
+                    <input type="hidden" id="row-2-unit-price">
+                    <input type="hidden" id="row-2-quantity">
+                    <input type="hidden" id="row-2-prod-price">
+                    
+                    <input type="hidden" id="row-3-prod-id">
+                    <input type="hidden" id="row-3-name">
+                    <input type="hidden" id="row-3-type">
+                    <input type="hidden" id="row-3-brand">
+                    <input type="hidden" id="row-3-size">
+                    <input type="hidden" id="row-3-unit-price">
+                    <input type="hidden" id="row-3-quantity">
+                    <input type="hidden" id="row-3-prod-price">
+
+                    <input type="hidden" id="row-4-prod-id">
+                    <input type="hidden" id="row-4-name">
+                    <input type="hidden" id="row-4-type">
+                    <input type="hidden" id="row-4-brand">
+                    <input type="hidden" id="row-4-size">
+                    <input type="hidden" id="row-4-unit-price">
+                    <input type="hidden" id="row-4-quantity">
+                    <input type="hidden" id="row-4-prod-price">
+
+                    <input type="hidden" id="row-5-prod-id">
+                    <input type="hidden" id="row-5-name">
+                    <input type="hidden" id="row-5-type">
+                    <input type="hidden" id="row-5-brand">
+                    <input type="hidden" id="row-5-size">
+                    <input type="hidden" id="row-5-unit-price">
+                    <input type="hidden" id="row-5-quantity">
+                    <input type="hidden" id="row-5-prod-price">
+
+                    <input type="hidden" id="row-total-price">
+
+                    <h5 class="text-center mt-4">Account Information</h5>
+                    <div class="modal-input-container">
+                      <label for="acc-num">Bank Account Number</label>
+                      <input
+                        type="text"
+                        id="acc-num"
+                        placeholder="Bank Account Number"
+                        required
+                      />
+                    </div>
+                    <div class="modal-input-container">
+                      <label for="acc-pin">PIN</label>
+                      <input
+                        type="password"
+                        id="acc-pin"
+                        placeholder="PIN"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="austhir-btn austhir-alt-btn" data-bs-dismiss="modal"><i class="fas fa-ban"></i> Cancel</button>
+                    <button type="submit" class="austhir-btn submit-btn"><i class="fas fa-credit-card"></i> Purchase Now</button>
+                  </div>
+                </form>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
     <!-- footer -->
@@ -646,5 +767,6 @@
     ></script>
     <!-- custom js  -->
     <script src="js/mod-gallery.js"></script>
+     <script src="js/header.js"></script>
   </body>
 </html>

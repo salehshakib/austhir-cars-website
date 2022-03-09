@@ -1,6 +1,14 @@
 /* utilities import */
 @import url("universal-stylesheet.css");
 
+/*---------------------
+        Utilities
+----------------------*/
+/* bootstraps thead and tfoot border remover */
+.modal-table > :not(:first-child) {
+  border-top: 0;
+}
+
 /*-----------------------------
         Car Genre Design
 ------------------------------*/
@@ -89,13 +97,17 @@
 .tyre-card:hover,
 .rim-card:hover,
 .light-card:hover,
-.tint-card:hover,
+.tint-card:hover {
+  transform: scale(1.2);
+}
+
 .color-card.selected,
 .rim-card.selected,
 .light-card.selected,
 .tint-card.selected,
 .tyre-card.selected {
   transform: scale(1.2);
+  border: 2px solid var(--austhir-orange);
 }
 
 .color-card-text,
@@ -110,6 +122,71 @@
   transform: translate(-50%, -50%);
   font-size: 22px;
   font-weight: 700;
+}
+
+/*-----------------------------
+        Modal Design
+------------------------------*/
+.submit-btn {
+  margin: 0;
+}
+
+.modal-table {
+  border: 2px solid var(--austhir-orange);
+  text-align: center;
+}
+
+.modal-table tr td {
+  position: relative;
+}
+
+.modal-table tr th:first-child {
+  width: 5%;
+}
+
+.modal-input-container {
+  width: 100%;
+}
+
+.modal-input-container + .modal-input-container {
+  margin-top: 20px;
+}
+
+.modal-input-container label {
+  margin-left: 5px;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.modal-input-container input {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 2px solid var(--austhir-orange);
+  font-weight: 600;
+  outline: none;
+}
+
+.quantity-btn {
+  position: absolute;
+  border: 1px solid var(--austhir-orange);
+  padding: 7px 10px;
+  top: 0;
+  cursor: pointer;
+}
+
+.quantity-btn:hover {
+  opacity: 0.4;
+}
+
+.quantity-minus-btn {
+  left: 0;
+  border-right: 2px solid var(--austhir-orange);
+}
+
+.quantity-plus-btn {
+  right: 0;
+  border-left: 2px solid var(--austhir-orange);
 }
 
 footer {
