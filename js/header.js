@@ -46,3 +46,13 @@ window.onscroll = function () {
     }
     lastScrollTop = st <= 0 ? 0 : st;
 }
+
+//this function is dropdowning the seassion menu
+if (document.getElementById('user-session-info-container')) {
+
+    document.getElementById('user-session-info-container').addEventListener('click', () => {
+
+        document.getElementById('session-dropdown').classList.toggle('d-none');
+        document.getElementById('session-left-angle').classList.toggle('session-left-angle-rotate');
+    });
+}
