@@ -93,7 +93,7 @@
                     <div id="session-dropdown" class="user-session-menu d-none">
                       <ul>
                         <li><a class="austhir-nav-link session-link" href="user-profile.php"><i class="fas fa-user"></i> Profile</a></li>
-                        <li><a class="austhir-nav-link session-link" href=""><i class="fas fa-sign-out-alt"></i> Log Out</a></li>
+                        <li><a class="austhir-nav-link session-link" href="logout.php"><i class="fas fa-sign-out-alt"></i> Log Out</a></li>
                       </ul>
                     </div>
                   </div>
