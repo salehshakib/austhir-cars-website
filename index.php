@@ -1074,6 +1074,7 @@ error_reporting(0);
       </section>
 
       <!-- contact us section -->
+      
       <section id="contact_us" class="bg-white">
         <div class="container">
           <h2 class="section-title text-center text-lg-start">Contact Us</h2>
@@ -1174,27 +1175,42 @@ error_reporting(0);
                 </div>
               </div>
             </div>
+
+            <?php
+
+            if (isset($_POST["fullname"]) && isset($_POST["email"]) && isset($_POST["message"])) {
+              $name = $_POST["fullname"];
+              $email = $_POST["email"];
+              $message = $_POST["message"];
+
+              $sqlcontact = "insert into contactus (fullname, email, message) values ('" . $name . "','" . $email . "','" . $message . "')";
+
+              $resultcontact = mysqli_query($conn, $sqlcontact);
+              header("location: index.php");
+            }
+            ?>
             <div class="col">
               <div class="contact-us-msg">
                 <form
-                  action="SUBMIT"
+                  action=""
+                  method="POST"
                   class="d-flex flex-column align-items-center"
                 >
-                  <input type="text" placeholder="Full name" />
+                  <input type="text" name="fullname" placeholder="Full name" />
                   <input
                     type="email"
-                    name=""
+                    name="email"
                     id=""
                     placeholder="Email address"
                   />
                   <textarea
-                    name="contact-message"
+                    name="message"
                     id=""
                     cols="30"
                     rows="10"
                     placeholder="Type your message..."
                   ></textarea>
-                  <button class="austhir-btn submit-btn" type="submit">
+                  <button name="btn-send" class="austhir-btn submit-btn" type="submit">
                     Send
                   </button>
                 </form>
