@@ -4,3 +4,59 @@
 /*-----------------------------
         Utilities
 ------------------------------*/
+@media (max-width: 991px){
+        #description-small-screen{
+                display: initial;
+        }
+        #description-large-screen{
+                display: none;
+        }
+}
+@media (min-width: 992px){
+        #description-small-screen{
+                display: none;
+        }
+        #description-large-screen{
+                display: initial;
+        }
+}
+body{
+        background-color: white;
+}
+.maincontent{
+        padding-top: 2em;
+        padding-bottom: 5em;
+}
+.car-img{
+        width: 100%;
+        height: 100%;
+        border-radius: 0.5em;
+}
+
+.name{
+        font-weight: 100;
+        padding-top: .5em;
+        padding-bottom: .5em;
+}
+.amount{
+        padding-top: .8em;
+        padding-bottom: 1em;
+        font-weight: 800;
+        color: var(--austhir-orange);
+}
+.details{
+        background-color: #f2f5fb;
+        padding-top: 1em;
+}
+.description-header{
+        padding-top: 2em;
+        padding-bottom: 1em;
+        font-weight: 800;
+}
+.buy-btn{
+        float: right;
+        margin-top: 1em;
+}
+.youtube-link{
+        margin-top: 2em;
+}
