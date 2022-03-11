@@ -4,6 +4,7 @@ include 'config.php';
 session_start();
 error_reporting(0);
 
+unset($_SESSION['carId']);
 
 
 ?>
@@ -1307,5 +1308,8 @@ error_reporting(0);
     <!-- custom js  -->
     <script src="js/header.js"></script>
     <script src="js/dropdown.js"></script>
+
+
+    
   </body>
 </html>

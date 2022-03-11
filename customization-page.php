@@ -1,3 +1,106 @@
+<?php
+
+include 'config.php';
+
+session_start();
+
+if(isset($_SESSION['carId'])){
+  $carId = $_SESSION['carId'];
+  $sqlQuery = "SELECT * FROM cars JOIN carDetails ON cars.carId = carDetails.carId WHERE cars.carId = '$carId' ";
+  $result = mysqli_query($conn, $sqlQuery);
+  if(mysqli_num_rows($result) > 0){
+    while($row = mysqli_fetch_array($result)){
+      $carTitle = $row['carBrand'].' '.$row['carModel'];
+      $carPrice = $row['carPrice'];
+      $carMaker = $row['carBrand'];
+      $carModel = $row['carModel'];
+      $carType = $row['carGenre'];
+      $carColor = $row['color'];
+      $carYear = $row['carReleaseDate'];
+      $carDriveType = $row['driveType'];
+      $carTransmission = $row['transmission'];
+      $carFuelType = $row['fuelType'];
+      $carCylinder = $row['cylinder'];
+      $carEngineSize = $row['engineSize'];
+      $carDoors = $row['doors'];
+      $carSeats = $row['carSeats'];
+      
+    }     
+  }
+}else{
+  Header("Location: car-gallery.php");
+}
+
+
+if(isset($_POST['purchaseCar'])){
+
+  $userEmail = $_SESSION['email'];
+
+  $carProductId = $carId;
+  $carUnitPrice = $carProductPrice = $carPrice;
+  $tidCar = time()."-".$carProductId."-".rand(1000, 9999);
+
+  $sqlInsertCar = "INSERT INTO transactions (tId, userEmail, transType, productId, unitPrice, productPrice) VALUES ('$tidCar', '$userEmail', '$transactionType', '$carProductId', '$carUnitPrice', '$carProductPrice')";
+
+  //////////////////////////////
+  $colorProductId = $_POST['colorProductId'];
+  $colorUnitPrice = $_POST['colorUnitPrice'];
+  $colorProductPrice = $_POST['colorProductPrice'];
+  $tidColor = time()."-".$colorProductId."-".rand(1000, 9999);
+
+  $sqlInsertColor = "INSERT INTO transactions (tId, userEmail, transType, productId, unitPrice, productPrice) VALUES ('$tidCar', '$userEmail', '$transactionType', '$carProductId', '$carUnitPrice', '$carProductPrice')";
+
+  //////////////////////////////
+  $tireProductId = $_POST['tireProductId'];
+  $tireUnitPrice = $_POST['tireUnitPrice'];
+  $tireProductPrice = $_POST['tireProductPrice'];
+  $tidTire = time()."-".$tireProductId."-".rand(1000, 9999);
+  
+  $sqlInsertCar = "INSERT INTO transactions (tId, userEmail, transType, productId, unitPrice, productPrice) VALUES ('$tidCar', '$userEmail', '$transactionType', '$carProductId', '$carUnitPrice', '$carProductPrice')";
+
+  //////////////////////////////
+  $rimProductId = $_POST['rimProductId'];
+  $rimUnitPrice = $_POST['rimUnitPrice'];
+  $rimProductPrice = $_POST['rimProductPrice'];
+  $tidRim = time()."-".$rimProductId."-".rand(1000, 9999);
+
+  $sqlInsertCar = "INSERT INTO transactions (tId, userEmail, transType, productId, unitPrice, productPrice) VALUES ('$tidCar', '$userEmail', '$transactionType', '$carProductId', '$carUnitPrice', '$carProductPrice')";
+
+
+  //////////////////////////////
+  $lightProductId = $_POST['lightProductId'];
+  $lightUnitPrice = $_POST['lightUnitPrice'];
+  $lightProductPrice = $_POST['lightProductPrice'];
+  $tidLight = time()."-".$lightProductId."-".rand(1000, 9999);
+
+  $sqlInsertCar = "INSERT INTO transactions (tId, userEmail, transType, productId, unitPrice, productPrice) VALUES ('$tidCar', '$userEmail', '$transactionType', '$carProductId', '$carUnitPrice', '$carProductPrice')";
+  
+  //////////////////////////////
+  $tintProductId = $_POST['tintProductId'];
+  $tintUnitPrice = $_POST['tintUnitPrice'];
+  $tintProductPrice = $_POST['tintProductPrice'];
+  $tidTint = time()."-".$tintProductId."-".rand(1000, 9999);
+
+  $sqlInsertCar = "INSERT INTO transactions (tId, userEmail, transType, productId, unitPrice, productPrice) VALUES ('$tidCar', '$userEmail', '$transactionType', '$carProductId', '$carUnitPrice', '$carProductPrice')";
+
+  $transactionType = $_POST['cash-or-emi'];
+
+  // if(isset($_POST['cash-or-emi']))
+  //   echo ;
+  //echo 
+
+  
+
+
+
+  //echo ;
+
+  
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -31,7 +134,7 @@
   <body>
     <!-- header start -->
     <header>
-         <?php include'purchase-header.php'; ?>
+    <?php include 'purchase-header.php';?>
     </header>
     <!-- header end -->
 
@@ -41,7 +144,7 @@
         <h2 class="custom-title">
             Customize Your 
             <br>
-            <span>Car Name</span>
+            <span><?php echo $carTitle;?></span>
         </h2>
       </section>
 
@@ -486,18 +589,18 @@
                   <tbody id="modal-table-body">
                     <tr>
                         <th scope="row">1</th>
-                        <td id="car-id" class="prod-id">car prod id here</td>
-                        <td id="car-name">car model here</td>
+                        <td id="car-id" class="prod-id"><?php echo $carId;?></td>
+                        <td id="car-name"><?php echo $carModel;?></td>
                         <td>Car</td>
-                        <td id="car-brand">car brand here</td>
+                        <td id="car-brand"><?php echo $carMaker;?></td>
                         <td>-</td>
-                        <td id="car-unit-price" class="unit-price">car price here</td>
+                        <td id="car-unit-price" class="unit-price">৳ <?php echo $carPrice;?></td>
                         <td>
                             <span class="quantity-btn quantity-minus-btn visually-hidden">-</span> 
                             <span class="quantity">-</span>  
                             <span class="quantity-btn quantity-plus-btn visually-hidden">+</span>
                         </td>
-                        <td class="product-price">৳125000000</td>
+                        <td class="product-price">৳ <?php echo $carPrice;?></td>
                     </tr>
                      <tr id="color-row" class="table-row">
                         <th scope="row">2</th>
@@ -585,7 +688,7 @@
                 </table>
 
                 <!-- modal payment table -->
-                <form action="">
+                <form action="" method="POST">
                     <!-- hidden table inputs -->
                     <input type="hidden" id="row-0-prod-id">
                     <input type="hidden" id="row-0-name">
@@ -596,63 +699,63 @@
                     <input type="hidden" id="row-0-quantity">
                     <input type="hidden" id="row-0-prod-price">
 
-                    <input type="hidden" id="row-1-prod-id">
+                    <input type="hidden" id="row-1-prod-id" name="colorProductId">
                     <input type="hidden" id="row-1-name">
                     <input type="hidden" id="row-1-type">
                     <input type="hidden" id="row-1-brand">
                     <input type="hidden" id="row-1-size">
-                    <input type="hidden" id="row-1-unit-price">
+                    <input type="hidden" id="row-1-unit-price" name="colorUnitPrice">
                     <input type="hidden" id="row-1-quantity">
-                    <input type="hidden" id="row-1-prod-price">
+                    <input type="hidden" id="row-1-prod-price" name="colorProductPrice">
 
-                    <input type="hidden" id="row-2-prod-id">
+                    <input type="hidden" id="row-2-prod-id" name="tireProductId">
                     <input type="hidden" id="row-2-name">
                     <input type="hidden" id="row-2-type">
                     <input type="hidden" id="row-2-brand">
                     <input type="hidden" id="row-2-size">
-                    <input type="hidden" id="row-2-unit-price">
+                    <input type="hidden" id="row-2-unit-price" name="tireUnitPrice">
                     <input type="hidden" id="row-2-quantity">
-                    <input type="hidden" id="row-2-prod-price">
+                    <input type="hidden" id="row-2-prod-price" name="tireProductPrice">
                     
-                    <input type="hidden" id="row-3-prod-id">
+                    <input type="hidden" id="row-3-prod-id" name="rimProductId">
                     <input type="hidden" id="row-3-name">
                     <input type="hidden" id="row-3-type">
                     <input type="hidden" id="row-3-brand">
                     <input type="hidden" id="row-3-size">
-                    <input type="hidden" id="row-3-unit-price">
+                    <input type="hidden" id="row-3-unit-price" name="rimUnitPrice">
                     <input type="hidden" id="row-3-quantity">
-                    <input type="hidden" id="row-3-prod-price">
+                    <input type="hidden" id="row-3-prod-price" name="rimProductPrice">
 
-                    <input type="hidden" id="row-4-prod-id">
+                    <input type="hidden" id="row-4-prod-id" name="lightProductId">
                     <input type="hidden" id="row-4-name">
                     <input type="hidden" id="row-4-type">
                     <input type="hidden" id="row-4-brand">
                     <input type="hidden" id="row-4-size">
-                    <input type="hidden" id="row-4-unit-price">
+                    <input type="hidden" id="row-4-unit-price" name="lightUnitPrice">
                     <input type="hidden" id="row-4-quantity">
-                    <input type="hidden" id="row-4-prod-price">
+                    <input type="hidden" id="row-4-prod-price" name="lightProductPrice">
 
-                    <input type="hidden" id="row-5-prod-id">
+                    <input type="hidden" id="row-5-prod-id" name="tintProductId">
                     <input type="hidden" id="row-5-name">
                     <input type="hidden" id="row-5-type">
                     <input type="hidden" id="row-5-brand">
                     <input type="hidden" id="row-5-size">
-                    <input type="hidden" id="row-5-unit-price">
+                    <input type="hidden" id="row-5-unit-price" name="tintUnitPrice">
                     <input type="hidden" id="row-5-quantity">
-                    <input type="hidden" id="row-5-prod-price">
+                    <input type="hidden" id="row-5-prod-price" name="tintProductPrice">
 
-                    <input type="hidden" id="row-total-price">
+                    <input type="hidden" id="row-total-price" name="totalPrice">
 
                     <div>
                         <h5 class="text-center mt-4">Payment Information</h5>
                         <div class=" mb-5">
                             <p class="m-0">Select your payment method: </p>
                             <div class="d-flex align-items-center">
-                                <input type="radio" id="cash" class="me-1" name="cash-or-emi" value="cash" checked>
+                                <input type="radio" id="cash" class="me-1" name="cash-or-emi" value="Cash" checked>
                                 <label for="cash"><strong>Cash</strong></label>
                             </div>
                             <div class="d-flex align-items-center mt-1">
-                                <input type="radio" id="emi" class="me-1" name="cash-or-emi" value="emi">
+                                <input type="radio" id="emi" class="me-1" name="cash-or-emi" value="EMI">
                                 <label for="emi"><strong>EMI</strong></label>
                             </div>
                         </div>
@@ -685,7 +788,7 @@
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="austhir-btn austhir-alt-btn" data-bs-dismiss="modal"><i class="fas fa-ban"></i> Cancel</button>
-                    <button type="submit" class="austhir-btn submit-btn"><i class="fas fa-credit-card"></i> Purchase Now</button>
+                    <button type="submit" class="austhir-btn submit-btn" name="purchaseCar"><i class="fas fa-credit-card"></i> Purchase Now</button>
                   </div>
                 </form>
             </div>

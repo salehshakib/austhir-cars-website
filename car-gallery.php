@@ -3,11 +3,14 @@
 include 'config.php';
 
 session_start();
+unset($_SESSION['carId']);
 
-if(isset($_GET['type'])){
+
+if(isset($_GET['type']) && !isset($_POST['carSearch'])){
   $car_type = $_GET['type'];
-  $query = "select * from cars WHERE carGenre = '$car_type'";
+  $query = "SELECT * FROM cars WHERE carGenre = '$car_type'";
   $_SESSION['sqlQueryForFilter'] = $query;
+  
 
 }else{
   $query = "SELECT * FROM cars";
@@ -18,7 +21,8 @@ if(isset($_GET['type'])){
 
 
 if(isset($_POST['carSearch'])){
-
+  //$_SESSION['type'] = "";
+  
   $sqlQueryForFilter = "SELECT * FROM cars JOIN carDetails ON cars.carId = carDetails.carId "; // where carBrand = brand OR ";
 
   $carBrand = mysqli_real_escape_string($conn, $_POST['brands']);
@@ -94,6 +98,8 @@ if(isset($_POST['carSearch'])){
 
   
 }
+
+
 $count = mysqli_num_rows(mysqli_query($conn, $_SESSION['sqlQueryForFilter']));
 
 
@@ -127,7 +133,7 @@ $count = mysqli_num_rows(mysqli_query($conn, $_SESSION['sqlQueryForFilter']));
   <body>
     <!-- header start -->
     <header>
-     <?php include'header.php'; ?>
+      <?php include'header.php'; ?>
     </header>
     <!-- header end -->
 
@@ -169,7 +175,7 @@ $count = mysqli_num_rows(mysqli_query($conn, $_SESSION['sqlQueryForFilter']));
                 <div class="select">
                   <span>
                     <?php
-                      if(isset($_GET['type'])){
+                      if(isset($_GET['type']) && !isset($_POST['carSearch'])){
                         $car_type = $_GET['type'];
                       }else{
                         $car_type = 'Select Type';
@@ -277,7 +283,7 @@ $count = mysqli_num_rows(mysqli_query($conn, $_SESSION['sqlQueryForFilter']));
           <div
             class="search-btn-container d-block d-lg-flex justify-content-end"
           >
-            <button class="austhir-btn search-btn" type="submit" name = "carSearch" id = "search">
+            <button class="austhir-btn search-btn" type="submit" name = "carSearch" id = "search" onclick="window.location.href='car-gallery.php'">
               <i class="fas fa-search"></i>Search
             </button>
           </div>
@@ -296,7 +302,13 @@ $count = mysqli_num_rows(mysqli_query($conn, $_SESSION['sqlQueryForFilter']));
             class="title-container text-center text-lg-start d-block d-lg-flex justify-content-between"
           >
             <h3 class="search-result">All Cars</h3>
-            <h3 class="search-result"><?php echo $count; ?> Results</h3>
+            <h3 class="search-result">
+            <?php 
+            if(isset($_GET['type']) && !isset($_POST['carSearch'])){
+              $count = mysqli_num_rows(mysqli_query($conn, $_SESSION['sqlQueryForFilter']));
+            }
+            echo $count; 
+            ?> Results</h3>
           </div>
 
           <!-- cards container -->
@@ -306,7 +318,7 @@ $count = mysqli_num_rows(mysqli_query($conn, $_SESSION['sqlQueryForFilter']));
               class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4"
             >
             <?php
-            if(isset($_GET['type'])){
+            if(isset($_GET['type']) && !isset($_POST['carSearch'])){
               $car_type = $_GET['type'];
               $query = "select * from cars WHERE carGenre = '$car_type'";
             
