@@ -92,6 +92,15 @@ if(isset($_POST['purchaseCar'])){
   $sqlInsertTint = "INSERT INTO transactions (tId, userEmail, transType, productId, unitPrice, productPrice) VALUES ('$tidTint', '$userEmail', '$transactionType', '$tintProductId', '$tintUnitPrice', '$tintProductPrice')";
   mysqli_query($conn, $sqlInsertTint);
 
+
+  if($transactionType === "EMI"){
+
+    //$totalCost = $_POST[]
+
+    //$sqlInsertEMI = "INSERT INTO installment (tId, userEmail, totalInstallment, totalCost, paid) VALUES ('$tidCar', '$userEmail', 12, '$')"
+
+  }
+
   Header("Location: index.php");
 
   
