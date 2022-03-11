@@ -318,7 +318,7 @@ $count = mysqli_num_rows(mysqli_query($conn, $_SESSION['sqlQueryForFilter']));
 				      while ($row = mysqli_fetch_array($result)) {
 			      ?>
             <div class="col">
-              <a class="p-0" href="#">
+              <a class="p-0" href="car-description.php?carId=<?php echo $row["carId"] ?>">
                 <div class="card h-100 austhir-card">
                   <div class="austhir-card-image">
                     <img
