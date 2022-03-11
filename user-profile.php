@@ -243,40 +243,7 @@ if (isset($_POST['save'])) {
                     }
                   }
                   ?>
-                  <!-- <tr>
-                    <th scope="row">1</th>
-                    <td class="install-id">1232454511</td>
-                    <td class="transac-id">12324123545414</td>
-                    <td>12</td>
-                    <td class="paid-install">2</td>
-                    <td class="next-ins-date">28-2-2022</td>
-                    <td>
-                      <button
-                        class="table-btn"
-                        data-bs-toggle="modal"
-                        data-bs-target="#emiModal"
-                      >
-                        Pay
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td class="install-id">1232454512</td>
-                    <td class="transac-id">12324123545415</td>
-                    <td>12</td>
-                    <td class="paid-install">3</td>
-                    <td class="next-ins-date">14-3-2022</td>
-                    <td>
-                      <button
-                        class="table-btn"
-                        data-bs-toggle="modal"
-                        data-bs-target="#emiModal"
-                      >
-                        Pay
-                      </button>
-                    </td>
-                  </tr> -->
+                  
                 </tbody>
               </table>
             </div>
