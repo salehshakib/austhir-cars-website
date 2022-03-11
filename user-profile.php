@@ -181,24 +181,11 @@ if (isset($_POST['save'])) {
                     <td><?php echo $row['transType']; ?></td>
                   </tr>
                   <?php
-                    //$i++;  
+                     
                     }
                   }
                   ?>
-                  <!-- <tr>
-                    <th scope="row">1</th>
-                    <td>1232454510</td>
-                    <td>14654410324012348</td>
-                    <td>C-1012</td>
-                    <td>CASH</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>1232454510</td>
-                    <td>14654410324012348</td>
-                    <td>C-1012</td>
-                    <td>CASH</td>
-                  </tr> -->
+  
                 </tbody>
               </table>
             </div>
