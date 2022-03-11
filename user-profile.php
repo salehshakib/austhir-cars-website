@@ -1,3 +1,37 @@
+<?php
+
+session_start();
+include 'config.php';
+$userEmail = $_SESSION['email'];
+$userName = $_SESSION['name'];
+$sql = "select * from userinfo where userName = '$userName' OR userEmail = '$userEmail'";
+$result = mysqli_query($conn, $sql);
+if (mysqli_num_rows($result) > 0) {
+  while ($row = mysqli_fetch_assoc($result)) {
+    $userAddress = $row['userAddress'];
+    $userMobile = $row['userMobile'];
+    $userNID = $row['userNID'];
+    $userPassport = $row['userPassport'];
+  }
+}
+
+
+if (isset($_POST['save'])) {
+    $userName = $_POST['userName'];
+    $userAddress = $_POST['userAddress'];
+    $userMobile = $_POST['userMobile'];
+    $userNID = $_POST['userNID'];
+    $userPassport = $_POST['userPassport'];
+    $sql_update = "update userinfo set userName = '$userName', userAddress = '$userAddress', userPassport = '$userPassport',
+                  userMobile = '$userMobile', userNID = '$userNID'  where userEmail = '$userEmail'";
+    $result_update = mysqli_query($conn, $sql_update);
+
+}
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -45,55 +79,55 @@
               </div>
               <table class="table austhir-user-table">
                 <tbody>
-                  <tr>
+                <tr>
                     <th scope="row">Name</th>
-                    <td>Milhan Joardar Aumi</td>
+                    <td><?php echo $userName; ?></td>
                   </tr>
                   <tr>
                     <th scope="row">Email</th>
-                    <td>mjaumi2864@gmail.com</td>
+                    <td><?php echo $userEmail; ?></td>
                   </tr>
                   <tr>
                     <th scope="row">Phone Number</th>
-                    <td>01788744803</td>
+                    <td><?php echo $userMobile; ?></td>
                   </tr>
                   <tr>
                     <th scope="row">NID</th>
-                    <td>88554477120526</td>
+                    <td><?php echo $userNID; ?></td>
                   </tr>
                   <tr>
                     <th scope="row">Address</th>
-                    <td>B-15, G-4, Motijheel, A.G.B colony, Dhaka-1000</td>
+                    <td><?php echo $userAddress; ?></td>
                   </tr>
                   <tr>
                     <th scope="row">Passport</th>
-                    <td>C 18265405</td>
+                    <td><?php echo $userPassport; ?></td>
                   </tr>
+                  
                 </tbody>
               </table>
             </div>
             <!-- user info edit form -->
             <div id="user-edit-form" class="d-none">
-              <form action="">
+              <form action="" method="POST">
                 <div class="input-container">
-                  <input type="text" placeholder="First Name" />
-                  <input type="text" placeholder="last Name" />
+                  <input type="text" name="userName" placeholder="Name" value="<?php echo $userName; ?>" />
                 </div>
                 <div class="input-container">
-                  <input type="text" placeholder="Phone Number" />
-                  <input type="text" placeholder="NID Number" />
+                  <input type="text" name="userMobile" placeholder="Phone Number" value="<?php echo $userMobile; ?>"/>
+                  <input type="text" name="userNID" placeholder="NID Number" value="<?php echo $userNID; ?>"/>
                 </div>
                 <div class="input-container">
-                  <input type="text" placeholder="Passport Number" />
+                  <input type="text" name="userPassport" placeholder="Passport Number" value="<?php echo $userPassport; ?>"/>
                 </div>
                 <div class="input-container">
                   <textarea
-                    name=""
+                    name="userAddress"
                     id=""
                     cols="30"
                     rows="10"
                     placeholder="Type Your Address..."
-                  ></textarea>
+                  ><?php echo $userAddress; ?></textarea>
                 </div>
                 <div class="submit-btn-container">
                   <button
@@ -103,7 +137,7 @@
                   >
                     <i class="fas fa-ban"></i> Cancel
                   </button>
-                  <button type="submit" class="austhir-btn submit-btn">
+                  <button type="submit" name="save" class="austhir-btn submit-btn">
                     <i class="fas fa-save"></i> Save
                   </button>
                 </div>
