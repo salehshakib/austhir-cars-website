@@ -12,18 +12,10 @@
 /*-----------------------------
         Car Genre Design
 ------------------------------*/
-#car-genre-selection-section {
-  background-color: white;
-  border-radius: 30px;
-  margin-top: 100px;
-  padding: 30px;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-}
-
-.genre-title {
+.custom-title {
   text-align: center;
-  font-size: 2.75em;
-  font-weight: 700;
+  font-size: 3em;
+  font-weight: 800;
   margin-bottom: 20px;
   color: var(--austhir-title-color);
 }
@@ -61,13 +53,6 @@
 /*------------------------------------
         Mods section Design
 -------------------------------------*/
-#Not-found-msg {
-  text-align: center;
-  font-size: 3em;
-  font-weight: 800;
-  color: gainsboro;
-}
-
 .mods-section-title {
   font-size: 3em;
   font-weight: 600;
@@ -116,10 +101,10 @@
 .tint-card-text,
 .tyre-card-text {
   position: absolute;
-  left: 50%;
   top: 50%;
+  width: 100%;
   text-align: center;
-  transform: translate(-50%, -50%);
+  transform: translateY(-50%);
   font-size: 22px;
   font-weight: 700;
 }
@@ -190,7 +175,7 @@
 }
 
 footer {
-  margin-top: 400px;
+  margin-top: 100px;
 }
 
 /*-----------------------------

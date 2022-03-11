@@ -1,0 +1,31 @@
+/* utilities import */
+@import url("universal-stylesheet.css");
+
+/*-----------------------------
+        Utilities
+------------------------------*/
+body{
+    background-color: white;
+}
+.maincontent{
+    margin-top: 2em;
+    margin-bottom: 2em;
+    text-align: center;
+    font-size: large;
+}
+.table-contents{
+    background-color: var(--austhir-light-orange);
+    border-radius: 1em;
+    padding-top: 2em;
+    padding-bottom: 2em;
+}
+.table{
+    border-color: var(--austhir-orange);
+}
+.success-btn{
+    color: var(--austhir-orange);
+    font-weight: 600;
+}
+.success-btn:hover{
+    opacity: 0.2;
+}
