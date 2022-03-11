@@ -660,30 +660,44 @@ error_reporting(0);
       <section id="hot-sells" class="container">
         <h2 class="section-title text-center text-lg-start">Hot Sells</h2>
         <div class="row">
-          <div class="austhir-carousel owl-carousel">
+        <div class="austhir-carousel owl-carousel">
+        <?php
+            $sql = "SELECT *  
+                    FROM cars JOIN carDetails ON cars.carId = carDetails.carId 
+                    ORDER BY cars.carId DESC LIMIT 8";
+                  
+                  $result = mysqli_query($conn, $sql);
+                  
+                  if (mysqli_num_rows($result) > 0) {
+                    while ($row = mysqli_fetch_array($result)) {
+          ?> 
+          
+          
             <a href="#">
+           
               <div class="card h-100 austhir-card">
                 <div class="austhir-card-image">
                   <img
-                    src="images/lamborghini.jpg"
+                    src="images/carImage/<?php echo $row["carImage"]; ?>"
                     class="card-img-top"
                     alt="image of an aventador"
                   />
                 </div>
                 <div class="card-body">
                   <h4 class="card-title austhir-card-title">
-                    Lamborghini Aventador LP 700-4
+                      <?php echo $row['carBrand'].' '.$row['carModel']; ?>
                   </h4>
-                  <h4 class="card-text austhir-card-price">৳ 5,40,00,000</h4>
+                  <h4 class="card-text austhir-card-price">৳ <?php echo $row["carPrice"]; ?></h4>
                 </div>
                 <div class="card-footer austhir-card-footer">
-                  <p class="year-badge austhir-footer-info">2017</p>
-                  <p class="austhir-footer-info">Automatic</p>
-                  <p class="austhir-footer-info">Petrol</p>
+                  <p class="year-badge austhir-footer-info"><?php echo $row["carReleaseDate"]; ?></p>
+                  <p class="austhir-footer-info"><?php echo $row["transmission"]; ?></p>
+                  <p class="austhir-footer-info"><?php echo $row["fuelType"]; ?></p>
                 </div>
               </div>
+             
             </a>
-            <a href="#">
+            <!-- <a href="#">
               <div class="card h-100 austhir-card">
                 <div class="austhir-card-image">
                   <img
@@ -828,8 +842,14 @@ error_reporting(0);
                   <p class="austhir-footer-info">Petrol</p>
                 </div>
               </div>
-            </a>
-          </div>
+            </a> -->
+            <?php
+                }
+              }
+            ?>
+            </div>
+            
+          
         </div>
       </section>
 
