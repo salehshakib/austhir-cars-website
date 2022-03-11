@@ -88,12 +88,21 @@
 
                <!-- user session info-->
               <?php if(isset($_SESSION['name'])){ ?>
+                <button id="cart-btn" data-bs-toggle="modal" data-bs-target="#purchaseModal">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span id="cart-badge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            0
+                            <span class="visually-hidden">unread messages</span>
+                        </span>
+                    </button>
                   <div id="user-session-info-container" class="me-4">
+                  
                     <div id="user-session-info" class="d-flex align-items-center">
                       <p class="austhir-nav-link me-2 mb-0"><?php echo $_SESSION['name'] ?></p>
                       <span class="user-image"><i class="fas fa-user"></i></span>
                       <span id="session-left-angle" class="ms-2 austhir-nav-link"><i class="fas fa-chevron-left"></i></span>
                     </div>
+                    
                     <div id="session-dropdown" class="user-session-menu d-none">
                       <ul>
                         <li><a class="austhir-nav-link session-link" href="user-profile.php"><i class="fas fa-user"></i> Profile</a></li>
@@ -102,16 +111,8 @@
                     </div>
                   </div>
                 <?php } 
-                
                 else{ ?> 
-
-                    <button id="cart-btn" data-bs-toggle="modal" data-bs-target="#purchaseModal">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span id="cart-badge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                            0
-                            <span class="visually-hidden">unread messages</span>
-                        </span>
-                    </button>
+                    
                   <ul class="navbar-nav me-0 me-lg-4 mb-2 mb-lg-0">
                       <li
                         class="nav-item log-sign-nav-item d-flex align-items-center"
