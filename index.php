@@ -660,30 +660,44 @@ error_reporting(0);
       <section id="hot-sells" class="container">
         <h2 class="section-title text-center text-lg-start">Hot Sells</h2>
         <div class="row">
-          <div class="austhir-carousel owl-carousel">
+        <div class="austhir-carousel owl-carousel">
+        <?php
+            $sql = "SELECT *  
+                    FROM cars JOIN carDetails ON cars.carId = carDetails.carId 
+                    ORDER BY cars.carId DESC LIMIT 8";
+                  
+                  $result = mysqli_query($conn, $sql);
+                  
+                  if (mysqli_num_rows($result) > 0) {
+                    while ($row = mysqli_fetch_array($result)) {
+          ?> 
+          
+          
             <a href="#">
+           
               <div class="card h-100 austhir-card">
                 <div class="austhir-card-image">
                   <img
-                    src="images/lamborghini.jpg"
+                    src="images/carImage/<?php echo $row["carImage"]; ?>"
                     class="card-img-top"
                     alt="image of an aventador"
                   />
                 </div>
                 <div class="card-body">
                   <h4 class="card-title austhir-card-title">
-                    Lamborghini Aventador LP 700-4
+                      <?php echo $row['carBrand'].' '.$row['carModel']; ?>
                   </h4>
-                  <h4 class="card-text austhir-card-price">৳ 5,40,00,000</h4>
+                  <h4 class="card-text austhir-card-price">৳ <?php echo $row["carPrice"]; ?></h4>
                 </div>
                 <div class="card-footer austhir-card-footer">
-                  <p class="year-badge austhir-footer-info">2017</p>
-                  <p class="austhir-footer-info">Automatic</p>
-                  <p class="austhir-footer-info">Petrol</p>
+                  <p class="year-badge austhir-footer-info"><?php echo $row["carReleaseDate"]; ?></p>
+                  <p class="austhir-footer-info"><?php echo $row["transmission"]; ?></p>
+                  <p class="austhir-footer-info"><?php echo $row["fuelType"]; ?></p>
                 </div>
               </div>
+             
             </a>
-            <a href="#">
+            <!-- <a href="#">
               <div class="card h-100 austhir-card">
                 <div class="austhir-card-image">
                   <img
@@ -828,8 +842,14 @@ error_reporting(0);
                   <p class="austhir-footer-info">Petrol</p>
                 </div>
               </div>
-            </a>
-          </div>
+            </a> -->
+            <?php
+                }
+              }
+            ?>
+            </div>
+            
+          
         </div>
       </section>
 
@@ -1074,6 +1094,7 @@ error_reporting(0);
       </section>
 
       <!-- contact us section -->
+      
       <section id="contact_us" class="bg-white">
         <div class="container">
           <h2 class="section-title text-center text-lg-start">Contact Us</h2>
@@ -1174,27 +1195,42 @@ error_reporting(0);
                 </div>
               </div>
             </div>
+
+            <?php
+
+            if (isset($_POST["fullname"]) && isset($_POST["email"]) && isset($_POST["message"])) {
+              $name = $_POST["fullname"];
+              $email = $_POST["email"];
+              $message = $_POST["message"];
+
+              $sqlcontact = "insert into contactus (fullname, email, message) values ('" . $name . "','" . $email . "','" . $message . "')";
+
+              $resultcontact = mysqli_query($conn, $sqlcontact);
+              header("location: index.php");
+            }
+            ?>
             <div class="col">
               <div class="contact-us-msg">
                 <form
-                  action="SUBMIT"
+                  action=""
+                  method="POST"
                   class="d-flex flex-column align-items-center"
                 >
-                  <input type="text" placeholder="Full name" />
+                  <input type="text" name="fullname" placeholder="Full name" />
                   <input
                     type="email"
-                    name=""
+                    name="email"
                     id=""
                     placeholder="Email address"
                   />
                   <textarea
-                    name="contact-message"
+                    name="message"
                     id=""
                     cols="30"
                     rows="10"
                     placeholder="Type your message..."
                   ></textarea>
-                  <button class="austhir-btn submit-btn" type="submit">
+                  <button name="btn-send" class="austhir-btn submit-btn" type="submit">
                     Send
                   </button>
                 </form>
