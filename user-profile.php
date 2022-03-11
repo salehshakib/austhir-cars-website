@@ -111,7 +111,7 @@ if (isset($_POST['save'])) {
             <div id="user-edit-form" class="d-none">
               <form action="" method="POST">
                 <div class="input-container">
-                  <input type="text" name="userName" placeholder="Name" value="<?php echo $userName; ?>" />
+                  <input type="text" name="userName" placeholder="Name" value="<?php echo $userName; ?> " disabled/>
                 </div>
                 <div class="input-container">
                   <input type="text" name="userMobile" placeholder="Phone Number" value="<?php echo $userMobile; ?>"/>
@@ -155,7 +155,7 @@ if (isset($_POST['save'])) {
             <!-- transaction log table -->
             <div id="user-info-table" class="">
               <h1 class="no-data-msg">No Transaction Data!</h1>
-              <table class="table austhir-user-table log-table d-none">
+              <table class="table austhir-user-table log-table">
                 <thead>
                   <tr>
                     <th scope="col">Serial No</th>
@@ -166,7 +166,26 @@ if (isset($_POST['save'])) {
                   </tr>
                 </thead>
                 <tbody>
+                  <?php
+                  $i = 1;
+                  $sql_ins = "SELECT * FROM transactions WHERE userEmail = '$userEmail'";
+                  $result_ins = mysqli_query($conn, $sql_ins);
+                  if (mysqli_num_rows($result_ins) > 0) {
+                    while ($row = mysqli_fetch_assoc($result_ins)) {
+                  ?>
                   <tr>
+                    <th scope="row"><?php echo $i++; ?></th>
+                    <td><?php echo $row['tId']; ?></td>
+                    <td><?php echo $row['productId']; ?></td>
+                    <td><?php echo $row['accountNo']; ?></td>
+                    <td><?php echo $row['transType']; ?></td>
+                  </tr>
+                  <?php
+                    //$i++;  
+                    }
+                  }
+                  ?>
+                  <!-- <tr>
                     <th scope="row">1</th>
                     <td>1232454510</td>
                     <td>14654410324012348</td>
@@ -179,14 +198,7 @@ if (isset($_POST['save'])) {
                     <td>14654410324012348</td>
                     <td>C-1012</td>
                     <td>CASH</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>1232454510</td>
-                    <td>14654410324012348</td>
-                    <td>C-1012</td>
-                    <td>CASH</td>
-                  </tr>
+                  </tr> -->
                 </tbody>
               </table>
             </div>
@@ -215,10 +227,17 @@ if (isset($_POST['save'])) {
                   </tr>
                 </thead>
                 <tbody>
+                <?php
+                  $j = 1;
+                  $sql_emi = "SELECT * FROM installment WHERE userEmail = '$userEmail'";
+                  $result_emi = mysqli_query($conn, $sql_emi);
+                  if (mysqli_num_rows($result_emi) > 0) {
+                    while ($row = mysqli_fetch_assoc($result_emi)) {
+                  ?>
                   <tr>
-                    <th scope="row">1</th>
-                    <td class="install-id">1232454510</td>
-                    <td class="transac-id">12324123545413</td>
+                    <th scope="row"><?php echo $j++; ?></th>
+                    <td class="install-id"><?php echo $row['insId']; ?></td>
+                    <td class="transac-id"><?php echo $row['tId']; ?></td>
                     <td>12</td>
                     <td class="paid-install">1</td>
                     <td class="next-ins-date">17-6-2022</td>
@@ -232,7 +251,12 @@ if (isset($_POST['save'])) {
                       </button>
                     </td>
                   </tr>
-                  <tr>
+                  <?php
+                     
+                    }
+                  }
+                  ?>
+                  <!-- <tr>
                     <th scope="row">1</th>
                     <td class="install-id">1232454511</td>
                     <td class="transac-id">12324123545414</td>
@@ -265,7 +289,7 @@ if (isset($_POST['save'])) {
                         Pay
                       </button>
                     </td>
-                  </tr>
+                  </tr> -->
                 </tbody>
               </table>
             </div>

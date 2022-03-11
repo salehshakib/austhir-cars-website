@@ -38,12 +38,12 @@ if(isset($_POST['purchaseCar'])){
   $userEmail = $_SESSION['email'];
   if(isset($_POST['cash-or-emi']))
   $transactionType = $_POST['cash-or-emi'];
-
+  $accountNo = $_POST['accountNo'];
   $carProductId = $carId;
   $carUnitPrice = $carProductPrice = $carPrice;
   $tidCar = time()."-".$carProductId."-".rand(1000, 9999);
 
-  $sqlInsertCar = "INSERT INTO transactions (tId, userEmail, transType, productId, unitPrice, productPrice) VALUES ('$tidCar', '$userEmail', '$transactionType', '$carProductId', '$carUnitPrice', '$carProductPrice')";
+  $sqlInsertCar = "INSERT INTO transactions (tId, userEmail, transType, productId, accountNo, unitPrice, productPrice) VALUES ('$tidCar', '$userEmail', '$transactionType', '$carProductId', '$accountNo', '$carUnitPrice', '$carProductPrice')";
   mysqli_query($conn, $sqlInsertCar);
 
   //////////////////////////////
@@ -52,7 +52,7 @@ if(isset($_POST['purchaseCar'])){
   $colorProductPrice = $_POST['colorProductPrice'];
   $tidColor = time()."-".$colorProductId."-".rand(1000, 9999);
 
-  $sqlInsertColor = "INSERT INTO transactions (tId, userEmail, transType, productId, unitPrice, productPrice) VALUES ('$tidColor', '$userEmail', '$transactionType', '$colorProductId', '$colorUnitPrice', '$colorProductPrice')";
+  $sqlInsertColor = "INSERT INTO transactions (tId, userEmail, transType, productId, accountNo, unitPrice, productPrice) VALUES ('$tidColor', '$userEmail', '$transactionType', '$colorProductId', '$accountNo', '$colorUnitPrice', '$colorProductPrice')";
   mysqli_query($conn, $sqlInsertColor);
 
   //////////////////////////////
@@ -61,7 +61,7 @@ if(isset($_POST['purchaseCar'])){
   $tireProductPrice = $_POST['tireProductPrice'];
   $tidTire = time()."-".$tireProductId."-".rand(1000, 9999);
   
-  $sqlInsertTire = "INSERT INTO transactions (tId, userEmail, transType, productId, unitPrice, productPrice) VALUES ('$tidTire', '$userEmail', '$transactionType', '$tireProductId', '$tireUnitPrice', '$tireProductPrice')";
+  $sqlInsertTire = "INSERT INTO transactions (tId, userEmail, transType, productId, accountNo, unitPrice, productPrice) VALUES ('$tidTire', '$userEmail', '$transactionType', '$tireProductId', '$accountNo', '$tireUnitPrice', '$tireProductPrice')";
   mysqli_query($conn, $sqlInsertTire);
 
   //////////////////////////////
@@ -70,7 +70,7 @@ if(isset($_POST['purchaseCar'])){
   $rimProductPrice = $_POST['rimProductPrice'];
   $tidRim = time()."-".$rimProductId."-".rand(1000, 9999);
 
-  $sqlInsertRim = "INSERT INTO transactions (tId, userEmail, transType, productId, unitPrice, productPrice) VALUES ('$tidRim', '$userEmail', '$transactionType', '$rimProductId', '$rimUnitPrice', '$rimProductPrice')";
+  $sqlInsertRim = "INSERT INTO transactions (tId, userEmail, transType, productId, accountNo, unitPrice, productPrice) VALUES ('$tidRim', '$userEmail', '$transactionType', '$rimProductId', '$accountNo', '$rimUnitPrice', '$rimProductPrice')";
   mysqli_query($conn, $sqlInsertRim);
 
 
@@ -80,7 +80,7 @@ if(isset($_POST['purchaseCar'])){
   $lightProductPrice = $_POST['lightProductPrice'];
   $tidLight = time()."-".$lightProductId."-".rand(1000, 9999);
 
-  $sqlInsertLight = "INSERT INTO transactions (tId, userEmail, transType, productId, unitPrice, productPrice) VALUES ('$tidLight', '$userEmail', '$transactionType', '$lightProductId', '$lightUnitPrice', '$lightProductPrice')";
+  $sqlInsertLight = "INSERT INTO transactions (tId, userEmail, transType, productId, accountNo, unitPrice, productPrice) VALUES ('$tidLight', '$userEmail', '$transactionType', '$lightProductId', '$accountNo', '$lightUnitPrice', '$lightProductPrice')";
   mysqli_query($conn, $sqlInsertLight);
   
   //////////////////////////////
@@ -89,7 +89,7 @@ if(isset($_POST['purchaseCar'])){
   $tintProductPrice = $_POST['tintProductPrice'];
   $tidTint = time()."-".$tintProductId."-".rand(1000, 9999);
 
-  $sqlInsertTint = "INSERT INTO transactions (tId, userEmail, transType, productId, unitPrice, productPrice) VALUES ('$tidTint', '$userEmail', '$transactionType', '$tintProductId', '$tintUnitPrice', '$tintProductPrice')";
+  $sqlInsertTint = "INSERT INTO transactions (tId, userEmail, transType, productId, accountNo, unitPrice, productPrice) VALUES ('$tidTint', '$userEmail', '$transactionType', '$tintProductId', '$accountNo', '$tintUnitPrice', '$tintProductPrice')";
   mysqli_query($conn, $sqlInsertTint);
 
 
@@ -785,6 +785,7 @@ if(isset($_POST['purchaseCar'])){
                     <div class="modal-input-container">
                       <label for="acc-num">Bank Account Number</label>
                       <input
+                        name="accountNo"
                         type="text"
                         id="acc-num"
                         placeholder="Bank Account Number"
