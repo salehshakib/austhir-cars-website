@@ -430,10 +430,12 @@ const initTotalPrice = () => {
     for (const productPrice of productPrices) {
 
         totalPrice.innerText = `৳${parseInt(totalPrice.innerText.slice(1)) + parseInt(productPrice.innerText.slice(1))}`;
-        document.getElementById('row-total-price').value = totalPrice.innerText;
+        document.getElementById('row-total-price').value = totalPrice.innerText.slice(1);
         totalAmount.innerHTML = `<strong>${totalPrice.innerText}</strong>`;
         downAmount.innerHTML = `<strong>৳${Math.round(parseInt(totalPrice.innerText.slice(1)) * 0.4)}</strong>`;
         installAmount.innerHTML = `<strong>৳${parseInt(totalPrice.innerText.slice(1) - downAmount.innerText.slice(1))}</strong>`;
+        document.getElementById('row-down-payment').value = downAmount.innerText.slice(1);
+        document.getElementById('row-left').value = installAmount.innerText;
     }
 }
 
@@ -442,18 +444,24 @@ const updateTotalPrice = (addOrSub, amount) => {
     if (addOrSub === 'add') {
 
         totalPrice.innerText = `৳${parseInt(totalPrice.innerText.slice(1)) + parseInt(amount)}`;
-        document.getElementById('row-total-price').value = totalPrice.innerText;
+        document.getElementById('row-total-price').value = totalPrice.innerText.slice(1);
         totalAmount.innerHTML = `<strong>${totalPrice.innerText}</strong>`;
         downAmount.innerHTML = `<strong>৳${Math.round(parseInt(totalPrice.innerText.slice(1)) * 0.4)}</strong>`;
         installAmount.innerHTML = `<strong>৳${parseInt(totalPrice.innerText.slice(1) - downAmount.innerText.slice(1))}</strong>`;
+        document.getElementById('row-down-payment').value = downAmount.innerText.slice(1);
+        document.getElementById('row-left').value = installAmount.innerText;
+    
     }
 
     else {
         totalPrice.innerText = `৳${parseInt(totalPrice.innerText.slice(1)) - parseInt(amount)}`;
-        document.getElementById('row-total-price').value = totalPrice.innerText;
+        document.getElementById('row-total-price').value = totalPrice.innerText.slice(1);
         totalAmount.innerHTML = `<strong>${totalPrice.innerText}</strong>`;
         downAmount.innerHTML = `<strong>৳${Math.round(parseInt(totalPrice.innerText.slice(1)) * 0.4)}</strong>`;
         installAmount.innerHTML = `<strong>৳${parseInt(totalPrice.innerText.slice(1) - downAmount.innerText.slice(1))}</strong>`;
+        document.getElementById('row-down-payment').value = downAmount.innerText.slice(1);
+        document.getElementById('row-left').value = installAmount.innerText;
+    
     }
 }
 
