@@ -1,3 +1,63 @@
+<?php
+
+include 'config.php';
+
+session_start();
+
+if(isset($_POST['buy'])){
+    header("location: customization-page.php");
+}
+
+if(isset($_GET['carId'])){
+    $carId = mysqli_real_escape_string($conn, $_GET['carId']);
+    $sqlQuery = "SELECT * FROM cars JOIN carDetails ON cars.carId = carDetails.carId WHERE cars.carId = '$carId' ";
+    $result = mysqli_query($conn, $sqlQuery);
+    if(mysqli_num_rows($result) > 0){
+        while($row = mysqli_fetch_array($result)){
+            $carTitle = $row['carBrand'].' '.$row['carModel'].' '.$row['doors'].' '.$row['carGenre'].' '.$row['color'];
+            $carPrice = $row['carPrice'];
+            $carMaker = $row['carBrand'];
+            $carModel = $row['carModel'];
+            $carType = $row['carGenre'];
+            $carColor = $row['color'];
+            $carYear = $row['carReleaseDate'];
+            $carDriveType = $row['driveType'];
+            $carTransmission = $row['transmission'];
+            $carFuelType = $row['fuelType'];
+            $carCylinder = $row['cylinder'];
+            $carEngineSize = $row['engineSize'];
+            $carDoors = $row['doors'];
+            $carSeats = $row['carSeats'];
+            $carImage = "images/carImage/".$row['carImage'];
+
+            if($row['description'] === null){
+                $carDescription = "How the adventure ended will be seen anon. Aouda was anxious, though she said nothing. As for Passepartout, he thought Mr. Fogg’s manoeuvre simply glorious. The captain had said “between eleven and twelve knots,” and the Henrietta confirmed his prediction.
+                <br><br><br>
+                If, then—for there were “ifs” still—the sea did not become too boisterous, if the wind did not veer round to the east, if no accident happened to the boat or its machinery, the Henrietta might cross the three thousand miles from New York to Liverpool in the nine days, between the 12th and the 21st of December. It is true that, once arrived, the affair on board the Henrietta, added to that of the Bank of England, might create more difficulties for Mr. Fogg than he imagined or could desire.";
+
+            }else{
+                $carDescription = $row['description'];
+            }
+            if($row['videoLink'] === null){
+                $carVideoLink = 'https://www.youtube.com/embed/kz2KJvS7KhY';
+                //echo $carVideoLink; 
+            }else {
+                $carVideoLink = $row['videoLink'];
+                //echo $carVideoLink; 
+            }
+        }
+
+        
+    }
+}else{
+    Header("Location: car-gallery.php");
+}
+
+
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,7 +83,7 @@
         <!-- navbar -->
         <nav id="austhir-nav" class="navbar navbar-expand-lg py-0">
             <div id="nav-bar" class="container-fluid">
-                <a class="navbar-brand austhir-nav-link" href="index.html">
+                <a class="navbar-brand austhir-nav-link" href="index.php">
                     <img src="images/logo.png" alt="" width="90" height="90"
                         class="d-inline-block align-text-top" /></a>
                 <button id="nav-hamburger-button" class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -90,36 +150,28 @@
                     <div class="col-lg-6">
                         <div class="row">
                             <div class="image-part">
-                                <img class="car-img" src="images/audi.jpg" alt="">
+                                <img class="car-img" src="<?php echo $carImage; ?>" alt="">
                             </div>
                         </div>
                         <div class="row" id="description-large-screen">
                             <h5 class="description-header">
                                 Description
                             </h5>
-                            <p>
-                                How the adventure ended will be seen anon. Aouda was anxious, though she said nothing. As for Passepartout, he thought Mr. Fogg’s manoeuvre simply glorious. The captain had said “between eleven and twelve knots,” and the Henrietta confirmed his prediction.
-                            </p>
-                            <p>
-                                If, then—for there were “ifs” still—the sea did not become too boisterous, if the wind did not veer round to the east, if no accident happened to the boat or its machinery, the Henrietta might cross the three thousand miles from New York to Liverpool in the nine days, between the 12th and the 21st of December. It is true that, once arrived, the affair on board the Henrietta, added to that of the Bank of England, might create more difficulties for Mr. Fogg than he imagined or could desire.
-                            </p>
+                            <p><?php echo $carDescription; ?></p>
+                            
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="row">
                             <div>
-                                <h2 class="name">
-                                    BMW 8-serie 2-door coupe grey
-                                </h2>
+                                <h2 class="name"><?php echo $carTitle; ?></h2>
                             </div>
                         </div>
                         <div class="row">
                             <hr>
                         </div>
                         <div class="row">
-                            <h2 class="amount">
-                                ৳62,200
-                            </h2>
+                            <h2 class="amount">৳ <?php echo $carPrice; ?></h2>
                         </div>
                         <div class="row">
                             <div class="details">
@@ -128,74 +180,80 @@
                                       <tbody>
                                         <tr>
                                           <td>Make:</td>
-                                          <td>Otto</td>
+                                          <td><?php echo $carMaker; ?></td>
                                         </tr>
                                         <tr>
                                           <td>Model:</td>
-                                          <td>10/11/1990</td>
+                                          <td><?php echo $carModel; ?></td>
                                         </tr>
                                         <tr>
                                             <td>Type:</td>
-                                            <td>Bangladesh</td>
+                                            <td><?php echo $carType; ?></td>
                                           </tr>
                                         <tr>
                                           <td>Color:</td>
-                                          <td>Male</td>
+                                          <td><?php echo $carColor; ?></td>
                                         </tr>
                                         <tr>
                                             <td>Year:</td>
-                                            <td>Bangladesh</td>
+                                            <td><?php echo $carYear; ?></td>
                                         </tr>
                                         <tr>
                                           <td>Drive Type:</td>
-                                          <td>01234567890</td>
+                                          <td><?php echo $carDriveType; ?></td>
                                         </tr>
                                         <tr>
                                           <td>Transmission:</td>
-                                          <td>O@gmail.com</td>
+                                          <td><?php echo $carTransmission; ?></td>
                                         </tr>
                                         <tr>
                                           <td>Fuel Type:</td>
-                                          <td>0000000000</td>
+                                          <td><?php echo $carFuelType; ?></td>
                                         </tr>
                                         <tr>
                                           <td>Cylinder:</td>
-                                          <td>Bangladesh</td>
+                                          <td><?php echo $carCylinder; ?></td>
                                         </tr>
-                                        <tr>
+                                        <tr><?php if($carEngineSize !== null){
+                                        ?>
                                             <td>Engine Size:</td>
-                                            <td>Bangladesh</td>
+                                            <td><?php echo $carEngineSize; ?></td>
+
+                                        <?php
+                                            }
+                                        ?>
                                         </tr>
                                         <tr>
                                             <td>Doors:</td>
-                                            <td>Bangladesh</td>
+                                            <td><?php echo $carDoors; ?></td>
                                         </tr>
                                         <tr>
                                             <td>Seats:</td>
-                                            <td>Bangladesh</td>
+                                            <td><?php echo $carSeats; ?></td>
                                         </tr>
                                       </tbody>
                                     </table>
                                   </div>
                             </div>
                         </div>
-                        <button class="btn austhir-btn buy-btn">Buy Now</button>
+                        <form action="customization-page.php" method="POST">
+                            <button class="btn austhir-btn buy-btn" type="submit" name="buy">Buy Now</button>
+                        </form>
+                        
                     </div>
                     <div class="col-lg-12" id="description-small-screen">
                         <div class="row">
                             <h5 class="description-header">
                                 Description
                             </h5>
-                            <p>
-                                How the adventure ended will be seen anon. Aouda was anxious, though she said nothing. As for Passepartout, he thought Mr. Fogg’s manoeuvre simply glorious. The captain had said “between eleven and twelve knots,” and the Henrietta confirmed his prediction.
-                            </p>
-                            <p>
-                                If, then—for there were “ifs” still—the sea did not become too boisterous, if the wind did not veer round to the east, if no accident happened to the boat or its machinery, the Henrietta might cross the three thousand miles from New York to Liverpool in the nine days, between the 12th and the 21st of December. It is true that, once arrived, the affair on board the Henrietta, added to that of the Bank of England, might create more difficulties for Mr. Fogg than he imagined or could desire.
-                            </p>
+                            <p><?php echo $carDescription; ?> </p>
                         </div>
                     </div>
                     <div class="col-lg-12">
-                        <iframe class="youtube-link" width="100%" height="500" src="https://www.youtube.com/embed/kz2KJvS7KhY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe class="youtube-link" width="100%" height="500" src="<?php echo $carVideoLink; ?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+                        
+                        
                     </div>
                 </div>
             </div>
