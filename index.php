@@ -433,7 +433,7 @@ error_reporting(0);
                           class="card-img-top"
                           alt="image of an aventador"
                         />
-                      </div>
+                      </div> 
                       <div class="card-body">
                         <h4 class="card-title austhir-card-title">
                           Lamborghini Aventador LP 700-4
@@ -672,9 +672,7 @@ error_reporting(0);
                     while ($row = mysqli_fetch_array($result)) {
           ?> 
           
-          
             <a href="#">
-           
               <div class="card h-100 austhir-card">
                 <div class="austhir-card-image">
                   <img
@@ -695,154 +693,7 @@ error_reporting(0);
                   <p class="austhir-footer-info"><?php echo $row["fuelType"]; ?></p>
                 </div>
               </div>
-             
             </a>
-            <!-- <a href="#">
-              <div class="card h-100 austhir-card">
-                <div class="austhir-card-image">
-                  <img
-                    src="images/audi.jpg"
-                    class="card-img-top"
-                    alt="image of an audi rs5"
-                  />
-                </div>
-                <div class="card-body">
-                  <h4 class="card-title austhir-card-title">Audi RS 5</h4>
-                  <h4 class="card-text austhir-card-price">৳ 2,25,00,000</h4>
-                </div>
-                <div class="card-footer austhir-card-footer">
-                  <p class="year-badge austhir-footer-info">2020</p>
-                  <p class="austhir-footer-info">Automatic</p>
-                  <p class="austhir-footer-info">Petrol</p>
-                </div>
-              </div>
-            </a>
-            <a href="#">
-              <div class="card h-100 austhir-card">
-                <div class="austhir-card-image">
-                  <img
-                    src="images/lamborghini.jpg"
-                    class="card-img-top"
-                    alt="image of an aventador"
-                  />
-                </div>
-                <div class="card-body">
-                  <h4 class="card-title austhir-card-title">
-                    Lamborghini Aventador LP 700-4
-                  </h4>
-                  <h4 class="card-text austhir-card-price">৳ 5,40,00,000</h4>
-                </div>
-                <div class="card-footer austhir-card-footer">
-                  <p class="year-badge austhir-footer-info">2017</p>
-                  <p class="austhir-footer-info">Automatic</p>
-                  <p class="austhir-footer-info">Petrol</p>
-                </div>
-              </div>
-            </a>
-            <a href="#">
-              <div class="card h-100 austhir-card">
-                <div class="austhir-card-image">
-                  <img
-                    src="images/audi.jpg"
-                    class="card-img-top"
-                    alt="image of an audi rs5"
-                  />
-                </div>
-                <div class="card-body">
-                  <h4 class="card-title austhir-card-title">Audi RS 5</h4>
-                  <h4 class="card-text austhir-card-price">৳ 2,25,00,000</h4>
-                </div>
-                <div class="card-footer austhir-card-footer">
-                  <p class="year-badge austhir-footer-info">2020</p>
-                  <p class="austhir-footer-info">Automatic</p>
-                  <p class="austhir-footer-info">Petrol</p>
-                </div>
-              </div>
-            </a>
-            <a href="#">
-              <div class="card h-100 austhir-card">
-                <div class="austhir-card-image">
-                  <img
-                    src="images/lamborghini.jpg"
-                    class="card-img-top"
-                    alt="image of an aventador"
-                  />
-                </div>
-                <div class="card-body">
-                  <h4 class="card-title austhir-card-title">
-                    Lamborghini Aventador LP 700-4
-                  </h4>
-                  <h4 class="card-text austhir-card-price">৳ 5,40,00,000</h4>
-                </div>
-                <div class="card-footer austhir-card-footer">
-                  <p class="year-badge austhir-footer-info">2017</p>
-                  <p class="austhir-footer-info">Automatic</p>
-                  <p class="austhir-footer-info">Petrol</p>
-                </div>
-              </div>
-            </a>
-            <a href="#">
-              <div class="card h-100 austhir-card">
-                <div class="austhir-card-image">
-                  <img
-                    src="images/audi.jpg"
-                    class="card-img-top"
-                    alt="image of an audi rs5"
-                  />
-                </div>
-                <div class="card-body">
-                  <h4 class="card-title austhir-card-title">Audi RS 5</h4>
-                  <h4 class="card-text austhir-card-price">৳ 2,25,00,000</h4>
-                </div>
-                <div class="card-footer austhir-card-footer">
-                  <p class="year-badge austhir-footer-info">2020</p>
-                  <p class="austhir-footer-info">Automatic</p>
-                  <p class="austhir-footer-info">Petrol</p>
-                </div>
-              </div>
-            </a>
-            <a href="#">
-              <div class="card h-100 austhir-card">
-                <div class="austhir-card-image">
-                  <img
-                    src="images/lamborghini.jpg"
-                    class="card-img-top"
-                    alt="image of an aventador"
-                  />
-                </div>
-                <div class="card-body">
-                  <h4 class="card-title austhir-card-title">
-                    Lamborghini Aventador LP 700-4
-                  </h4>
-                  <h4 class="card-text austhir-card-price">৳ 5,40,00,000</h4>
-                </div>
-                <div class="card-footer austhir-card-footer">
-                  <p class="year-badge austhir-footer-info">2017</p>
-                  <p class="austhir-footer-info">Automatic</p>
-                  <p class="austhir-footer-info">Petrol</p>
-                </div>
-              </div>
-            </a>
-            <a href="#">
-              <div class="card h-100 austhir-card">
-                <div class="austhir-card-image">
-                  <img
-                    src="images/audi.jpg"
-                    class="card-img-top"
-                    alt="image of an audi rs5"
-                  />
-                </div>
-                <div class="card-body">
-                  <h4 class="card-title austhir-card-title">Audi RS 5</h4>
-                  <h4 class="card-text austhir-card-price">৳ 2,25,00,000</h4>
-                </div>
-                <div class="card-footer austhir-card-footer">
-                  <p class="year-badge austhir-footer-info">2020</p>
-                  <p class="austhir-footer-info">Automatic</p>
-                  <p class="austhir-footer-info">Petrol</p>
-                </div>
-              </div>
-            </a> -->
             <?php
                 }
               }
