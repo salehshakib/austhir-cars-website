@@ -95,9 +95,14 @@ if(isset($_POST['purchaseCar'])){
 
   if($transactionType === "EMI"){
 
-    //$totalCost = $_POST[]
-
-    //$sqlInsertEMI = "INSERT INTO installment (tId, userEmail, totalInstallment, totalCost, paid) VALUES ('$tidCar', '$userEmail', 12, '$')"
+    if(isset($_POST['downPayment'])){
+      $totalCost = $_POST['totalPrice'];
+      $totalInstallment = 12;
+      $paid = $_POST['downPayment'];
+      echo $_POST['totalPrice'].$_POST['downPayment'];
+      $sqlInsertEMI = "INSERT INTO installment (tId, userEmail, totalInstallment, totalCost, paid) VALUES ('$tidCar', '$userEmail', '$totalInstallment', '$totalCost', '$paid')";
+      mysqli_query($conn, $sqlInsertEMI);
+    } 
 
   }
 
@@ -753,6 +758,8 @@ if(isset($_POST['purchaseCar'])){
                     <input type="hidden" id="row-5-prod-price" name="tintProductPrice">
 
                     <input type="hidden" id="row-total-price" name="totalPrice">
+                    <input type="hidden" id="row-left" name="remainingPrice">
+                    <input type="hidden" id="row-down-payment" name="downPayment">
 
                     <div>
                         <h5 class="text-center mt-4">Payment Information</h5>
@@ -769,7 +776,7 @@ if(isset($_POST['purchaseCar'])){
                         </div>
                         <p>Total: <span id="total-amount"><strong>৳00</strong></span></p>
                         <div id="emi-info" class="d-none">
-                            <p>EMI Down Payment: <span id="down-amount"><strong>৳00</strong></span></p>
+                            <p>EMI Down Payment: <span id="down-amount" ><strong>৳00</strong></span></p>
                             <p>Paying Over Instalments: <span id="install-amount"><strong>৳00</strong></span></p>
                             <p>Total Instalments: <strong>12</strong></p>
                         </div>
