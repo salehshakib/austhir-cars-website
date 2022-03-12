@@ -10,11 +10,22 @@ if(!isset($_SESSION['name']) || !isset($_SESSION['email']))
 }
 
 
-if (isset($_POST['save'])) {   
+if (isset($_POST['save'])) {  
+  $email = $_SESSION['email']; 
   $tId = $_POST["tId"];
-  $problemdescription = $_POST["problemdescription"];
-  $sqlservice = "insert into service (tId, problemdescription) values ('" . $tId . "','" . $problemdescription . "')";
-  $resultservice = mysqli_query($conn, $sqlservice);
+  $sqlverify = "SELECT tId FROM transactions WHERE tId = '$tId' AND userEmail = '$email'";
+  $resultverify = mysqli_query($conn, $sqlverify);
+  if(mysqli_num_rows($resultverify) > 0)
+  {
+    $problemdescription = $_POST["problemdescription"];
+    $sqlservice = "insert into service (tId, problemdescription) values ('" . $tId . "','" . $problemdescription . "')";
+    $resultservice = mysqli_query($conn, $sqlservice);
+    Header("Location:index.php");
+  }
+  else {
+    echo "<script>alert('Incorrect Transaction ID')</script>";
+  }
+  
 }    
 
 
@@ -127,7 +138,7 @@ if (isset($_POST['save'])) {
                     class="austhir-btn austhir-submit-btn"
                     data-bs-toggle="modal"
                     data-bs-target="#exampleModal"
-                    type="button"
+                    type="submit"
                   >
                     Submit
                   </button>
@@ -169,7 +180,7 @@ if (isset($_POST['save'])) {
                 </div>
                 <div class="modal-footer">
                   <button
-                    type="button"
+                    type="submit"
                     class="austhir-btn austhir-modal-btn"
                     data-bs-dismiss="modal"
                     aria-label="Close"

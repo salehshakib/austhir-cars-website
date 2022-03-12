@@ -46,22 +46,27 @@ error_reporting(0);
                               </tr>
                             </thead>
                             <tbody>
+                            <form action="" method="POST">
                             <?php
                             $i = 1;
-                            $sql = "SELECT service.tId, transactions.userEmail
+                            $sql = "SELECT service.serviceId, service.tId, transactions.userEmail
                                     FROM service
                                     INNER JOIN transactions ON service.tId = transactions.tId";
                             $result = mysqli_query($conn, $sql);
                             if (mysqli_num_rows($result) > 0) {
-                                while ($row = mysqli_fetch_assoc($result)) {
+                                while ($row = mysqli_fetch_assoc($result)) {    
+                                       
                             ?>
+                            
                             <tr>
                                 <th scope="row"><?php echo $i++; ?></th>
                                 <td><?php echo $row['userEmail']; ?></td>
                                 <td><?php echo $row['tId']; ?></td>
-                                <td><button type="button" class="btn success-btn">Done</button></td>
+                                <?php echo "<td><a href=\"delete.php?id=".$row['serviceId']."\">Done</a></td>" ?>
                             </tr>
+                            
                             <?php
+                                
                                 }
                             }         
                             ?>
@@ -77,6 +82,7 @@ error_reporting(0);
                                 <td>@twitter</td>
                                 <td><button type="button" class="btn success-btn">Done</button></td>
                               </tr> -->
+                              </form>
                             </tbody>
                           </table>
                     </div>
