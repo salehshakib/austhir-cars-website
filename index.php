@@ -368,7 +368,7 @@ unset($_SESSION['carId']);
                 <h4 class="service-title">Car Servicing</h4>
                 <a
                   class="austhir-btn service-view-btn"
-                  href="after-sales-service.html"
+                  href="after-sales-service.php"
                   >View</a
                 >
               </div>
