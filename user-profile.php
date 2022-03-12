@@ -29,6 +29,35 @@ if (isset($_POST['save'])) {
 }
 
 
+if(isset($_POST['payEMI'])){
+  $tid = $_POST['tId'];
+  $insNo = $_POST['installmentNo'];
+  $installmentDate = $_POST['installmentDate'];
+
+
+
+  $sqlQuery = "SELECT * FROM installment where tId = '$tid'";
+  $result = mysqli_query($conn, $sqlQuery);
+  if(mysqli_num_rows($result) > 0){
+    while ($row = mysqli_fetch_assoc($result)) {
+      $totalCost = $row['totalCost'];
+      $paid = $row['paid'];
+      $paidInstallment = $row['paidInstallment'];
+      
+      $paid = $paid + (int)(($totalCost - $paid)/(12 - $paidInstallment));  
+    }
+  }
+
+
+  $sqlUpdate = "UPDATE installment set paid = '$paid', paidInstallment = '$insNo', installmentDate = '$installmentDate' where tId = '$tid'";
+  $updateResult = mysqli_query($conn, $sqlUpdate);
+
+  Header("Location: user-profile.php");
+  
+}
+
+
+
 ?>
 
 
@@ -57,10 +86,10 @@ if (isset($_POST['save'])) {
   <body>
     <!-- header start -->
     <header>
-      <?php include'header.php'; ?>
+    
     </header>
     <!-- header end -->
-
+    <?php include'header.php'; ?>
     <main>
       <!-- basic info section -->
       <section class="user-section">
@@ -226,8 +255,8 @@ if (isset($_POST['save'])) {
                     <td class="install-id"><?php echo $row['insId']; ?></td>
                     <td class="transac-id"><?php echo $row['tId']; ?></td>
                     <td>12</td>
-                    <td class="paid-install">1</td>
-                    <td class="next-ins-date">17-6-2022</td>
+                    <td class="paid-install"><?php echo $row['paidInstallment']; ?></td>
+                    <td class="next-ins-date"><?php echo $row['installmentDate']; ?></td>
                     <td>
                       <button
                         class="table-btn"
@@ -279,7 +308,7 @@ if (isset($_POST['save'])) {
               </div>
               <div class="modal-body">
                 <!-- emi payment form -->
-                <form action="">
+                <form action="" method="POST">
                   <h5 class="text-center">EMI Information</h5>
                   <div class="modal-input-container">
                     <label for="emi-id">EMI ID</label>
@@ -292,7 +321,7 @@ if (isset($_POST['save'])) {
                   </div>
                   <div class="modal-input-container">
                     <label for="tran-id">Transaction ID</label>
-                    <input
+                    <input name="tId"
                       type="text"
                       id="tran-id"
                       placeholder="Transaction ID"
@@ -301,7 +330,7 @@ if (isset($_POST['save'])) {
                   </div>
                   <div class="modal-input-container">
                     <label for="ins-num">Instalment Number</label>
-                    <input
+                    <input name="installmentNo"
                       type="text"
                       id="ins-num"
                       placeholder="Instalment Number"
@@ -311,6 +340,7 @@ if (isset($_POST['save'])) {
                   <div class="modal-input-container">
                     <label for="ins-date">Next Instalment Date</label>
                     <input
+                    name="installmentDate"
                       type="text"
                       id="ins-date"
                       placeholder="Next Instalment Date"
@@ -336,9 +366,7 @@ if (isset($_POST['save'])) {
                       required
                     />
                   </div>
-                </form>
-              </div>
-              <div class="modal-footer">
+                  <div class="modal-footer">
                 <button
                   type="button"
                   class="austhir-btn submit-btn austhir-alt-btn"
@@ -346,10 +374,13 @@ if (isset($_POST['save'])) {
                 >
                   <i class="fas fa-ban"></i> Close
                 </button>
-                <button type="submit" class="austhir-btn submit-btn">
+                <button type="submit" class="austhir-btn submit-btn" name="payEMI">
                   Save changes
                 </button>
               </div>
+                </form>
+              </div>
+              
             </div>
           </div>
         </div>

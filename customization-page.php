@@ -34,6 +34,7 @@ if(isset($_SESSION['carId'])){
 
 if(isset($_POST['purchaseCar'])){
 
+  //echo 
 
   $userEmail = $_SESSION['email'];
   if(isset($_POST['cash-or-emi']))
@@ -97,10 +98,10 @@ if(isset($_POST['purchaseCar'])){
 
     if(isset($_POST['downPayment'])){
       $totalCost = $_POST['totalPrice'];
-      $totalInstallment = 12;
+      $date = date("d-m-yy");
+
       $paid = $_POST['downPayment'];
-      echo $_POST['totalPrice'].$_POST['downPayment'];
-      $sqlInsertEMI = "INSERT INTO installment (tId, userEmail, totalInstallment, totalCost, paid) VALUES ('$tidCar', '$userEmail', '$totalInstallment', '$totalCost', '$paid')";
+      $sqlInsertEMI = "INSERT INTO installment (tId, userEmail, totalCost, paid, installmentDate) VALUES ('$tidCar', '$userEmail','$totalCost', '$paid', '$date')";
       mysqli_query($conn, $sqlInsertEMI);
     } 
 
