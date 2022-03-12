@@ -20,6 +20,8 @@ if(isset($_POST['login'])){
     $check_user_email_query = "SELECT userEmail FROM userinfo WHERE userEmail = '$user_input'";
     $check_user_name_query = "SELECT userName FROM userinfo WHERE userName = '$user_input'";
 
+    
+
     if(mysqli_num_rows(mysqli_query($conn, $check_user_email_query)) > 0){
 
         $check_password_query = "SELECT * FROM userinfo WHERE userPassword = '$user_password' AND userEmail = '$user_input'";
@@ -56,6 +58,34 @@ if(isset($_POST['login'])){
     }else{
 
         echo "<script>alert('Log in details incorrect.')</script>";
+    }
+
+    //admin login
+
+    if(strpos($user_input, '@austhircars.com') == true)
+    {
+        $check_user_name_query = "SELECT * FROM admininfo WHERE adminName = '$user_input'";
+        
+        if(mysqli_num_rows(mysqli_query($conn, $check_user_name_query)) > 0){
+
+            $check_password_query = "SELECT * FROM admininfo WHERE adminPassword = '$user_password' AND adminName = '$user_input'";
+            $result = mysqli_query($conn, $check_password_query);
+            if(mysqli_num_rows($result) > 0){
+    
+                while ($row = mysqli_fetch_assoc($result)){
+                    $_SESSION['name'] = $row['adminName'];
+                }
+                header("Location: admin-home.php");
+            }
+            else{
+    
+                echo "<script>alert('Log in details incorrect.')</script>";
+            }
+        }
+        else{
+    
+            echo "<script>alert('Log in details incorrect.')</script>";
+        }
     }
 
 }

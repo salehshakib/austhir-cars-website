@@ -1,3 +1,25 @@
+<?php
+
+include 'config.php';
+session_start();
+error_reporting(0);
+
+if(!isset($_SESSION['name']) || !isset($_SESSION['email']))
+{
+  Header("Location: login-register.php");
+}
+
+
+if (isset($_POST['save'])) {   
+  $tId = $_POST["tId"];
+  $problemdescription = $_POST["problemdescription"];
+  $sqlservice = "insert into service (tId, problemdescription) values ('" . $tId . "','" . $problemdescription . "')";
+  $resultservice = mysqli_query($conn, $sqlservice);
+}    
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -45,7 +67,7 @@
         <div class="row row-cols-1">
           <div class="col p-0">
             <div class="after-sales-form">
-              <form action="" class="w-100">
+              <form action="" method="POST" class="w-100">  
                 <div class="d-block d-lg-flex justify-content-between">
                   <!-- all brands dropdown -->
                   <div class="search-car-dropdown form-field-container">
@@ -56,9 +78,18 @@
                       </div>
                       <input type="hidden" name="brands" />
                       <ul class="dropdown-menu">
-                        <li id="none">Select Brand</li>
-                        <li id="mercedes-benz">Mercedes-Benz</li>
-                        <li id="koenigsegg">Koenigsegg</li>
+                      <?php
+                        $query = "SELECT DISTINCT carBrand FROM cars";
+                        $result = mysqli_query($conn, $query);
+                        if (mysqli_num_rows($result) > 0) {
+                          while ($row = mysqli_fetch_array($result)) {
+                      ?>
+                      <li id="none"><?php echo $row['carBrand']; ?></li>
+                    
+                      <?php
+                          }
+                        }
+                      ?>
                       </ul>
                     </div>
                   </div>
@@ -78,13 +109,13 @@
                       </ul>
                     </div>
                   </div> -->
-
+                
                   <div class="form-field-container">
-                    <input type="text" placeholder="Car's plate number" />
+                    <input type="text" name="tId" placeholder="Transaction ID" />
                   </div>
                 </div>
                 <textarea
-                  name="problem-description"
+                  name="problemdescription"
                   id=""
                   cols="30"
                   rows="10"
@@ -92,6 +123,7 @@
                 ></textarea>
                 <div class="d-flex justify-content-center">
                   <button
+                    name="save"
                     class="austhir-btn austhir-submit-btn"
                     data-bs-toggle="modal"
                     data-bs-target="#exampleModal"
