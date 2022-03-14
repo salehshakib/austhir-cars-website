@@ -140,7 +140,7 @@ if(isset($_POST['payEMI'])){
             <div id="user-edit-form" class="d-none">
               <form action="" method="POST">
                 <div class="input-container">
-                  <input type="text" name="userName" placeholder="Name" value="<?php echo $userName; ?> " disabled/>
+                  <input type="text" name="userName" placeholder="Name" value="<?php echo $userName; ?> " readonly/>
                 </div>
                 <div class="input-container">
                   <input type="text" name="userMobile" placeholder="Phone Number" value="<?php echo $userMobile; ?>"/>
