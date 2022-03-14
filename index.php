@@ -3,7 +3,8 @@
 include 'config.php';
 session_start();
 error_reporting(0);
-
+//unset(_SESSION['adminName']);
+//session_destroy();
 
 
 unset($_SESSION['carId']);

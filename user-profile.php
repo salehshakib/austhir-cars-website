@@ -183,7 +183,7 @@ if(isset($_POST['payEMI'])){
           <div class="col-md-12 user-info">
             <!-- transaction log table -->
             <div id="user-info-table" class="">
-              <h1 class="no-data-msg">No Transaction Data!</h1>
+              <h1 class="no-data-msg">Transaction Data</h1>
               <table class="table austhir-user-table log-table">
                 <thead>
                   <tr>
@@ -229,7 +229,7 @@ if(isset($_POST['payEMI'])){
           <div class="col-md-12 user-info">
             <!-- transaction log table -->
             <div id="user-info-table" class="">
-              <h1 class="no-data-msg">No EMI Data!</h1>
+              <h1 class="no-data-msg">EMI Data</h1>
               <table class="table austhir-user-table log-table">
                 <thead>
                   <tr>

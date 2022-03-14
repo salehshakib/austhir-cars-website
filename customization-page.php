@@ -100,7 +100,7 @@ if(isset($_POST['purchaseCar'])){
 
     if(isset($_POST['downPayment'])){
       $totalCost = $_POST['totalPrice'];
-      $date = date("d-m-yy");
+      $date = date("d-m-Y");
 
       $paid = $_POST['downPayment'];
       $sqlInsertEMI = "INSERT INTO installment (tId, userEmail, totalCost, paid, installmentDate) VALUES ('$tidCar', '$userEmail','$totalCost', '$paid', '$date')";
