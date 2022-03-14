@@ -1,3 +1,8 @@
+<?php
+include 'config.php';
+session_start();
+error_reporting(0);
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -30,7 +35,7 @@
       <!-- admin cards section -->
       <section id="admin-card-section" class="container">
         <div class="admin-card-container">
-          <a href="">
+          <a href="admin-panel.php">
             <div class="admin-card">
               <div class="admin-card-image">
                 <svg

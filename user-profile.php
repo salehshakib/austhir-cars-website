@@ -1,3 +1,66 @@
+<?php
+
+session_start();
+include 'config.php';
+$userEmail = $_SESSION['email'];
+$userName = $_SESSION['name'];
+$sql = "select * from userinfo where userName = '$userName' OR userEmail = '$userEmail'";
+$result = mysqli_query($conn, $sql);
+if (mysqli_num_rows($result) > 0) {
+  while ($row = mysqli_fetch_assoc($result)) {
+    $userAddress = $row['userAddress'];
+    $userMobile = $row['userMobile'];
+    $userNID = $row['userNID'];
+    $userPassport = $row['userPassport'];
+  }
+}
+
+
+if (isset($_POST['save'])) {
+    $userName = $_POST['userName'];
+    $userAddress = $_POST['userAddress'];
+    $userMobile = $_POST['userMobile'];
+    $userNID = $_POST['userNID'];
+    $userPassport = $_POST['userPassport'];
+    $sql_update = "update userinfo set userName = '$userName', userAddress = '$userAddress', userPassport = '$userPassport',
+                  userMobile = '$userMobile', userNID = '$userNID'  where userEmail = '$userEmail'";
+    $result_update = mysqli_query($conn, $sql_update);
+
+}
+
+
+if(isset($_POST['payEMI'])){
+  $tid = $_POST['tId'];
+  $insNo = $_POST['installmentNo'];
+  $installmentDate = $_POST['installmentDate'];
+
+
+
+  $sqlQuery = "SELECT * FROM installment where tId = '$tid'";
+  $result = mysqli_query($conn, $sqlQuery);
+  if(mysqli_num_rows($result) > 0){
+    while ($row = mysqli_fetch_assoc($result)) {
+      $totalCost = $row['totalCost'];
+      $paid = $row['paid'];
+      $paidInstallment = $row['paidInstallment'];
+      
+      $paid = $paid + (int)(($totalCost - $paid)/(12 - $paidInstallment));  
+    }
+  }
+
+
+  $sqlUpdate = "UPDATE installment set paid = '$paid', paidInstallment = '$insNo', installmentDate = '$installmentDate' where tId = '$tid'";
+  $updateResult = mysqli_query($conn, $sqlUpdate);
+
+  Header("Location: user-profile.php");
+  
+}
+
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -23,10 +86,10 @@
   <body>
     <!-- header start -->
     <header>
-      <?php include'header.php'; ?>
+    
     </header>
     <!-- header end -->
-
+    <?php include'header.php'; ?>
     <main>
       <!-- basic info section -->
       <section class="user-section">
@@ -45,55 +108,55 @@
               </div>
               <table class="table austhir-user-table">
                 <tbody>
-                  <tr>
+                <tr>
                     <th scope="row">Name</th>
-                    <td>Milhan Joardar Aumi</td>
+                    <td><?php echo $userName; ?></td>
                   </tr>
                   <tr>
                     <th scope="row">Email</th>
-                    <td>mjaumi2864@gmail.com</td>
+                    <td><?php echo $userEmail; ?></td>
                   </tr>
                   <tr>
                     <th scope="row">Phone Number</th>
-                    <td>01788744803</td>
+                    <td><?php echo $userMobile; ?></td>
                   </tr>
                   <tr>
                     <th scope="row">NID</th>
-                    <td>88554477120526</td>
+                    <td><?php echo $userNID; ?></td>
                   </tr>
                   <tr>
                     <th scope="row">Address</th>
-                    <td>B-15, G-4, Motijheel, A.G.B colony, Dhaka-1000</td>
+                    <td><?php echo $userAddress; ?></td>
                   </tr>
                   <tr>
                     <th scope="row">Passport</th>
-                    <td>C 18265405</td>
+                    <td><?php echo $userPassport; ?></td>
                   </tr>
+                  
                 </tbody>
               </table>
             </div>
             <!-- user info edit form -->
             <div id="user-edit-form" class="d-none">
-              <form action="">
+              <form action="" method="POST">
                 <div class="input-container">
-                  <input type="text" placeholder="First Name" />
-                  <input type="text" placeholder="last Name" />
+                  <input type="text" name="userName" placeholder="Name" value="<?php echo $userName; ?> " disabled/>
                 </div>
                 <div class="input-container">
-                  <input type="text" placeholder="Phone Number" />
-                  <input type="text" placeholder="NID Number" />
+                  <input type="text" name="userMobile" placeholder="Phone Number" value="<?php echo $userMobile; ?>"/>
+                  <input type="text" name="userNID" placeholder="NID Number" value="<?php echo $userNID; ?>"/>
                 </div>
                 <div class="input-container">
-                  <input type="text" placeholder="Passport Number" />
+                  <input type="text" name="userPassport" placeholder="Passport Number" value="<?php echo $userPassport; ?>"/>
                 </div>
                 <div class="input-container">
                   <textarea
-                    name=""
+                    name="userAddress"
                     id=""
                     cols="30"
                     rows="10"
                     placeholder="Type Your Address..."
-                  ></textarea>
+                  ><?php echo $userAddress; ?></textarea>
                 </div>
                 <div class="submit-btn-container">
                   <button
@@ -103,7 +166,7 @@
                   >
                     <i class="fas fa-ban"></i> Cancel
                   </button>
-                  <button type="submit" class="austhir-btn submit-btn">
+                  <button type="submit" name="save" class="austhir-btn submit-btn">
                     <i class="fas fa-save"></i> Save
                   </button>
                 </div>
@@ -121,7 +184,7 @@
             <!-- transaction log table -->
             <div id="user-info-table" class="">
               <h1 class="no-data-msg">No Transaction Data!</h1>
-              <table class="table austhir-user-table log-table d-none">
+              <table class="table austhir-user-table log-table">
                 <thead>
                   <tr>
                     <th scope="col">Serial No</th>
@@ -132,27 +195,26 @@
                   </tr>
                 </thead>
                 <tbody>
+                  <?php
+                  $i = 1;
+                  $sql_ins = "SELECT * FROM transactions WHERE userEmail = '$userEmail'";
+                  $result_ins = mysqli_query($conn, $sql_ins);
+                  if (mysqli_num_rows($result_ins) > 0) {
+                    while ($row = mysqli_fetch_assoc($result_ins)) {
+                  ?>
                   <tr>
-                    <th scope="row">1</th>
-                    <td>1232454510</td>
-                    <td>14654410324012348</td>
-                    <td>C-1012</td>
-                    <td>CASH</td>
+                    <th scope="row"><?php echo $i++; ?></th>
+                    <td><?php echo $row['tId']; ?></td>
+                    <td><?php echo $row['productId']; ?></td>
+                    <td><?php echo $row['accountNo']; ?></td>
+                    <td><?php echo $row['transType']; ?></td>
                   </tr>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>1232454510</td>
-                    <td>14654410324012348</td>
-                    <td>C-1012</td>
-                    <td>CASH</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>1232454510</td>
-                    <td>14654410324012348</td>
-                    <td>C-1012</td>
-                    <td>CASH</td>
-                  </tr>
+                  <?php
+                     
+                    }
+                  }
+                  ?>
+  
                 </tbody>
               </table>
             </div>
@@ -181,13 +243,20 @@
                   </tr>
                 </thead>
                 <tbody>
+                <?php
+                  $j = 1;
+                  $sql_emi = "SELECT * FROM installment WHERE userEmail = '$userEmail'";
+                  $result_emi = mysqli_query($conn, $sql_emi);
+                  if (mysqli_num_rows($result_emi) > 0) {
+                    while ($row = mysqli_fetch_assoc($result_emi)) {
+                  ?>
                   <tr>
-                    <th scope="row">1</th>
-                    <td class="install-id">1232454510</td>
-                    <td class="transac-id">12324123545413</td>
+                    <th scope="row"><?php echo $j++; ?></th>
+                    <td class="install-id"><?php echo $row['insId']; ?></td>
+                    <td class="transac-id"><?php echo $row['tId']; ?></td>
                     <td>12</td>
-                    <td class="paid-install">1</td>
-                    <td class="next-ins-date">17-6-2022</td>
+                    <td class="paid-install"><?php echo $row['paidInstallment']; ?></td>
+                    <td class="next-ins-date"><?php echo $row['installmentDate']; ?></td>
                     <td>
                       <button
                         class="table-btn"
@@ -198,40 +267,12 @@
                       </button>
                     </td>
                   </tr>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td class="install-id">1232454511</td>
-                    <td class="transac-id">12324123545414</td>
-                    <td>12</td>
-                    <td class="paid-install">2</td>
-                    <td class="next-ins-date">28-2-2022</td>
-                    <td>
-                      <button
-                        class="table-btn"
-                        data-bs-toggle="modal"
-                        data-bs-target="#emiModal"
-                      >
-                        Pay
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td class="install-id">1232454512</td>
-                    <td class="transac-id">12324123545415</td>
-                    <td>12</td>
-                    <td class="paid-install">3</td>
-                    <td class="next-ins-date">14-3-2022</td>
-                    <td>
-                      <button
-                        class="table-btn"
-                        data-bs-toggle="modal"
-                        data-bs-target="#emiModal"
-                      >
-                        Pay
-                      </button>
-                    </td>
-                  </tr>
+                  <?php
+                     
+                    }
+                  }
+                  ?>
+                  
                 </tbody>
               </table>
             </div>
@@ -267,7 +308,7 @@
               </div>
               <div class="modal-body">
                 <!-- emi payment form -->
-                <form action="">
+                <form action="" method="POST">
                   <h5 class="text-center">EMI Information</h5>
                   <div class="modal-input-container">
                     <label for="emi-id">EMI ID</label>
@@ -280,7 +321,7 @@
                   </div>
                   <div class="modal-input-container">
                     <label for="tran-id">Transaction ID</label>
-                    <input
+                    <input name="tId"
                       type="text"
                       id="tran-id"
                       placeholder="Transaction ID"
@@ -289,7 +330,7 @@
                   </div>
                   <div class="modal-input-container">
                     <label for="ins-num">Instalment Number</label>
-                    <input
+                    <input name="installmentNo"
                       type="text"
                       id="ins-num"
                       placeholder="Instalment Number"
@@ -299,6 +340,7 @@
                   <div class="modal-input-container">
                     <label for="ins-date">Next Instalment Date</label>
                     <input
+                    name="installmentDate"
                       type="text"
                       id="ins-date"
                       placeholder="Next Instalment Date"
@@ -324,9 +366,7 @@
                       required
                     />
                   </div>
-                </form>
-              </div>
-              <div class="modal-footer">
+                  <div class="modal-footer">
                 <button
                   type="button"
                   class="austhir-btn submit-btn austhir-alt-btn"
@@ -334,10 +374,13 @@
                 >
                   <i class="fas fa-ban"></i> Close
                 </button>
-                <button type="submit" class="austhir-btn submit-btn">
+                <button type="submit" class="austhir-btn submit-btn" name="payEMI">
                   Save changes
                 </button>
               </div>
+                </form>
+              </div>
+              
             </div>
           </div>
         </div>

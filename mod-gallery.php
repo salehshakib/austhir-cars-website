@@ -650,15 +650,86 @@
                     <tr>
                       <td></td>
                       <td colspan="7" class="text-end">Total Price</td>
-                      <th scope="row">৳152000</th>
+                      <th id="total-price" scope="row">৳00</th>
                     </tr>
                   </tfoot>
                 </table>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="austhir-btn austhir-alt-btn" data-bs-dismiss="modal"><i class="fas fa-ban"></i> Cancel</button>
-                <button type="button" class="austhir-btn submit-btn"><i class="fas fa-credit-card"></i> Purchase Now</button>
-              </div>
+
+                <!-- modal payment table -->
+                <form action="">
+                    <!-- hidden table inputs -->
+                    <input type="hidden" id="row-1-prod-id">
+                    <input type="hidden" id="row-1-name">
+                    <input type="hidden" id="row-1-type">
+                    <input type="hidden" id="row-1-brand">
+                    <input type="hidden" id="row-1-size">
+                    <input type="hidden" id="row-1-unit-price">
+                    <input type="hidden" id="row-1-quantity">
+                    <input type="hidden" id="row-1-prod-price">
+
+                    <input type="hidden" id="row-2-prod-id">
+                    <input type="hidden" id="row-2-name">
+                    <input type="hidden" id="row-2-type">
+                    <input type="hidden" id="row-2-brand">
+                    <input type="hidden" id="row-2-size">
+                    <input type="hidden" id="row-2-unit-price">
+                    <input type="hidden" id="row-2-quantity">
+                    <input type="hidden" id="row-2-prod-price">
+                    
+                    <input type="hidden" id="row-3-prod-id">
+                    <input type="hidden" id="row-3-name">
+                    <input type="hidden" id="row-3-type">
+                    <input type="hidden" id="row-3-brand">
+                    <input type="hidden" id="row-3-size">
+                    <input type="hidden" id="row-3-unit-price">
+                    <input type="hidden" id="row-3-quantity">
+                    <input type="hidden" id="row-3-prod-price">
+
+                    <input type="hidden" id="row-4-prod-id">
+                    <input type="hidden" id="row-4-name">
+                    <input type="hidden" id="row-4-type">
+                    <input type="hidden" id="row-4-brand">
+                    <input type="hidden" id="row-4-size">
+                    <input type="hidden" id="row-4-unit-price">
+                    <input type="hidden" id="row-4-quantity">
+                    <input type="hidden" id="row-4-prod-price">
+
+                    <input type="hidden" id="row-5-prod-id">
+                    <input type="hidden" id="row-5-name">
+                    <input type="hidden" id="row-5-type">
+                    <input type="hidden" id="row-5-brand">
+                    <input type="hidden" id="row-5-size">
+                    <input type="hidden" id="row-5-unit-price">
+                    <input type="hidden" id="row-5-quantity">
+                    <input type="hidden" id="row-5-prod-price">
+
+                    <input type="hidden" id="row-total-price">
+
+                    <h5 class="text-center mt-4">Account Information</h5>
+                    <div class="modal-input-container">
+                      <label for="acc-num">Bank Account Number</label>
+                      <input
+                        type="text"
+                        id="acc-num"
+                        placeholder="Bank Account Number"
+                        required
+                      />
+                    </div>
+                    <div class="modal-input-container">
+                      <label for="acc-pin">PIN</label>
+                      <input
+                        type="password"
+                        id="acc-pin"
+                        placeholder="PIN"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="austhir-btn austhir-alt-btn" data-bs-dismiss="modal"><i class="fas fa-ban"></i> Cancel</button>
+                    <button type="submit" class="austhir-btn submit-btn"><i class="fas fa-credit-card"></i> Purchase Now</button>
+                  </div>
+                </form>
             </div>
           </div>
         </div>
@@ -696,6 +767,6 @@
     ></script>
     <!-- custom js  -->
     <script src="js/mod-gallery.js"></script>
-     <script src="js/header.js"></script>
+    <script src="js/header.js"></script>
   </body>
 </html>
