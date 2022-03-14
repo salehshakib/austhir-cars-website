@@ -1,6 +1,11 @@
 <?php
 include 'config.php';
 session_start();
+if(!isset($_SESSION['adminName'])){
+    if(isset($_SESSION['name']))
+    Header("Location: index.php");
+    else Header("Location: login-register.php");
+}
 error_reporting(0);
 ?>
 <!DOCTYPE html>
@@ -26,7 +31,7 @@ error_reporting(0);
 <body>
     <!-- header start -->
     <header>
-    <?php include'admin-header.php'; ?>
+    <?php include 'admin-header.php'; ?>
       
     </header>
     <!-- header end -->
@@ -113,7 +118,7 @@ error_reporting(0);
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
-    <script src="js/header.js"></script>
+    <script src="js/admin-header.js"></script>
 </body>
 
 </html>

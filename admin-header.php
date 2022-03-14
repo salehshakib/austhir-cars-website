@@ -11,17 +11,17 @@
           /></a>
 
                <!-- user session info-->
-              <?php if(isset($_SESSION['name'])){ ?>
+              <?php if(isset($_SESSION['adminName'])){ ?>
                   <div id="user-session-info-container" class="me-4">
                     <div id="user-session-info" class="d-flex align-items-center">
-                      <p class="austhir-nav-link me-2 mb-0"><?php echo $_SESSION['name'] ?></p>
+                      <p class="austhir-nav-link me-2 mb-0"><?php echo $_SESSION['adminName'] ?></p>
                       <span class="user-image"><i class="fas fa-user"></i></span>
                       <span id="session-left-angle" class="ms-2 austhir-nav-link"><i class="fas fa-chevron-left"></i></span>
                     </div>
                     <div id="session-dropdown" class="user-session-menu d-none">
                       <ul>
-                        <li><a class="austhir-nav-link session-link" href="user-profile.php"><i class="fas fa-user"></i> Profile</a></li>
-                        <li><a class="austhir-nav-link session-link" href=""><i class="fas fa-sign-out-alt"></i> Log Out</a></li>
+                        <!-- <li><a class="austhir-nav-link session-link" href="user-profile.php"><i class="fas fa-user"></i> Profile</a></li> -->
+                        <li><a class="austhir-nav-link session-link" href="logout.php"><i class="fas fa-sign-out-alt"></i> Log Out</a></li>
                       </ul>
                     </div>
                   </div>

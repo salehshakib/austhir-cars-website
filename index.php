@@ -4,7 +4,34 @@ include 'config.php';
 session_start();
 error_reporting(0);
 
+
+
 unset($_SESSION['carId']);
+unset($_SESSION['sqlQueryForFilter']);
+
+if(isset($_SESSION['adminName'])){
+  Header("Location: admin-home.php");
+}
+
+
+if(isset($_POST['search'])){
+  
+  if($_POST['brands'] === "" && $_POST['price'] === "" ){
+    Header("Location: car-gallery.php");
+  } else{
+    $brands = mysqli_real_escape_string($conn, $_POST['brands']);
+    $price = mysqli_real_escape_string($conn, $_POST['price']);
+    if($_POST['brand'] !== "" && $_POST['price'] === ""){
+      $sql= "SELECT * FROM cars WHERE carBrand='$brands'";
+      $_SESSION['sqlQueryForFilter'] = $sql;
+    }
+    else {
+      $sql= "SELECT * FROM cars WHERE carBrand='$brands' OR carPrice BETWEEN 0 AND $price";
+      $_SESSION['sqlQueryForFilter'] = $sql;
+    }
+    Header("Location: car-gallery.php");
+  } 
+}
 
 
 ?>
@@ -45,7 +72,7 @@ unset($_SESSION['carId']);
     <!-- header start -->
     <header id="home-header">
      
-      <?php include'home-header.php'; ?>
+      <?php include 'home-header.php'; ?>
       <!-- hero section -->
       <section class="container">
         <div class="row-cols-1">
@@ -57,6 +84,8 @@ unset($_SESSION['carId']);
           </div>
 
           <!-- car search  -->
+
+          <form action="" method = "POST">
           <div class="row d-flex justify-content-center">
             <div
               class="search-car-container d-flex flex-column flex-lg-row align-items-center"
@@ -78,14 +107,13 @@ unset($_SESSION['carId']);
                       if (mysqli_num_rows($result) > 0) {
                         while ($row = mysqli_fetch_array($result)) {
                     ?>
-                    <li id="none"><?php echo $row['carBrand']; ?></li>
-                    
+                    <li id="<?php echo $row['carBrand']; ?>" ><?php echo $row['carBrand']; ?></li>
+                  
                     <?php
                         }
                       }
                     ?>
 
-                    
                   </ul>
                 </div>
               </div>
@@ -113,7 +141,7 @@ unset($_SESSION['carId']);
                     <span>Max Price</span>
                     <i class="fa fa-chevron-left"></i>
                   </div>
-                  <input type="hidden" name="price" />
+                  <input type="hidden" name="price"/>
                   <ul class="dropdown-menu">
                     <li id="none">Max Price</li>
                     <?php
@@ -122,7 +150,7 @@ unset($_SESSION['carId']);
                       if (mysqli_num_rows($result) > 0) {
                         while ($row = mysqli_fetch_array($result)) {
                     ?>
-                    <li id="none"><?php echo $row['carPrice']; ?></li>
+                    <li id="<?php echo $row['carPrice']; ?>"><?php echo $row['carPrice']; ?></li>
                     
                     <?php
                         }
@@ -134,9 +162,9 @@ unset($_SESSION['carId']);
 
               <!-- search button  -->
               <div class="d-block search-button-container">
-                <a
-                  class="d-block search-button d-flex align-items-center justify-content-center"
-                  href="car-gallery.php"
+                <button id="search" type="submit" name="search"
+                  class="d-block search-button d-flex align-items-center justify-content-center w-100 border-0"
+                  
                 >
                   <i class="fas fa-search"></i>
                   <p class="search-button-text">Search</p>
@@ -144,6 +172,7 @@ unset($_SESSION['carId']);
               </div>
             </div>
           </div>
+          </form>
 
           <!-- car type filters -->
           <div class="row">
@@ -673,7 +702,7 @@ unset($_SESSION['carId']);
                     while ($row = mysqli_fetch_array($result)) {
           ?> 
           
-            <a href="#">
+            <a href="car-description.php?carId=<?php echo $row['carId']; ?>">
               <div class="card h-100 austhir-card">
                 <div class="austhir-card-image">
                   <img

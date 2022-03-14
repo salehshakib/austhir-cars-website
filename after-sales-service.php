@@ -57,7 +57,7 @@ if (isset($_POST['save'])) {
   <body>
     <!-- header start -->
     <header>
-      <?php include'header.php'; ?>
+      <?php include 'header.php'; ?>
     </header>
     <!-- header end -->
 

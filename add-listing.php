@@ -1,6 +1,13 @@
 <?php
 error_reporting();
+session_start();
 include 'config.php';
+
+if(!isset($_SESSION['adminName'])){
+    if(isset($_SESSION['name']))
+    Header("Location: index.php");
+    else Header("Location: login-register.php");
+}
 
 if(isset($_POST['addLisiting_btn'])){
 
@@ -52,7 +59,11 @@ if(isset($_POST['addLisiting_btn'])){
                             driveType, milage, descriptions, videoLink) VALUES ('$carId', '$carBrand', '$carTransmission', '$carEngineSize',
                             '$carDoor', '$carCylinders', '$carColor', '$carFuelType', '$carDriveType', '$carMilage', '$carDescription',
                             '$carVideo')";
-    $insertCarDetailssResult = mysqli_query($conn, $insertCarDetailsSql); 
+
+
+
+    $insertCarDetailssResult = mysqli_query($conn, $insertCarDetailsSql);
+    
     
     if($insertCarDetailssResult && $insertCarsResult){
         echo "<script>alert('Inserted Successfully.')</script>";
@@ -87,7 +98,7 @@ if(isset($_POST['addLisiting_btn'])){
 <body>
     <!-- header start -->
     <header>
-      <?php include'admin-header.php'; ?>
+      <?php include 'admin-header.php'; ?>
     </header>
     <!-- header end -->
 
@@ -263,7 +274,7 @@ if(isset($_POST['addLisiting_btn'])){
                                             <div class="mb-4">
                                                 <label for="exampleInputName1"
                                                     class="form-label input-title">Year</label>
-                                                <input type="text" name="carYear"class="form-control inputbox" id="exampleInputYear"
+                                                <input type="text" name="carYear" class="form-control inputbox" id="exampleInputYear"
                                                     required>
                                             </div>
                                         </div>
@@ -428,7 +439,7 @@ if(isset($_POST['addLisiting_btn'])){
                                             <div class="mb-4">
                                                 <label for="exampleInputName1"
                                                     class="form-label input-title">Description</label>
-                                                <textarea class="form-control desbox" id="exampleFormControlTextarea1" name="carDescription"
+                                                <textarea required class="form-control desbox" id="exampleFormControlTextarea1" name="carDescription"
                                                     rows="12"></textarea>
                                             </div>
                                         </div>
@@ -505,7 +516,7 @@ if(isset($_POST['addLisiting_btn'])){
 
 
     <!-- custom js -->
-    <script src="js/header.js"></script>
+    <script src="js/admin-header.js"></script>
     <script src="js/dropdown.js"></script>
     <script src="js/filter.js"></script>
    

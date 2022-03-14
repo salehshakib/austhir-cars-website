@@ -2,6 +2,14 @@
 include 'config.php';
 session_start();
 error_reporting(0);
+
+if(!isset($_SESSION['adminName'])){
+  if(isset($_SESSION['name']))
+  Header("Location: index.php");
+  else Header("Location: login-register.php");
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -145,5 +153,8 @@ error_reporting(0);
         </div>
       </div>
     </footer>
+    <script src="js/admin-header.js"></script>
   </body>
 </html>
+
+

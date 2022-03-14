@@ -5,14 +5,19 @@ include 'config.php';
 session_start();
 unset($_SESSION['carId']);
 
+if(isset($_SESSION['adminName'])){
+  Header("Location: admin-home.php");
+}
+
 
 if(isset($_GET['type']) && !isset($_POST['carSearch'])){
   $car_type = $_GET['type'];
   $query = "SELECT * FROM cars WHERE carGenre = '$car_type'";
   $_SESSION['sqlQueryForFilter'] = $query;
   
-
-}else{
+} else if(isset($_SESSION['sqlQueryForFilter'])){
+  $_SESSION['sqlQueryForFilter'] = $_SESSION['sqlQueryForFilter'];
+} else{
   $query = "SELECT * FROM cars";
   $_SESSION['sqlQueryForFilter'] = $query;
 }

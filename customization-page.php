@@ -4,6 +4,10 @@ include 'config.php';
 
 session_start();
 
+if(!isset($_SESSION['name'])){
+  Header("Location: login-register.php");
+}
+
 if(isset($_SESSION['carId'])){
   $carId = $_SESSION['carId'];
   $sqlQuery = "SELECT * FROM cars JOIN carDetails ON cars.carId = carDetails.carId WHERE cars.carId = '$carId' ";
@@ -33,8 +37,6 @@ if(isset($_SESSION['carId'])){
 
 
 if(isset($_POST['purchaseCar'])){
-
-  //echo 
 
   $userEmail = $_SESSION['email'];
   if(isset($_POST['cash-or-emi']))
