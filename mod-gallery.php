@@ -1,3 +1,21 @@
+<?php
+
+include 'config.php';
+
+session_start();
+
+if(!isset($_SESSION['name'])){
+  Header("Location: login-register.php");
+}
+
+if(isset($_SESSION['adminName'])){
+  Header("Location: admin-home.php");
+}
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -31,7 +49,7 @@
   <body>
     <!-- header start -->
     <header>
-         <?php include'purchase-header.php'; ?>
+         <?php include 'purchase-header.php'; ?>
     </header>
     <!-- header end -->
 

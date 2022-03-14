@@ -5,7 +5,7 @@ session_start();
 error_reporting();
 
 
-if(isset($_SESSION['name'])){
+if(isset($_SESSION['name']) || isset($_SESSION['adminName'])){
 
     header("Location: index.php");
 } 
@@ -73,7 +73,7 @@ if(isset($_POST['login'])){
             if(mysqli_num_rows($result) > 0){
     
                 while ($row = mysqli_fetch_assoc($result)){
-                    $_SESSION['name'] = $row['adminName'];
+                    $_SESSION['adminName'] = $row['adminName'];
                 }
                 header("Location: admin-home.php");
             }
@@ -179,10 +179,10 @@ if(isset($_POST['signup'])){
                             <div class="mb-4">
                               <input type="password" class="form-control inputbox" name="login_user_password" id="exampleInputPassword" placeholder="Password">
                             </div>
-                            <div class="mb-4 form-check" id="remember">
+                            <!-- <div class="mb-4 form-check" id="remember">
                                 <input type="checkbox" name= "login_checkbox" class="form-check-input check" id="exampleCheck">
                                 <label class="form-check-label checktext" for="exampleCheck">Remember</label>
-                            </div>
+                            </div> -->
                             <button type="submit" class="btn austhir-btn" name="login">Login</button>
                         </form>
                     </div>

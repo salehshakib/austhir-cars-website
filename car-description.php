@@ -32,7 +32,7 @@ if(isset($_GET['carId'])){
             $carSeats = $row['carSeats'];
             $carImage = "images/carImage/".$row['carImage'];
 
-            if($row['description'] === null){
+            if($row['descriptions'] === null){
                 $carDescription = "How the adventure ended will be seen anon. Aouda was anxious, though she said nothing. As for Passepartout, he thought Mr. Fogg’s manoeuvre simply glorious. The captain had said “between eleven and twelve knots,” and the Henrietta confirmed his prediction.
                 <br><br><br>
                 If, then—for there were “ifs” still—the sea did not become too boisterous, if the wind did not veer round to the east, if no accident happened to the boat or its machinery, the Henrietta might cross the three thousand miles from New York to Liverpool in the nine days, between the 12th and the 21st of December. It is true that, once arrived, the affair on board the Henrietta, added to that of the Bank of England, might create more difficulties for Mr. Fogg than he imagined or could desire.";
